@@ -2,7 +2,7 @@
     --white-color: #fff;
     --black-color: #000;
     --text-color:#333;
-    --primary-color: rgb(73 174 255);
+    --primary-color: rgb(73, 174, 255);
     /*  linear-gradient(0, rgb(115,162,182), rgb(0,91,163)) */
     --border-color: #dbdbdb;
     --header-height:68px;
@@ -12,6 +12,7 @@
     box-sizing: inherit;
     margin: 0px;
 }
+
 
 html{
     font-size: 62.5%;
