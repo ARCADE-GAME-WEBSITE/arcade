@@ -175,7 +175,7 @@
 .friend-list__contact,
 .friend-list__friend{
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;  
     padding: 5px 5px;
 }
