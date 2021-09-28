@@ -1,7 +1,7 @@
 .header{
     height: var(--header-height);
-    background-color: var(--primary-color);
-    position: fixed;
+    background: -webkit-linear-gradient(left,#33ccff 0%, #ff99cc 100%);
+    position: relative;
     top:0;
     left:0;
     right:0;
@@ -28,13 +28,15 @@
 
 .logo-img__css{
     height: 50px;
+    border-radius: 10px;
+
 }
 
 .header__search{
     background-color: var(--white-color);
     height:40px;
     flex:1;
-    border-radius: 2px;
+    border-radius: 5px;
     display:flex;
     align-items: center;
     position: relative;
@@ -79,7 +81,7 @@
     border: none;
     height: 34px;
     width: 60px;
-    border-radius: 2px;
+    border-radius: 15px;
     margin-right: 3px;
     outline: none;
 }
@@ -116,10 +118,191 @@
     justify-content: center;
 }
 
+.language{
+    height: 40px;
+    width: 50px;
+    background: var(--white-color);
+    margin: 0 0 0 16px;
+    border-radius: 15px;
+    display: flex;
+}
+.language-icon{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.language-icon__vietnam{
+    height: 55%;
+    width: 60%;
+}
+
+
 
 .content{
+    background-image: url(../img/bg1.png);
+    background-size: 500px;
+    width: 100%;
+    position: relative;
+    height: 720px;
+}
+
+.content__bg{
+    width: 100%;
+    height: 100%;
+}
+
+
+.friend-list{
+    position: fixed;    
+    bottom : 0;
+    width: 16.66667%;
+    top: var(--header-height);
+    left: 0 ;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.friend-list__heading{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(0, rgb(93, 255, 128), rgb(51, 163, 255));
+}
+
+.friend-list__contact,
+.friend-list__friend{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    padding: 5px 5px;
+}
+
+.friend-list__title-img,
+.friend-list__friend-img{
+    height: 24px;   
+    margin-right: 5px;    
+}
+
+.friend-list__title-name,
+.friend-list__friend-name{
+    font-size:1.2rem;
+    font-weight:700;
+    margin:8px 5px 8px 0;    
+}
+
+.friend-list__heading-2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9affa3;
+    border-bottom: 3px dashed #ffb23e;
+}
+
+.friend-list__add{
+    display: flex;
+    border-radius: 10px;
+    margin: 5px 10px;
+    background-color: rgb(140, 203, 255);
+}
+.friend-list__add:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.friend-list__add-icon{
+    margin: auto 10px;
+}
+
+.friend-list__title{
+    background-color: #9affa3;
+    width: 100%;
+    display: block;
+}
+
+.friend-info{
+    width: 100%;
+    display: flex;
+}
+
+.friend-info__item{
+    width: 100%;
+    display: flex;
+    margin: 10px 12px;
+    justify-content: space-between;
+    border: 2px solid #ffb23e;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px #ffb23e;
+}
+
+.friend-list__title-add{
+    border-radius: 10px;
+    background-color: rgb(140, 203, 255);
+}
+
+.friend-list__title-add:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.friend-list__footer{
+    background-color: #ff99cc;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.friend-list__footer-icon{
+    font-size: 1.8rem;
+    color:rgb(0, 132, 255);
+}
+
+
+
+
+.game-screen{
+    height: 500px;
+    background: linear-gradient(0, rgb(93, 255, 128), rgb(51, 163, 255));
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+
+.game-screen__img{
+    display: flex;
+    margin: 10px 20px;
+}
+
+.game-screen__img--css{
+    width: 25%;
+    padding: 0 10px;
+}
+
+.game-screen__btn{
+    display: block;
+}
+
+.game-screen__btn li {
+    list-style: none;
+    margin: 40px 0 0;
+    font-size: 1.8rem;
+    font-weight:700;
+}
+
+.game-screen__btn a{
+    display: block;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
 
 }
+.game-screen__btn a:hover {
+    color: rgb(0, 132, 255);
+}
+
 
 .footer{
 

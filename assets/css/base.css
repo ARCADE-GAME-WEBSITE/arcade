@@ -2,16 +2,21 @@
     --white-color: #fff;
     --black-color: #000;
     --text-color:#333;
-    --primary-color: rgb(0,91,163);
+    --primary-color: rgb(73, 174, 255);
     /*  linear-gradient(0, rgb(115,162,182), rgb(0,91,163)) */
     --border-color: #dbdbdb;
     --header-height:68px;
     --navbar-height: 40px;
 }
 *{
-    box-sizing: inherit;
+    box-sizing: border-box;
     margin: 0px;
 }
+
+.active{
+    background-color:rgb(73, 174, 255);
+}
+
 
 html{
     font-size: 62.5%;
