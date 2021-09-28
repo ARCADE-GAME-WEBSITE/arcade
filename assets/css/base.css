@@ -9,8 +9,12 @@
     --navbar-height: 40px;
 }
 *{
-    box-sizing: inherit;
+    box-sizing: border-box;
     margin: 0px;
+}
+
+.active{
+    background-color:rgb(73, 174, 255);
 }
 
 
