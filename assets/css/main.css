@@ -142,10 +142,9 @@
 
 .content{
     background-image: url(../img/bg1.png);
-    background-size: 500px;
+    background-size: 400px;
     width: 100%;
     position: relative;
-    height: 720px;
 }
 
 .content__bg{
@@ -296,16 +295,101 @@
     align-items: center;
     text-align: center;
     text-decoration: none;
-    color: #fff;
+    color: #000;
 
 }
 .game-screen__btn a:hover {
-    color: rgb(0, 132, 255);
+    color: rgb(162, 210, 255);
+}
+
+.game-info,
+.game-control{
+    background: rgb(199, 228, 255);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.game-control__zoom,
+.game-control__btn{
+    display: block;
+}
+
+.btn__control{
+    width:35px;
+    margin: 0 10px;
+}
+
+.like,.unlike,
+.btn__zoom{
+    font-size: 2.4rem;
+    margin: 10px 0 5px 10px;
+}
+
+.game-info__report{
+    display: flex;
+    margin: 10px 10px;
+}
+.report-flag{
+    padding: 3px 5px 0 5px;
+}
+
+.game-detail{
+    height: 200px;
+    background-color: rgb(199, 228, 255);
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.game-comment{
+    height: 200px;
+    background-color: rgb(199, 228, 255);
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.game-diff{
+    height: 500px;
+    background-color: rgb(199, 228, 255);
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.game-demo{
+    height: 200px;
+    background-color: rgb(199, 228, 255);
+    margin: 10px 0;
+    border-radius: 10px;
+    display: block;
+}
+
+.game-demo__link{
+    display: flex;
+    justify-content: center;
+}
+
+.game-tag{
+    height: 300px;
+    background-color: rgb(199, 228, 255);
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.game-same{
+    height: 400px;
+    background-color: rgb(199, 228, 255);
+    margin: 10px 0;
+    border-radius: 10px;
 }
 
 
-.footer{
 
+
+.footer{
+    height: 150px;
+    background-color: rgb(199, 228, 255);
 }
 
 
