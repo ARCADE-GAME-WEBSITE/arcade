@@ -7,8 +7,7 @@ html, body {
 
 html {
   font-size: 10px;
-  background-image: url("./Background/background-2.webp");
-  background-color: #a9a9a9;
+  background-color: whitesmoke;
 }
 
 body {
@@ -155,3 +154,4 @@ footer {
   margin-top: 10px;
   font-size: 2rem;  
 }
+
