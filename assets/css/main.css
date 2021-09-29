@@ -16,7 +16,7 @@
 }
 
 .header-logo{
-    margin-right: 50px;
+    margin: 20px 0 0 20px;
 }
 
 .logo-img{
@@ -27,7 +27,7 @@
 }
 
 .logo-img__css{
-    height: 50px;
+    height: 140px;
     border-radius: 10px;
 
 }
@@ -272,10 +272,13 @@
 .game-screen__img{
     display: flex;
     margin: 10px 20px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .game-screen__img--css{
     width: 25%;
+    height: 150px;
     padding: 0 10px;
 }
 
