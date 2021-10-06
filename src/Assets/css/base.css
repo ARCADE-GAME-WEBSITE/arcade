@@ -46,7 +46,7 @@ html{
     100% {color: red;}
   }
   h1{
-    line-height: 1.6em;
+    line-height: 3em;
     font-family: 'Cinzel Decorative', cursive;
       animation: myanimation 10s infinite;
     }

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Game</title>
+    <link rel="stylesheet" href="./src/assets/css/base.css">
+    <link rel="stylesheet" href="./src/assets/css/main.css">
+    <link rel="stylesheet" href="./src/assets/css/grid.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;1,300&display=swap">
+    <link rel="stylesheet" href="./src/assets/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
+    <style> body{
+        background-image: url('./src/assets/Images/App/app-background.png');}
+        </style>
+</head>
+<body>
+    <div id="like_button_container">
+    <div id="main">
+        <div class="header">
+            <div class="grid wide">
+                <div class="header-with-search">
+                    <div class="header-logo">
+                        <a href="/" class="logo-img">
+                            <img src="./src/assets/Images/App/app-logo.png" class="logo-img__css" alt="logo">
+                        </a>
+                    </div>
+                    
+                    <!-- <input type="checkbox" hidden id="mobile-search-checkbox" class="header__search-checkbox"> -->
+                    <div class="header__search">
+                        <div class="header__search-input-wrap">
+                            <input type="text" class="header__search-input" placeholder="Tìm kiếm game">
+                        </div>
+                        <a href="" class="header__search-menu">
+                            <i class="fas fa-sort-amount-down header__search-menu-icon"></i>
+                        </a>
+                        <button class="header__search-btn">
+                            <i class="header__search-btn-icon fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="login-out">
+                        <a href="" class="login-out__btn">
+                        LOGIN
+                        </a>
+                    </div>
+                    <div class="login-out">
+                        <a href="" class="login-out__btn">
+                        LOGOUT
+                        </a>
+                    </div>
+                        
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="content">
+            
+        </div>
+
+        <div class="footer">
+            
+        </div>
+    </div>
+<!-- Modal lauout -->
+    <!-- <div class="modal">
+        <div class="modal__overlay">
+
+        </div>
+
+        <div class="modal__body">
+            <!-- Register form -->
+            <!-- <div class="auth-form">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h3 class="auth-form__heading">Đăng ký</h3>
+                        <span class="auth-form__switch-btn">Đăng nhập</span>
+                    </div>
+
+                    <div class="auth-form__form">
+                        <div class="auth-form__group">
+                            <input type="text" class="auth-form__input" placeholder="Email">
+                        </div>
+
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" placeholder="Mật khẩu">
+                        </div>
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
+                        </div>
+                    </div>
+
+                    <div class="auth-form__aside">
+                        <p class="auth-form__policy-text">
+                            Bằng việc ấn đăng ký, bạn đã đồng ý với Shopee về 
+                            <a href="" class="auth-form__text-link">Điều khoản dịch vụ </a> & 
+                            <a href="" class="auth-form__text-link">Chính sách bảo mật. </a>
+
+                        </p>
+                    </div>
+
+                    <div class="auth-form__control">
+                        <button class="btn btn--normal auth-form__control-back">TRỞ LẠI</button>
+                        <button class="btn btn--primary">ĐĂNG KÝ</button>
+                    </div>
+
+                </div>
+                <div class="auth-form__socials">
+                    <a href="" class="auth-form__socials--fb btn btn--size-s btn--with-icon">
+                        <i class="auth-form__socials-icon fab fa-facebook-square"></i>
+                        <span class="auth-form__socials-title">
+                            Kết nối với Facebook
+                        </span>
+                    </a>
+
+                    <a href="" class="auth-form__socials--gg btn btn--size-s btn--with-icon">
+                        <i class="auth-form__socials-icon ti-google"></i>
+                        <span class="auth-form__socials-title">
+                            Kết nối với Google
+                        </span>
+                    </a>
+                </div>
+
+            </div> -->
+
+            <!-- Login form -->
+            <!-- <div class="auth-form">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h3 class="auth-form__heading">Đăng nhập</h3>
+                        <span class="auth-form__switch-btn">Đăng ký</span>
+                    </div>
+
+                    <div class="auth-form__form">
+                        <div class="auth-form__group">
+                            <input type="text" class="auth-form__input" placeholder="Email">
+                        </div>
+
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" placeholder="Mật khẩu">
+                        </div>
+                    </div>
+
+                    <div class="auth-form__aside">
+                       <div class="auth-form__help">
+                           <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
+                           <span class="auth-form__help-separate"></span>
+                           <a href="" class="auth-form__help-link">Cần trợ giúp</a>
+                       </div>
+                    </div>
+
+                    <div class="auth-form__control">
+                        <button class="btn btn--normal auth-form__control-back">TRỞ LẠI</button>
+                        <button class="btn btn--primary">ĐĂNG NHẬP</button>
+                    </div>
+
+                </div>
+                <div class="auth-form__socials">
+                    <a href="" class="auth-form__socials--fb btn btn--size-s btn--with-icon">
+                        <i class="auth-form__socials-icon fab fa-facebook-square"></i>
+                        <span class="auth-form__socials-title">
+                            Kết nối với Facebook
+                        </span>
+                    </a>
+
+                    <a href="" class="auth-form__socials--gg btn btn--size-s btn--with-icon">
+                        <i class="auth-form__socials-icon ti-google"></i>
+                        <span class="auth-form__socials-title">
+                            Kết nối với Google
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div> -->
+
+    <header>
+        <h1>Arcade Game</h1>
+  </header>
+  <main>
+    <article>
+        <h2>Welcome</h2>
+      <h3>Categories</h3>
+      <br>
+        <nav>
+          <ul>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">FPS</a></li>
+            <li><a href="#">Date</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Racing</a></li>
+          </ul>
+        </nav>
+        <br>
+      <h3>Famous Game</h3>
+      <br>
+      <nav>
+        
+          <li><a href="#">Pacman</a></li>
+          <img src="./src/assets/LogoGame/pacman.png">
+          
+          <li><a href="#">Metal Slug</a></li>
+          <img src="./src/assets/LogoGame/metal slug.jpg">
+  
+          <li><a href="#">Cadillac And Dinosaurs</a></li>
+          <img src="./src/assets/LogoGame/Cadillac and Dinosaurs.png">
+  
+        
+      </nav>
+      <br>
+      <h3>New Game</h3>
+      <br>
+      <nav>
+      <li><a href="#">Doom 1993</a></li>
+      <img src="./src/assets/LogoGame/Doom 1993.jpg">
+  
+      <li><a href="#">3D Pinball</a></li>
+      <img src="./src/assets/LogoGame/3D Pinball.jpg">
+  
+      <li><a href="#">Gobble Snake Game</a></li>
+      <img src="./src/assets/LogoGame/gobble snake game.webp">
+  
+      </nav>
+    </article>
+    
+  </main>
+  <footer>
+        
+    
+    <nav>
+        <ul>
+            Change Page
+          <li><button type="button" ><a href="index.html">1</a></button></li>
+          <li><button type="button" ><a href="index1.html">2</a></button></li>
+          <li><button type="button" ><a href="index2.html">3</a></button></li>
+
+          <li><button type="button" ><a href="index4.html">5</a></button></li>
+        </ul>
+      </nav>
+    <p><strong>GoNin Team<strong></p>    
+  </footer>
+
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
+</div>
+</body>
+</html>
