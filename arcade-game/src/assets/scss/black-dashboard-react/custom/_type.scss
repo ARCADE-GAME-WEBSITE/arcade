@@ -1,0 +1,71 @@
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  line-height: $headings-line-height;
+
+}
+
+
+button,
+optgroup,
+select,
+textarea{
+    font-family: $font-family-base;
+    color: black;
+    border: 10px solid #EFE5CE;
+}
+.input{
+    font-family: $font-family-base;
+    color: black;
+    border: black;
+}
+.card{
+  h1,h2,h3,h4,h5,h6,p{
+    margin-left: 8px ;
+    color: black;
+  }
+}
+h1, .h1 {
+    line-height: 1.05;
+    margin-bottom: $margin-base-vertical * 2;
+
+    small{
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        opacity: .8;
+    }
+
+}
+h2, .h2{
+    margin-bottom: $margin-base-vertical * 2;
+    line-height: 1.2;
+
+}
+h3, .h3{
+    margin-bottom: $margin-base-vertical * 2;
+    line-height: 1.4em;
+}
+h4, .h4{
+    line-height: 1.45em;
+    margin-bottom: $margin-base-vertical;
+
+    & + .category,
+    &.title + .category{
+        margin-top: -10px;
+    }
+}
+h5, .h5 {
+    line-height: 1.4em;
+    margin-bottom: 15px;
+}
+
+
+hr{
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin-top: $spacer;
+  margin-bottom: $spacer;
+}

@@ -1,0 +1,39 @@
+.btn,
+.navbar .navbar-nav > a.btn{
+    border-width: $border-thick;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    
+    border-radius: $border-radius-lg;
+    cursor: pointer;
+
+    @include btn-styles($default, $default-states);
+
+    &:hover,
+    &:focus{
+        @include opacity(1);
+        outline: 0 !important;
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+         @include box-shadow(none);
+         outline: 0 !important;
+    }
+
+    .badge{
+      margin: 0;
+    }
+
+}
+
+.btn-primary { 
+  @include btn-styles($primary, $primary-states);
+  margin-left: 70px;    
+  margin-right: 100px;
+              }
+
+.btn + .btn {
+  margin-left: 5px;
+}
