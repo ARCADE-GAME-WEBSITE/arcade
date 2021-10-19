@@ -9,6 +9,7 @@ import GameDiff from './Components/GameDiff.js'
 import GameDemo from './Components/GameDemo.js'
 import GameTag from './Components/GameTag.js'
 import GameSame from './Components/GameSame.js'
+import FooTer from './Components/Footer.js'
 import './assets/css/base.css';
 import './assets/css/grid.css';
 import './assets/font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
@@ -40,9 +41,14 @@ function App() {
       {/* <GameTag>
 
       </GameTag> */}
-      <GameSame>
-        
-      </GameSame>
+      {/* <GameSame>
+
+      </GameSame> */}
+      {
+        <FooTer>
+
+        </FooTer>
+      }
     </div>
   );
 }

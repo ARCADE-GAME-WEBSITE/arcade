@@ -1,11 +1,11 @@
 import React from 'react'
 
-const logined = document.getElementById('logined')
-logined.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('test1').style.display = 'none'
-    document.getElementById('test2').style.display = 'flex'
-})
+// const logined = document.getElementById('logined')
+// logined.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     document.getElementById('test1').style.display = 'none'
+//     document.getElementById('test2').style.display = 'flex'
+// })
 export default function GameComment() {
     return (
         <div>
