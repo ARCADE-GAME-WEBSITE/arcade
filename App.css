@@ -1,0 +1,71 @@
+.navbar .photo img {
+  width: 100%;
+}
+.navbar .photo {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.dropdown-menu {
+  border: 0;
+  box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 0.1428rem;
+}
+.dropdown-menu.dropdown-menu-right:before, .dropdown-menu.dropdown-menu-right:after {
+  left: auto;
+  right: 10px;
+}
+.dropdown-menu:before {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  content: "";
+  top: -5px;
+  left: 10px;
+  right: auto;
+  color: #fff;
+  border-bottom: 0.4em solid;
+  border-right: 0.4em solid transparent;
+  border-left: 0.4em solid transparent;
+}
+.dropdown-menu.dropdown-menu-right {
+  right: 0 ;
+  left: auto ;
+}
+.dropdown-menu .dropdown-item, .bootstrap-select .dropdown-menu.inner li a {
+  font-size: 0.7500000025rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  margin-top: 5px;
+}
+.dropdown-menu .dropdown-item:hover, .bootstrap-select .dropdown-menu.inner li a:hover, .dropdown-menu .dropdown-item:focus, .bootstrap-select .dropdown-menu.inner li a:focus {
+  background-color: rgba(222, 222, 222, .3);
+}
+.dropdown-menu .dropdown-item.disabled, .bootstrap-select .dropdown-menu.inner li a.disabled, .dropdown-menu .dropdown-item:disabled, .bootstrap-select .dropdown-menu.inner li a:disabled {
+  color: rgba(182, 182, 182, .6);
+}
+.dropdown-menu .dropdown-item.disabled:hover, .bootstrap-select .dropdown-menu.inner li a.disabled:hover, .dropdown-menu .dropdown-item:disabled:hover, .bootstrap-select .dropdown-menu.inner li a:disabled:hover, .dropdown-menu .dropdown-item.disabled:focus, .bootstrap-select .dropdown-menu.inner li a.disabled:focus, .dropdown-menu .dropdown-item:disabled:focus, .bootstrap-select .dropdown-menu.inner li a:disabled:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+.dropdown .dropdown-menu, .dropup:not(.bootstrap-select) .dropdown-menu, .bootstrap-select .dropdown-menu:not(.inner), .dropdown-menu.bootstrap-datetimepicker-widget.bottom {
+  visibility: hidden;
+  display: block;
+  top: 100% ;
+}
+.dropdown-menu.bootstrap-datetimepicker-widget.top {
+  visibility: hidden;
+  display: block;
+}
+.dropdown.show .dropdown-menu, .bootstrap-select.show .dropdown-menu:not(.inner), .dropdown-menu.bootstrap-datetimepicker-widget.top.open, .dropdown-menu.bootstrap-datetimepicker-widget.bottom.open, .dropup.show:not(.bootstrap-select) .dropdown-menu, .navbar .dropdown.show .dropdown-menu {
+  visibility: visible;
+  margin-right: 5px;
+}
+.dropdown-menu .dropdown-item {
+  color: #9a9a9a;
+}
