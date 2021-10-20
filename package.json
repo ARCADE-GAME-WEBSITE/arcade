@@ -12,6 +12,9 @@
     "react-bootstrap-carousel": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-elastic-carousel": "^0.11.5",
+    "react-items-carousel": "^2.8.0",
+    "react-leaf-carousel": "^2.0.3",
+    "react-multi-carousel": "^2.6.5",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
@@ -39,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }

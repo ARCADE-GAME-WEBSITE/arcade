@@ -1,14 +1,42 @@
 import "./FamousGame_NewGame.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import InfiniteCarousel from 'react-leaf-carousel';
 /* <!--Game Picture --> */
-import pacman from "../../assets/LogoGame/pacman.png";
+
 /* <!--Game Link --> */
 
 const NewGame = () => {
     return (
         <div>
-            <div className="game-diff game-desc">
                             <h3>NEW GAME</h3>
-                            <div className="game-diff--css">
+                            <InfiniteCarousel 
+                                breakpoints={[
+                                {
+                                    breakpoint: 500,
+                                    settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2,
+                                    },
+                                },
+                                {
+                                    breakpoint: 768,
+                                    settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 3,
+                                    },
+                                },
+                                ]}
+                                dots={true}
+                                showSides={true}
+                                sidesOpacity={0.5}
+                                sideSize={0.1}
+                                slidesToScroll={4}
+                                slidesToShow={4}
+                                scrollOnDevice={true}
+                            >
+                                   
+                            
                                 <a className="game-diff-link" href="#">
                                     <img className="game-diff__img" src="https://media.contentapi.ea.com/content/dam/gin/images/2021/06/battlefield-2042-key-art.jpg.adapt.crop1x1.767p.jpg" alt="" />
                                     <div className="game-diff__name">Battle Field</div>
@@ -29,8 +57,8 @@ const NewGame = () => {
                                     <div className="game-diff__name">Fire boy and Watergirl</div>
                                     <div className="game-diff__dev">Arcade games</div>
                                 </a>
-                            </div>
-                            <div className="game-diff--css">
+                            
+                            
                                 <a className="game-diff-link" href="#">
                                     <img className="game-diff__img" src="https://kevin.games/assets/images/games/happy-snakes.jpg" alt="" />
                                     <div className="game-diff__name">Slither</div>
@@ -50,9 +78,8 @@ const NewGame = () => {
                                     <img className="game-diff__img" src="https://st.gamevui.com/images/image/2014/11/1/songoku-10-hd1.jpg" alt="" />
                                     <div className="game-diff__name">Dragonball Fighting</div>
                                     <div className="game-diff__dev">Arcade games</div>
-                                </a>
-                            </div>     
-                </div>
+                                </a>               
+                </InfiniteCarousel>
         </div>
     );
 };
