@@ -52,12 +52,12 @@ h3 {
   height: 13%;
 }
 .InfiniteCarousel {
-  height: 350px;
+  height: 40%;
   background-color: rgb(199, 144, 225);
-  margin: 10px 0;
+  margin: 10px -120px;
   border-radius: 10px;
   padding: 60px;
-  width: 1200px;
+  width: 190%;
   display: flex;
   justify-content: space-between;
 }
