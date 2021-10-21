@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './game-detail.css'
+
 import GameScreen from './GameScreen/game-screen'
 import GameControl from './GameControl/game-control'
 import GameInfo from './GameInfo/game-info'
@@ -12,8 +14,14 @@ import GameSame from './GameSame/game-same'
 function GameDetail() {
     return (
         <div>
-            <GameScreen/>
-            <GameControl/>
+            <div className="grid wide row">
+                <GameScreen/>
+            </div>
+            
+            <div className="">
+                <GameControl/>
+            </div>
+            
             <GameInfo/>
             <GameComment/>
             <GameDiff/>

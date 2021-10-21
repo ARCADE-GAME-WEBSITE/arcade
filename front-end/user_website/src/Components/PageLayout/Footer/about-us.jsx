@@ -6,7 +6,7 @@ import logo from '../../../Assets/Images/App/app-logo.png';
 class AboutUs extends Component {
     render() { 
         return (
-            <div className="grid wide row">
+            <div className="grid wide-footer row-footer">
                 <div className="col l-2 footer-icon">
                     <img src={logo} className="footer-icon__css" alt="logo" />
                     <div className="footer-from">

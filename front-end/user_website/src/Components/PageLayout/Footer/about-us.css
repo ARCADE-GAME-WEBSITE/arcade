@@ -63,16 +63,17 @@
   padding: 0;
 }
 
-.grid .wide {
+.grid .wide-footer {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.row {
+.row-footer {
   display: flex;
   flex-wrap: wrap;
   margin-left: -4px;
   margin-right: -4px;
+  padding: 0 80px;
 }
 
 .col {
