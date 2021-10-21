@@ -33,8 +33,9 @@ h3 {
 }
 
 .game-diff__img {
-  height: 70%;
+  height: 50%;
   width: 100%;
+  padding: 1% 30% 0 0;
 }
 
 .game-diff__name {
@@ -57,7 +58,7 @@ h3 {
   margin: 10px 60px;
   border-radius: 10px;
   padding: 20px;
-  width: 170%;
+  width: 140%;
   display: flex;
   justify-content: space-between;
 }
