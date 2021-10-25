@@ -10,24 +10,35 @@ import GameDiff from './GameDiff/game-diff'
 import GameDemo from './GameDemo/game-demo'
 import GameTag from './GameTag/game-tag'
 import GameSame from './GameSame/game-same'
+import GameAbout from './GameAbout/game-about';
+import FriendList from '../HomePage/FriendList/friend-list'
 
-function GameDetail() {
+function GameDetail({user}) {
     return (
-        <div>
-            <div className="grid wide row">
+        <div className="grid wide-1">
+            <div className="row">
+                <FriendList user={user}/>
                 <GameScreen/>
             </div>
-            
-            <div className="">
+            <div className="row">
                 <GameControl/>
             </div>
+            <div className="row">
+                <GameInfo/>
+            </div>
+
+            <div className="row">
+                <GameAbout/>
+                <GameDemo/>
+            </div>
             
-            <GameInfo/>
-            <GameComment/>
-            <GameDiff/>
-            <GameDemo/>
-            <GameTag/>
-            <GameSame/>
+            <div className="row">
+                <GameComment/>
+                <GameTag/>
+                <GameDiff/>
+                <GameSame/>
+            </div>
+            
         </div>
     );
 }

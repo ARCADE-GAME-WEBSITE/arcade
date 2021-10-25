@@ -4,7 +4,6 @@ import './game-diff.css'
 
 function GameDiff() {
     return (
-        <div>
             <div className="game-diff game-desc">
                 <h3>RELATED GAMES</h3>
                 <div className="game-diff--css">
@@ -51,10 +50,7 @@ function GameDiff() {
                         <div className="game-diff__dev">Arcade games</div>
                     </a>
                 </div>
-                
-                
             </div>
-        </div>
     )
 }
 

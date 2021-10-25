@@ -8,7 +8,6 @@ import mouseClick from '../../../Assets/Images/Game/mouse-click.png'
 
 function GameControl() {
     return (
-        <div>
             <div className="game-control">
                 <div className="game-control__btn">
                     <h3>GAME CONTROLS</h3>
@@ -27,7 +26,6 @@ function GameControl() {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 

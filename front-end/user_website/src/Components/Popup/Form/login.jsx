@@ -3,8 +3,8 @@ import './form.css'
 import useForm from './useForm.jsx'
 import Validator from "./validator";
 
-export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSignUp, formRef, closeForm, setUser}) => {
-    const {handleSubmit, handleChange, values, errors} = useForm("Login", Validator, setUser)
+export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSignUp, formRef, closeForm, user, setUser}) => {
+    const {handleSubmit, handleChange, values, errors} = useForm("Login", Validator, setUser, setShowLogin)
 
     return (showLogin) ? (
         <form onSubmit={handleSubmit} className="popup-form"
@@ -56,14 +56,16 @@ export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSi
                     </label>
                 </p>    
                 
-                <label 
-                    className = "form-link text-center" 
-                    onClick={() => {
-                        setShowLogin(false);
-                        setShowForgotPassword(true);
-                    }}
-                >Forgot password?
-                </label>
+                <p>
+                    <label 
+                        className = "form-link text-center" 
+                        onClick={() => {
+                            setShowLogin(false);
+                            setShowForgotPassword(true);
+                        }}
+                    >Forgot password?
+                    </label>
+                </p>
             </div>
         </form>
     ) : null;
