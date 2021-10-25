@@ -3,16 +3,16 @@ import './form.css'
 import useForm from './useForm.jsx'
 import Validator from "./validator";
 
-export const ForgotPassword = ({showForgotPassword, setShowForgotPassword, formRef, closeForm}) => {
-    const {handleSubmit, handleChange, values, errors} = useForm("ForgotPassword", Validator)
+export const ForgotPassword = ({showForgotPassword, setShowForgotPassword, formRef, setDialogState}) => {
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("ForgotPassword", formRef, setShowForgotPassword, Validator, null, setDialogState)
 
     return (showForgotPassword) ? (
-        <form onSubmit={handleSubmit} className="popup-form"
-            ref={formRef} onClick={closeForm}>
+        <form onSubmit={handleSubmit} className="popup-form fixed-top"
+            ref={formRef} onClick={handleClose}>
             <div className="auth-inner">
                 <label 
-                    class="close-btn" 
-                    onClick={() => setShowForgotPassword(false)}
+                    className="close-btn" 
+                    onClick={handleClose}
                 >&times;</label>
 
                 <h3>Forgot Password</h3>

@@ -1,7 +1,7 @@
 export default function Validator(FormType, values){
     let errors = {}
     
-    if (FormType === 'Login' && values === "Wrong email or password!"){
+    if (FormType === "Login" && values === "Wrong email or password!"){
         errors.Email = "Wrong email or password!"
     }
     else{

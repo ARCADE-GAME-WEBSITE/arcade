@@ -3,16 +3,16 @@ import './form.css'
 import useForm from './useForm'
 import validator from './validator'
 
-export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, closeForm}) => {
-    const {handleSubmit, handleChange, values, errors} = useForm("SignUp", validator, null, setShowSignUp)
+export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDialogState}) => {
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("SignUp", formRef, setShowSignUp, validator, null, setDialogState)
 
     return (showSignUp) ? (
-        <form onSubmit={handleSubmit} className="popup-form"
-            ref={formRef} onClick={closeForm}>
+        <form onSubmit={handleSubmit} className="popup-form fixed-top"
+            ref={formRef} onClick={handleClose}>
             <div className="auth-inner">
                 <div 
-                    class="close-btn" 
-                    onClick={() => setShowSignUp(false)}
+                    className="close-btn" 
+                    onClick={handleClose}
                 >&times;</div>
 
                 <h3>Sign Up</h3>
@@ -96,7 +96,8 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, closeF
                     </button>
                 </div>
 
-                <p>Already have account?
+                <p className="form-para">
+                    Already have account?
                     <label 
                         className="form-link form-para-link"
                         onClick={() => {

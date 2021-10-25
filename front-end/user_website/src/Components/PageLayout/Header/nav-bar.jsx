@@ -154,7 +154,7 @@ function NavBar({setShowLogin, setShowSignUp, user}) {
                     <img src={logo} className="navbar-logo" alt="logo" />
                 </a>
                 <div className="navbar-search">
-                    <input type="text" class="navbar-search-input" placeholder="Tìm kiếm game" />
+                    <input type="text" class="navbar-search-input" placeholder="Search game..." />
                     <button class="navbar-search-btn">
                         <i class="fas fa-search navbar-search-btn-icon" alt="search" />
                     </button>

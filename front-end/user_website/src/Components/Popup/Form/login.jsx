@@ -3,16 +3,16 @@ import './form.css'
 import useForm from './useForm.jsx'
 import Validator from "./validator";
 
-export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSignUp, formRef, closeForm, user, setUser}) => {
-    const {handleSubmit, handleChange, values, errors} = useForm("Login", Validator, setUser, setShowLogin)
+export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSignUp, formRef, setUser, setDialogState}) => {
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("Login", formRef, setShowLogin, Validator, setUser, setDialogState)
 
     return (showLogin) ? (
-        <form onSubmit={handleSubmit} className="popup-form"
-            ref={formRef} onClick={closeForm}>
+        <form onSubmit={handleSubmit} className="popup-form fixed-top"
+            ref={formRef} onClick={handleClose}>
             <div className="auth-inner">
                 <label 
-                    class="close-btn" 
-                    onClick={() => setShowLogin(false)}
+                    className="close-btn"
+                    onClick={handleClose}
                 >&times;</label>
 
                 <h3>Login</h3>
@@ -45,7 +45,8 @@ export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSi
                     <button className="btn btn-primary btn-block form-btn form-btn">Login</button>
                 </div>
                 
-                <p>You don't have any account?
+                <p className="form-para">
+                    You don't have any account?
                     <label 
                         className="form-link form-para-link"
                         onClick={() => {
@@ -56,7 +57,7 @@ export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSi
                     </label>
                 </p>    
                 
-                <p>
+                <p className="form-para">
                     <label 
                         className = "form-link text-center" 
                         onClick={() => {

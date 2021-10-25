@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios'
 
-const useForm = (FormType, validator, setUser, setShowForm) => {
-
+const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogState) => {
     const default_values = () => {
         if (FormType === "Login"){
             return {
@@ -41,13 +40,19 @@ const useForm = (FormType, validator, setUser, setShowForm) => {
     }
 
     const [errors, setErrors] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const handleSubmit = e => {
         e.preventDefault();
         
+        setErrors({});
         setErrors(validator(FormType, values));
 
-        if (Object.keys(errors).length === 0){
+        setIsSubmitted(true);
+    }
+
+    useEffect(() => {
+        if (isSubmitted && Object.keys(errors).length === 0){
             if (FormType === "Login"){
                 axios.post('user/login', values).then(
                     res => {
@@ -58,35 +63,75 @@ const useForm = (FormType, validator, setUser, setShowForm) => {
                         }
                     }
                 ).catch(
-                    err => setErrors(validator(FormType, 'Wrong email or password!'))
+                    err => {
+                        if (err.message === "Request failed with status code 401"){
+                            setErrors(validator(FormType, 'Wrong email or password!'))
+                        }
+                        else{
+                            setDialogState({
+                                title: "Error!",
+                                message: err.message,
+                                show: true
+                            })
+                        }
+                    }
                 )  
             }
             if (FormType === "SignUp"){
                 axios.post('user/sign-up', values).then(
                     res => {
-                        console.log(res)
+                        setDialogState({
+                            title: "Notify!",
+                            message: res.data.message,
+                            show: true
+                        })
                         setShowForm(false)
                     }
                 ).catch(
-                    err => console.log(err)
+                    err => {
+                        setDialogState({
+                            title: "Error!",
+                            message: err.message,
+                            show: true
+                        })
+                    }
                 )
             }
     
             if (FormType === "ForgotPassword"){
                 axios.post('user/forgot-password', values).then(
                     res => {
-                        console.log(res)
+                        setDialogState({
+                            title: "Notify!",
+                            message: res.data.message,
+                            show: true
+                        })
                         setShowForm(false)
                     }
                 ).catch(
-                    err => console.log(err)
+                    err => {
+                        setDialogState({
+                            title: "Error!",
+                            message: err.message,
+                            show: true
+                        })
+                    }
                 )
             }
+            setValues(default_values);
+            setIsSubmitted(false);
+        }  
+    }, [errors])
+
+    const handleClose = (e) => {
+        if (formRef.current === e.target || e.target.className === "close-btn"){
             setValues(default_values)
-        }   
+            setErrors({})
+            setShowForm(false)
+        }
     }
 
-    return { handleSubmit, handleChange, values , errors }
+    return { handleSubmit, handleClose, handleChange, values , errors }
 }
 
 export default useForm;

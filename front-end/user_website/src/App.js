@@ -4,6 +4,7 @@ import './Styles/App.css';
 import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
 
+import DialogBox from './Components/Popup/DialogBox/dialog-box'
 import NavBar from './Components/PageLayout/Header/nav-bar';
 import HomePage from './Pages/HomePage/home-page';
 import GameDetail from './Pages/GameDetail/game-detail';
@@ -13,8 +14,13 @@ import SignUp from './Components/Popup/Form/sign-up';
 import ForgotPassword from './Components/Popup/Form/forgot-password';
 import AboutUs from './Components/PageLayout/Footer/about-us';
 
-
 function App() {
+  const [dialogState, setDialogState] = useState({
+    title: "",
+    message: "",
+    show: true
+  })
+
   const [showLogin, setShowLogin] = useState(false)
   const [showSignUp, setShowSignUp] = useState(false)
   const [showForgotPassword, setShowForgotPassword] = useState(false)
@@ -22,13 +28,6 @@ function App() {
   const [user, setUser] = useState(null)
 
   const formRef = useRef();
-  const closeForm = e => {
-    if (formRef.current === e.target){
-        setShowLogin(false)
-        setShowSignUp(false)
-        setShowForgotPassword(false)
-    }
-  }
 
   return (
     <BrowserRouter>
@@ -45,6 +44,11 @@ function App() {
         <div className="App-footer">
           <AboutUs/>
         </div>
+
+        <DialogBox 
+          dialogState={dialogState}
+          setDialogState={setDialogState}
+        />
           
         <Login 
           showLogin={showLogin} 
@@ -52,8 +56,8 @@ function App() {
           setShowForgotPassword={setShowForgotPassword} 
           setShowSignUp={setShowSignUp}
           formRef={formRef}
-          closeForm={closeForm}
           setUser={setUser}
+          setDialogState={setDialogState}
         />
 
         <SignUp 
@@ -61,14 +65,14 @@ function App() {
           setShowSignUp={setShowSignUp}
           setShowLogin={setShowLogin}
           formRef={formRef}
-          closeForm={closeForm}
+          setDialogState={setDialogState}
         />
         
         <ForgotPassword 
           showForgotPassword={showForgotPassword} 
           setShowForgotPassword={setShowForgotPassword}
           formRef={formRef}
-          closeForm={closeForm}
+          setDialogState={setDialogState}
         />
       </div> 
     </BrowserRouter>

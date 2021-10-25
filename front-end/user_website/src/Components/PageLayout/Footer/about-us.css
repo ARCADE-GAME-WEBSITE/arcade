@@ -6,13 +6,12 @@
 .footer-icon__css {
   width: 50%;
   margin-top: 20px;
-  margin-left: 92px;
+  margin-left: 4px;
 }
 
 .footer-from {
   position: absolute;
   margin-top: 10px;
-  left: 110px;
   text-align: center;
 }
 
@@ -45,6 +44,7 @@
 .follow-icon {
   margin-right: 10px;
   color: #666;
+  display: inline-block;
 }
 
 .follow-icon:hover {
