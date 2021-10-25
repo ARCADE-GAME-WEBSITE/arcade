@@ -22,8 +22,8 @@ function UserProfile() {
               <CardHeader>
                 <h1 className="title">Profile</h1>
               </CardHeader>
-                <div className="row">
-                <div className="col-md-3">
+                <div className="row Card-space">
+                <div className="col-md-3 ">
                   <h5>Full Name:</h5>
                 </div>
                 <div className="col-md-3 text-secondary">
@@ -52,7 +52,7 @@ function UserProfile() {
                 </div>
               </div>
               <hr />
-              <div className="row">
+              <div className="row ">
                 <div className="col-md-3">
                   <h5>Email:</h5>
                 </div>
