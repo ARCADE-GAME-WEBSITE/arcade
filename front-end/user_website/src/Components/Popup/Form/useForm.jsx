@@ -15,7 +15,7 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
                 Email: "",
                 Password: "",
                 Confirm_password: "",
-                Gender: null
+                Gender: 1
             }
         }
 
@@ -29,10 +29,7 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
     const [values, setValues] = useState(default_values)
 
     const handleChange = e => {
-        var { name, value } = e.target
-        if (name === "Gender"){
-            value = Number(value)
-        }
+        const { name, value } = e.target
         setValues({
             ...values,
             [name]: value
@@ -59,7 +56,6 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
                         if (res.data.message === 'Authentication successful!'){
                             localStorage.setItem('token', res.data.token)
                             setUser(res.data.user)
-                            setShowForm(false)
                         }
                     }
                 ).catch(

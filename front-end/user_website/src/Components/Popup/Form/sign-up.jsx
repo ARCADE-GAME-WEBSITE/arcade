@@ -73,7 +73,7 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDia
                             className="form-radio-btn"
                             name="Gender"
                             checked={values.Gender === 1} 
-                            value="1"
+                            value={1}
                             onChange={handleChange}/>
                     </label>
                     <label className="form-radio-label">
@@ -83,7 +83,7 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDia
                             className="form-radio-btn"
                             name="Gender"
                             checked={values.Gender === 0}
-                            value="0"
+                            value={0}
                             onChange={handleChange}/>
                     </label>
                     {errors.Gender && <p className="validator">{errors.Gender}</p>}
