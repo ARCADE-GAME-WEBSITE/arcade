@@ -96,3 +96,9 @@
   color: red;
   text-size-adjust: 80%;
 }
+
+.auth-inner p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

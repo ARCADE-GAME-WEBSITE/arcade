@@ -33,9 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="App-header">
-          <NavBar setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} user={user}/>
-        </div>
+        <NavBar setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} user={user}/>
         
         <Switch>
           <Route path="/home" component={() => <HomePage user={user}/>} />
