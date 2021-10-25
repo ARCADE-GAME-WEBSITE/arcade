@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './Styles/App.css';
 import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
+import './Assets/css/nucleo-icons.css'
 
 import DialogBox from './Components/Popup/DialogBox/dialog-box'
 import NavBar from './Components/PageLayout/Header/nav-bar';

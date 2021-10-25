@@ -1,6 +1,6 @@
 import React from "react";
 
-import './personal-record.css'
+
 
 import {
   Card,

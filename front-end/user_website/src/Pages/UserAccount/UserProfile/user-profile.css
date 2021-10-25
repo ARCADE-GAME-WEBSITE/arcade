@@ -1,15 +1,39 @@
 .content {
-  margin-top: -66px;
+  margin-top: 1px;
 }
 hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: 17px;
-  margin-bottom: 17px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
-.btn-save {
-  margin-left: 70px;
+h5{
+  float: left;
+  margin-left: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0,24rem;
+}
+.o{
+  width: 300px;
+  
+}
+.a{
+  margin-right: 3px;
+  margin-left: 10px;
+
+}
+.btn-fill {
+  font-family: 'Poppins', sans-serif;
+  margin-left: 130px;
   margin-right: 100px;
-  background: #e14eca;
+  font-weight: bold;
+  border-radius: 10%;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  border: 3px solid #ffffff;
+  background: linear-gradient(0deg, rgb(238, 59, 178) 0%, rgb(245, 220, 239) 100%);
 }
 
 .btn + .btn {

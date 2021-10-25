@@ -15,8 +15,6 @@ function SideBar(props) {
   const { routes, rtlActive, logo } = props;
   let logoImg = null;
   let logoText = null;
-  if (logo !== undefined) {
-    if (logo.outterLink !== undefined) {
      
       logoText = (
         <a
@@ -27,7 +25,7 @@ function SideBar(props) {
           {logo.text}
         </a>
       );
-    } else {
+  
       logoImg = (
         <Link
           to={logo.innerLink}
@@ -39,17 +37,7 @@ function SideBar(props) {
           </div>
         </Link>
       );
-      logoText = (
-        <Link
-          to={logo.innerLink}
-          className="simple-text logo-normal"
-          onClick={props.toggleSidebar}
-        >
-          {logo.text}
-        </Link>
-      );
-    }
-  }
+  
   return (
     <BackgroundColorContext.Consumer>
       {({ color }) => (

@@ -12,7 +12,7 @@ var routes = [
   },
   {
     path: "/records",
-    name: "Records",
+    name: "Record games",
     icon: "tim-icons icon-puzzle-10",
     component: Records,
     layout: "/user-account",

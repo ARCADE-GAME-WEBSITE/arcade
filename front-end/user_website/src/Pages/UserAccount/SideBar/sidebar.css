@@ -1,8 +1,8 @@
 .sidebar,
 .off-canvas-sidebar {
-  height: calc(100vh - 90px);
+  height: calc(92vh - 90px);
   width: 230px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
@@ -34,16 +34,16 @@
   padding: 8px 8px;
 }
 .sidebar .nav li > a,
-.off-canvas-sidebar .nav li > a {
+.off-canvas-sidebar {
+  
   margin: 10px 15px 0;
   border-radius: 30px;
-  color: #fff;
-  display: block;
+  color:white;
   text-decoration: none;
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
-  font-size: 0.62475rem;
+  font-size: 0.9rem;
   padding: 10px 8px;
   line-height: 1.625rem;
 }
@@ -57,14 +57,15 @@
   white-space: nowrap;
 }
 .sidebar .nav i,
-.off-canvas-sidebar .nav i {
+.off-canvas-sidebar {
+  
   font-size: 20px;
   float: left;
-  margin-right: 12px;
+  margin-right: 20px;
   line-height: 30px;
   width: 34px;
   text-align: center;
-  color: rgba(222, 222, 222, 0.8);
+  color: white;
   position: relative;
 }
 .sidebar .logo,
@@ -87,18 +88,18 @@
   width: 180px;
 }
 .sidebar .logo .simple-text,
-.off-canvas-sidebar .logo .simple-text {
+.off-canvas-sidebar{
   padding: 0.5rem 0;
   white-space: nowrap;
   font-size: "Poppins", sans-serif;
-  color: #fff;
+  color: white;
   text-decoration: none;
   font-weight: 400;
   margin-left: 45px;
   overflow: hidden;
 }
-.sidebar[data="blue"],
-.off-canvas-sidebar[data="blue"] {
+.sidebar,
+.off-canvas-sidebar {
   background-color: #1d8cf8;
 }
 .main-panel {
@@ -109,18 +110,10 @@
   border-top: 2px solid #e14eca;
   background: white;
 }
-.main-panel[data="blue"] {
-  border-top: 2px solid #1d8cf8;
-}
-.main-panel[data="green"] {
-  border-top: 2px solid #00f2c3;
-}
-.main-panel[data="primary"] {
-  border-top: 2px solid #e14eca;
-}
+
 .main-panel > .content {
-  padding: 78px 30px 30px 280px;
-  min-height: calc(100vh - 70px);
+  padding: 78px 20px 20px 300px;
+  min-height: calc(90vh - 90px);
 }
 .main-panel > .navbar {
   margin-bottom: 0;

@@ -20,7 +20,7 @@
 .table > tbody > tr.table-warning > td {
   background-color: #ff8d72;
 }
-.table > tbody > tr.table-danger > td {
+.tr{
   background-color: #fd5d93;
 }
 .table .img-wrapper {
