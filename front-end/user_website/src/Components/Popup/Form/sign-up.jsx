@@ -4,7 +4,7 @@ import useForm from './useForm'
 import validator from './validator'
 
 export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, closeForm}) => {
-    const {handleSubmit, handleChange, values, errors} = useForm("SignUp", validator)
+    const {handleSubmit, handleChange, values, errors} = useForm("SignUp", validator, null, setShowSignUp)
 
     return (showSignUp) ? (
         <form onSubmit={handleSubmit} className="popup-form"
@@ -73,7 +73,7 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, closeF
                             className="form-radio-btn"
                             name="Gender"
                             checked={values.Gender === 1} 
-                            value={1}
+                            value="1"
                             onChange={handleChange}/>
                     </label>
                     <label className="form-radio-label">
@@ -83,7 +83,7 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, closeF
                             className="form-radio-btn"
                             name="Gender"
                             checked={values.Gender === 0}
-                            value={0}
+                            value="0"
                             onChange={handleChange}/>
                     </label>
                     {errors.Gender && <p className="validator">{errors.Gender}</p>}

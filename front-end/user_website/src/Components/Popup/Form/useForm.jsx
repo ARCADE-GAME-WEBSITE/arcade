@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios'
 
-const useForm = (FormType, validator, setUser) => {
+const useForm = (FormType, validator, setUser, setShowForm) => {
 
     const default_values = () => {
         if (FormType === "Login"){
@@ -16,7 +16,7 @@ const useForm = (FormType, validator, setUser) => {
                 Email: "",
                 Password: "",
                 Confirm_password: "",
-                Gender: 1
+                Gender: null
             }
         }
 
@@ -30,7 +30,10 @@ const useForm = (FormType, validator, setUser) => {
     const [values, setValues] = useState(default_values)
 
     const handleChange = e => {
-        const { name, value } = e.target
+        var { name, value } = e.target
+        if (name === "Gender"){
+            value = Number(value)
+        }
         setValues({
             ...values,
             [name]: value
@@ -51,6 +54,7 @@ const useForm = (FormType, validator, setUser) => {
                         if (res.data.message === 'Authentication successful!'){
                             localStorage.setItem('token', res.data.token)
                             setUser(res.data.user)
+                            setShowForm(false)
                         }
                     }
                 ).catch(
@@ -59,7 +63,10 @@ const useForm = (FormType, validator, setUser) => {
             }
             if (FormType === "SignUp"){
                 axios.post('user/sign-up', values).then(
-                    res => console.log(res)
+                    res => {
+                        console.log(res)
+                        setShowForm(false)
+                    }
                 ).catch(
                     err => console.log(err)
                 )
@@ -67,7 +74,10 @@ const useForm = (FormType, validator, setUser) => {
     
             if (FormType === "ForgotPassword"){
                 axios.post('user/forgot-password', values).then(
-                    res => console.log(res)
+                    res => {
+                        console.log(res)
+                        setShowForm(false)
+                    }
                 ).catch(
                     err => console.log(err)
                 )
