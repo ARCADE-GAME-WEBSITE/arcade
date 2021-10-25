@@ -24,69 +24,69 @@ function UserProfile() {
               </CardHeader>
                 <div className="row">
                 <div className="col-md-3">
-                  <h4>Full Name:</h4>
+                  <h5>Full Name:</h5>
                 </div>
                 <div className="col-md-3 text-secondary">
                   <form>
-                    <input type="text" name="fullname" />
+                    <input type="text" name="fullname" className="o" />
                   </form>
                 </div>
                 </div>
               <hr />
               <div className="row">
                 <div className="col-md-3">
-                  <h4>Sex:</h4>
+                  <h5>Sex:</h5>
                 </div>
-                <div className="col-md-9 text-secondary">
-                  <input type="radio" value="Male" name="gender" /> Male
-                  <input type="radio" value="Female" name="gender" /> Female
-                </div>
-              </div>
-              <hr />
-              <div className="row">
-                <div className="col-md-3">
-                  <h4>Date of birth:</h4>
-                </div>
-                <div className="col-md-9 text-secondary">
-                  <input type="date" name="bday" />
+                <div className="col-md-3 text-secondary">
+                  <input type="radio" value="Male" name="gender" className="a"  /> Male
+                  <input type="radio" value="Female" name="gender" className="a" /> Female
                 </div>
               </div>
               <hr />
               <div className="row">
                 <div className="col-md-3">
-                  <h4>Email:</h4>
+                  <h5>Date of birth:</h5>
                 </div>
-                <div className="col-md-9 text-secondary">
+                <div className="col-md-3 text-secondary">
+                  <input type="date" name="bday" className="o"   />
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-md-3">
+                  <h5>Email:</h5>
+                </div>
+                <div className="col-md-3 text-secondary">
                   <form>
-                    <input type="text" name="email" />
+                    <input type="text" name="email" className="o" />
                   </form>
                 </div>
               </div>
               <hr />
               <div className="row">
                 <div className="col-md-3">
-                  <h4>Phone:</h4>
+                  <h5>Phone:</h5>
                 </div>
-                <div className="col-md-9 text-secondary">
+                <div className="col-md-3 text-secondary">
                   <form>
-                    <input type="text" name="phone" />
+                    <input type="text" name="phone" className="o"  />
                   </form>
                 </div>
               </div>
               <hr />
               <div className="row">
                 <div className="col-md-3">
-                  <h4>Password:</h4>
+                  <h5>Password:</h5>
                 </div>
-                <div className="col-md-9 text-secondary">
-                  <p>******************************</p>
+                <div className="col-md-3 text-secondary"  >
+                  <p>*******************</p>
                 </div>
               </div>
               <CardFooter>
-                <Button className="btn-save" color="primary" >
+                <Button className="btn btn-fill" >
                   Save
                 </Button>
-                <Button className="btn-save" color="primary"  >
+                <Button className="btn btn-fill"   >
                   Change Password
                 </Button>
               </CardFooter>
