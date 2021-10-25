@@ -1,11 +1,17 @@
 import React from "react";
 import './home-page.css'
 
+import FriendList from "./FriendList/friend-list";
 import FamousGame from "./FamousGame/famous-game";
 import NewGame from "./NewGame/new-game";
 
-function HomePage() {
+function HomePage({user}) {
   return (
+    <div>
+      <div className="App-left-sidebar">
+          <FriendList user={user}/>
+      </div>
+
       <div className="App-main">
           <div className='grid wide'>
             <div className='row'>
@@ -22,6 +28,7 @@ function HomePage() {
               </div>
           </div>
       </div>
+    </div>
   );
 }
  

@@ -5,7 +5,6 @@ import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
 
 import NavBar from './Components/PageLayout/Header/nav-bar';
-import FriendList from './Pages/HomePage/FriendList/friend-list';
 import HomePage from './Pages/HomePage/home-page';
 import GameDetail from './Pages/GameDetail/game-detail';
 import UserAccount from './Pages/UserAccount/user-account';
@@ -38,14 +37,11 @@ function App() {
           <NavBar setShowLogin={setShowLogin} setShowSignUp={setShowSignUp} user={user}/>
         </div>
         
-        <div className="App-left-sidebar">
-              <FriendList user={user}/>
-        </div>
-        
         <Switch>
-          <Route path="/home" component={HomePage} />
-          <Route path='/game-detail' component={GameDetail} />
+          <Route path="/home" component={() => <HomePage user={user}/>} />
+          <Route path='/game-detail' component={() => <GameDetail user={user}/>} />
           <Route path="/user-account" render={(props) => <UserAccount {...props} />}></Route>
+          <Redirect from="/" to="/home" />
         </Switch>
 
         <div className="App-footer">
