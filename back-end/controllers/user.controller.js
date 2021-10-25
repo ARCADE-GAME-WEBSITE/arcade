@@ -26,7 +26,7 @@ function signUp(req, res){
                         Email: req.body.Email,
                         Password: hash,
                         Role: 0,
-                        Name: req.body.Name,
+                        Name: req.body.Full_name,
                         Gender: req.body.Gender,
                         DayOfBirth: "0000-00-00",
                         Avatar: "",

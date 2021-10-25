@@ -16,7 +16,7 @@ const useForm = (FormType, validator, setUser) => {
                 Email: "",
                 Password: "",
                 Confirm_password: "",
-                Gender: ""
+                Gender: 1
             }
         }
 
