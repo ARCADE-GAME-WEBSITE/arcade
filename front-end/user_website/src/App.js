@@ -18,7 +18,7 @@ function App() {
   const [dialogState, setDialogState] = useState({
     title: "",
     message: "",
-    show: true
+    show: false
   })
 
   const [showLogin, setShowLogin] = useState(false)
