@@ -9,7 +9,6 @@ import './game-comment.css'
 // })
 export default function GameComment() {
     return (
-        <div>
             <div className="game-comment game-desc">
                 <h3>COMMENTS</h3>
                 <div className="game-comment__account" id="test1">
@@ -70,6 +69,5 @@ export default function GameComment() {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }

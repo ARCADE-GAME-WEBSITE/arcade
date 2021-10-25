@@ -2,11 +2,11 @@
   position: fixed;
   bottom: 0;
   width: 16.66667%;
-  top: 60px;
+  top: 55px;
   left: 0;
   border-radius: 10px;
   overflow: hidden;
-  z-index: 1;
+  z-index: 100;
 }
 
 .friend-list__heading {

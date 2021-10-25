@@ -4,7 +4,6 @@ import './game-info.css'
 
 function GameInfo() {
     return (
-        <div>
             <div className="game-info">
                 <div className="game-info__left">
                     <h1>TETRIS GAME</h1>
@@ -25,7 +24,6 @@ function GameInfo() {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 

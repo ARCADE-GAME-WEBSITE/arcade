@@ -1,8 +1,9 @@
 .game-same {
-  height: 400px;
+  height: 542px;
   background-color: rgb(199, 228, 255);
-  margin: 10px 0;
+  margin: 10px 0 0 662px;
   border-radius: 10px;
+
 }
 .game-same--css {
   display: flex;
@@ -11,7 +12,7 @@
   padding: 0 10px;
 }
 .game-same-link {
-  height: 160px;
+  height: 210px;
   width: 40%;
   border-radius: 5px;
   overflow: hidden;
@@ -33,14 +34,14 @@
 }
 
 .game-same__name {
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 700;
   height: 15%;
   padding: 5px 0 0 5px;
 }
 
 .game-same__dev {
-  font-size: 1.4rem;
+  font-size: 0.9rem;
   font-weight: 400;
   height: 15%;
   padding: 5px 0 0 5px;

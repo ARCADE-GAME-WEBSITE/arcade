@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './Styles/App.css';
-import './Styles/grid.css'
+import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
 
 import NavBar from './Components/PageLayout/Header/nav-bar';
@@ -46,7 +46,6 @@ function App() {
           <Route path="/home" component={HomePage} />
           <Route path='/game-detail' component={GameDetail} />
           <Route path="/user-account" render={(props) => <UserAccount {...props} />}></Route>
-          <Redirect to="/home" />
         </Switch>
 
         <div className="App-footer">

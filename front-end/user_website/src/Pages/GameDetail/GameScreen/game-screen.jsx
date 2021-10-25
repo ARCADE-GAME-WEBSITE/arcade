@@ -9,14 +9,12 @@ import img4 from '../../../Assets/Images/Game/4.png'
 
 function GameScreen() {
     return (
-        <div class="col l-8">
             <div className="game-screen">
                 <div className="game-screen__img">
                     <img src={img1} className="game-screen__img--css" alt="" />
                     <img src={img2} className="game-screen__img--css" alt="" />
                     <img src={img3} className="game-screen__img--css" alt="" />
                     <img src={img4} className="game-screen__img--css" alt="" />
-                    
                 </div>
                 <ul className="game-screen__btn">
                     <li onclick="openGame()" className="btn-play">
@@ -33,7 +31,6 @@ function GameScreen() {
                     </li>
                 </ul>
             </div>
-        </div>
     )
 }
 
