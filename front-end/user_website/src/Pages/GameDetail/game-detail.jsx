@@ -13,11 +13,11 @@ import GameSame from './GameSame/game-same'
 import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
-function GameDetail() {
+function GameDetail({user}) {
     return (
         <div className="grid wide-1">
             <div className="row">
-                <FriendList/>
+                <FriendList user={user}/>
                 <GameScreen/>
             </div>
             <div className="row">
