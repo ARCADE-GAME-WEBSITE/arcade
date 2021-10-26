@@ -1,12 +1,17 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, "./uploads/images/users");
+        const dir = './uploads/images/games/avatar'
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir)
+        }
+        cb(null, dir);
     },
     filename: function(req, file, cb){
-        cb(null, req.userData.userId + path.extname(file.originalname));
+        cb(null, req.params.id + path.extname(file.originalname));
     }
 });
 

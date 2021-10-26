@@ -3,15 +3,14 @@ const Validator = require('fastest-validator')
 
 const schema = {
     DevID: {type:"number", optional: false},
-    IFrame: {type:"string", optional: false},
-    UploadDate: {type:"string", optional: false},
-    GameTitle: {type:"string", optional: false, max: "50"},
-    GameAvatar: {type:"string", optional: false},
-    Category: {type:"string", optional: false, max: "50"},
+    Url: {type:"string", optional: false},
+    Title: {type:"string", optional: false},
+    Avatar: {type:"string", optional: false},
+    CategoryID: {type:"number", optional: false},
     GamePlayImage: {type:"string", optional: true},
     Description: {type:"string", optional: true},
     Played: {type:"number", optional: true},
-    Rate: {type:"number", optional: true, max: "5"}
+    Rate: {type:"number", optional: true}
 }
 
 const v = new Validator();
@@ -20,11 +19,10 @@ const v = new Validator();
 function save(req, res){
     const game = {
         DevID: req.body.DevID,
-        IFrame: req.body.IFrame,
-        UploadDate: req.body.UploadDate,
-        GameTitle: req.body.GameTitle,
-        GameAvatar: req.body.GameAvatar,
-        Category: req.body.Category,
+        Url: req.body.Url,
+        Title: req.body.Title,
+        Avatar: req.body.Avatar,
+        CategoryID: req.body.CategoryID,
         GamePlayImage: req.body.GamePlayImage,
         Description: req.body.Description,
         Played: req.body.Played,
@@ -42,7 +40,8 @@ function save(req, res){
     models.Game.create(game).then(result => {
         res.status(201).json({
             message: "Game created successfully",
-            post: result
+            post: result,
+            insertId: result.id
         });
     }).catch(error => {
         res.status(500).json({
@@ -86,12 +85,11 @@ function index(req, res){
 function update(req, res){
     const id = req.params.id;
     const updateGame = {
-        DevID: req.body.DevID,
-        IFrame: req.body.IFrame,
-        UploadDate: req.body.UploadDate,
-        GameTitle: req.body.GameTitle,
-        GameAvatar: req.body.GameAvatar,
-        Category: req.body.Category,
+        DevID: req.userData.userId,
+        Url: req.body.Url,
+        Title: req.body.Title,
+        Avatar: req.body.Avatar,
+        CategoryID: req.body.CategoryID,
         GamePlayImage: req.body.GamePlayImage,
         Description: req.body.Description,
         Played: req.body.Played,

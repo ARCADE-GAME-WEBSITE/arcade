@@ -1,21 +1,39 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('comments', {
-      CommentID: {
+    await queryInterface.createTable('Games', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserID: {
+      DevID: {
         type: Sequelize.INTEGER
       },
-      GameID: {
-        type: Sequelize.INTEGER
-      },
-      Comment: {
+      Url: {
         type: Sequelize.STRING
+      },
+      Title: {
+        type: Sequelize.STRING
+      },
+      Avatar: {
+        type: Sequelize.STRING
+      },
+      CategoryID: {
+        type: Sequelize.INTEGER
+      },
+      GamePlayImage: {
+        type: Sequelize.STRING
+      },
+      Description: {
+        type: Sequelize.TEXT
+      },
+      Played: {
+        type: Sequelize.INTEGER
+      },
+      Rate: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +46,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('comments');
+    await queryInterface.dropTable('Games');
   }
 };
