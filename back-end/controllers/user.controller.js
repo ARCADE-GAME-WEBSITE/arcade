@@ -27,7 +27,7 @@ function signUp(req, res){
                         Email: req.body.Email,
                         Password: hash,
                         Role: 0,
-                        Name: req.body.Full_name,
+                        Full_name: req.body.Full_name,
                         Gender: req.body.Gender,
                         DayOfBirth: "0000-00-00",
                         Avatar: default_ava,
@@ -73,7 +73,7 @@ function login(req, res) {
             bcryptjs.compare(req.body.Password, user.Password, function(err, result){
                 if(result){
                     const token = jwt.sign({
-                        email: user.email,
+                        email: user.Email,
                         userId: user.id
                     }, 'secret', function(err, token){
                         res.status(200).json({
@@ -123,7 +123,7 @@ function update(req, res){
             const updateUser = {
                 Password: hash,
                 Role: 0,
-                Name: req.body.Full_name,
+                Full_name: req.body.Full_name,
                 Gender: req.body.Gender,
                 DayOfBirth: req.body.DayOfBirth,
                 Friends: req.body.Friends 

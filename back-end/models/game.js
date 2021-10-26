@@ -15,15 +15,14 @@ module.exports = (sequelize, DataTypes) => {
   };
   Game.init({
     DevID: DataTypes.INTEGER,
-    IFrame: DataTypes.STRING,
-    UploadDate: DataTypes.DATE,
-    GameTitle: DataTypes.STRING,
-    GameAvatar: DataTypes.STRING,
-    Category: DataTypes.STRING,
+    Url: DataTypes.STRING,
+    Title: DataTypes.STRING,
+    Avatar: DataTypes.STRING,
+    CategoryID: DataTypes.INTEGER,
     GamePlayImage: DataTypes.STRING,
-    Description: DataTypes.STRING,
+    Description: DataTypes.TEXT,
     Played: DataTypes.INTEGER,
-    Rate: DataTypes.INTEGER
+    Rate: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'Game',
