@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from 'axios'
 
 const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogState) => {
-    const default_values = () => {
+    const default_values = useCallback(() => {
         if (FormType === "Login"){
             return {
                 Email: "",
@@ -24,7 +24,7 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
                 Email: ""
             }
         }
-    }
+    }, [FormType])
 
     const [values, setValues] = useState(default_values)
 
@@ -118,10 +118,11 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
             setValues(default_values);
             setIsSubmitted(false);
         }  
-    }, [errors])
+    }, [errors, FormType, default_values, isSubmitted, setDialogState, setShowForm, setUser, validator, values])
 
     const handleClose = (e) => {
         if (formRef.current === e.target || e.target.className === "close-btn"){
+            setIsSubmitted(false)
             setValues(default_values)
             setErrors({})
             setShowForm(false)

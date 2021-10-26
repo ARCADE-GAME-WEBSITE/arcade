@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
     Collapse,
@@ -15,10 +16,15 @@ import vietnam_icon from '../../../Assets/Images/Icons/vietnam.png'
 import bell_icon from '../../../Assets/Images/Icons/bell.png'
 import avatar from '../../../Assets/Images/User/avatar1.jpg'
 
-function NavBar({setShowLogin, setShowSignUp, user}) { 
+function NavBar({setShowLogin, setShowSignUp, user, setUser}) { 
     const [collapseOpen] = React.useState(false);
 
     let buttons;
+
+    const handleLogout = () => {
+        localStorage.clear();
+        setUser(null)
+    }
     
     if (user){
         buttons = (
@@ -53,23 +59,32 @@ function NavBar({setShowLogin, setShowSignUp, user}) {
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-navbar" right tag="ul">
                             <NavLink tag="li">
-                                <DropdownItem className="nav-item">Profile</DropdownItem>
+                                <Link to={'/user-account/user-profile/' + user.id}>
+                                    <DropdownItem className="nav-item">Profile</DropdownItem>
+                                </Link>
                             </NavLink>
                             <NavLink tag="li">
-                                <DropdownItem className="nav-item">Played games</DropdownItem>
+                                <Link to={'/user-account/played-games/' + user.id}>
+                                    <DropdownItem className="nav-item">Played games</DropdownItem>
+                                </Link>
                             </NavLink>
                             <NavLink tag="li">
-                                <DropdownItem className="nav-item">Friends</DropdownItem>
+                                <Link to={'/user-account/friend-list/' + user.id}>
+                                    <DropdownItem className="nav-item">Friends</DropdownItem>
+                                </Link>
                             </NavLink>
                             <NavLink tag="li">
-                                <DropdownItem className="nav-item">Records</DropdownItem>
+                                <Link to={'/user-account/records/' + user.id}>
+                                    <DropdownItem className="nav-item">Records</DropdownItem>
+                                </Link>
                             </NavLink>
                             <DropdownItem divider tag="li" />
                             <NavLink tag="li">
-                                <DropdownItem 
-                                    className="nav-item"
-                                    onClick = {() => localStorage.clear}
-                                >Log out</DropdownItem>
+                                <Link to={'/home'} onClick = {handleLogout}>
+                                    <DropdownItem 
+                                        className="nav-item"
+                                    >Log out</DropdownItem>
+                                </Link>
                             </NavLink>
                         </DropdownMenu>
                     </UncontrolledDropdown>
@@ -150,9 +165,9 @@ function NavBar({setShowLogin, setShowSignUp, user}) {
     return (
         <nav className="navbar navbar-expand navbar-light fixed-top">
             <div className="nav-left-side">
-                <a href="/">
+                <Link to={'/home'}>
                     <img src={logo} className="navbar-logo" alt="logo" />
-                </a>
+                </Link>
                 <div className="navbar-search">
                     <input type="text" class="navbar-search-input" placeholder="Search game..." />
                     <button class="navbar-search-btn">
