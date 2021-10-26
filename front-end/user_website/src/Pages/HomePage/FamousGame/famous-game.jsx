@@ -1,5 +1,6 @@
 import React from 'react';
 
+import GameGenreType from "../GameGenre/GameTypeID";
 import "./famous-game.css";
 
 import InfiniteCarousel from 'react-leaf-carousel';

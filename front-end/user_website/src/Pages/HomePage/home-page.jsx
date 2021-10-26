@@ -4,6 +4,7 @@ import './home-page.css'
 import FriendList from "./FriendList/friend-list";
 import FamousGame from "./FamousGame/famous-game";
 import NewGame from "./NewGame/new-game";
+import GameType from "./GameGenre/GameType";
 
 function HomePage({user}) {
   return (
@@ -13,6 +14,13 @@ function HomePage({user}) {
       </div>
 
       <div className="App-main">
+        <div className='grid wide'>
+              <div className='row'>
+                <div className='col-sm-9 col-md-6 col-lg-8'>
+                  <GameType/>
+                </div>
+              </div>
+            </div>
           <div className='grid wide'>
             <div className='row'>
               <div className='col-sm-9 col-md-6 col-lg-8'>
