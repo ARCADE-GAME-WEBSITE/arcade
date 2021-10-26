@@ -42,7 +42,8 @@ function save(req, res){
     models.Game.create(game).then(result => {
         res.status(201).json({
             message: "Game created successfully",
-            post: result
+            post: result,
+            insertId: result.id
         });
     }).catch(error => {
         res.status(500).json({
@@ -86,7 +87,7 @@ function index(req, res){
 function update(req, res){
     const id = req.params.id;
     const updateGame = {
-        DevID: req.body.DevID,
+        DevID: req.userData.userId,
         IFrame: req.body.IFrame,
         UploadDate: req.body.UploadDate,
         GameTitle: req.body.GameTitle,

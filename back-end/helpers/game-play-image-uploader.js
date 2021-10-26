@@ -3,10 +3,14 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, "./uploads/images/users");
+        const dir = './uploads/images/games/' + req.params.id + 'game-play'
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir)
+        }
+        cb(null, dir);
     },
     filename: function(req, file, cb){
-        cb(null, req.userData.userId + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
 });
 

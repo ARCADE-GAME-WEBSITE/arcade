@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
 
 const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogState) => {
     const default_values = useCallback(() => {
@@ -81,8 +81,8 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
                             title: "Notify!",
                             message: res.data.message,
                             show: true
-                        })
-                        setShowForm(false)
+                        });
+                        setShowForm(false);
                     }
                 ).catch(
                     err => {
