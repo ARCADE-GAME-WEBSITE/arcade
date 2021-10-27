@@ -1,6 +1,7 @@
 h3{
   height: 50px;
   font-size: 2rem;
+  margin: 0 15% 0 15%;
 }
 .famous-game{
   height: 600px;
@@ -54,7 +55,7 @@ h3{
 .InfiniteCarousel {
   height: 40%;
   background-color: rgb(199, 144, 225);
-  margin: 10px 0;
+  margin: 0 15% 0 15%;
   border-radius: 10px;
   padding: 60px;
   width: 150%;
