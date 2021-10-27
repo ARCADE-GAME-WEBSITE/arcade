@@ -10,5 +10,6 @@ router.get('/', checkAuthMiddleware.checkAuth, userController.index);
 router.get('/:id', checkAuthMiddleware.checkAuth, userController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, userController.update);
 router.delete('/:id', checkAuthMiddleware.checkAuth, userController.destroy);
+router.post("/forgot-password", userController.forgot);
 
 module.exports = router;

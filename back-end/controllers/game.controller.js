@@ -7,7 +7,7 @@ const schema = {
     DemoUrl: {type:"string", optional: false},
     Title: {type:"string", optional: false},
     Avatar: {type:"string", optional: false},
-    CategoryID: {type:"number", optional: false},
+    Category: {type:"string", optional: false},
     GamePlayImage: {type:"string", optional: true},
     Description: {type:"string", optional: true},
     Played: {type:"number", optional: true},
@@ -19,12 +19,13 @@ const v = new Validator();
 // This function create a new Game post and save it to database
 function save(req, res){
     const game = {
-        DevID: req.body.DevID,
+        // req.userData.id
+        DevID: req.body.DevID, 
         Url: req.body.Url,
         DemoUrl: req.body.DemoUrl,
         Title: req.body.Title,
         Avatar: req.body.Avatar,
-        CategoryID: req.body.CategoryID,
+        Category: req.body.Category,
         GamePlayImage: req.body.GamePlayImage,
         Description: req.body.Description,
         Played: req.body.Played,
@@ -67,7 +68,8 @@ function show(req, res){
         }
     }).catch(error => {
         res.status(500).json({
-            message: "Something went wrong!"
+            message: "Something went wrong!",
+            error: error
         })
     });
 }
@@ -78,7 +80,8 @@ function index(req, res){
         res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
-            message: "Something went wrong!"
+            message: "Something went wrong!",
+            error: error
         });
     });
 }
@@ -92,7 +95,7 @@ function update(req, res){
         DemoUrl: req.body.DemoUrl,
         Title: req.body.Title,
         Avatar: req.body.Avatar,
-        CategoryID: req.body.CategoryID,
+        Category: req.body.Category,
         GamePlayImage: req.body.GamePlayImage,
         Description: req.body.Description,
         Played: req.body.Played,

@@ -18,22 +18,19 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       Full_name: {
-        allowNull: true,
         type: Sequelize.STRING
       },
       Gender: {
         type: Sequelize.BOOLEAN
       },
       DayOfBirth: {
-        allowNull: true,
         type: Sequelize.DATE
       },
       Avatar: {
         type: Sequelize.STRING
       },
       Friends: {
-        allowNull: true,
-        type: Sequelize.JSON
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

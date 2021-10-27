@@ -24,7 +24,7 @@ function SideBar(props) {
           <div className="sidebar-wrapper" ref={sidebarRef}>
               <div className="logo">
                 <form runat="server">
-                  <img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt=""   id="output"  width="200px" height="200px" />            
+                  <img className="avatar-img" src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt=""   id="output"  width="200px" height="200px" />            
                   <input accept="image/*" className="inputImg" type='file' onChange={showImg}/>
                 </form>
                 <p className="username">bduyphuong12</p>

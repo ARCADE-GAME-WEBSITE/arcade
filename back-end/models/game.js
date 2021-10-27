@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     DemoUrl: DataTypes.STRING,
     Title: DataTypes.STRING,
     Avatar: DataTypes.STRING,
-    CategoryID: DataTypes.INTEGER,
+    Category: DataTypes.STRING,
     GamePlayImage: DataTypes.STRING,
     Description: DataTypes.TEXT,
     Played: DataTypes.INTEGER,

@@ -23,8 +23,8 @@ module.exports = {
       Avatar: {
         type: Sequelize.STRING
       },
-      CategoryID: {
-        type: Sequelize.INTEGER
+      Category: {
+        type: Sequelize.STRING
       },
       GamePlayImage: {
         type: Sequelize.STRING

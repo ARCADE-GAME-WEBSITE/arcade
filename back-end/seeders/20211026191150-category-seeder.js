@@ -31,7 +31,7 @@ module.exports = {
         CategoryName: 'Role-playing'
       },
       {
-        CategoryName: '2 players'
+        CategoryName: '2-players'
       },
       {
         CategoryName: 'Block'

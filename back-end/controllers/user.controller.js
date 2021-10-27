@@ -1,7 +1,8 @@
 const models = require('../models');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Validator = require('fastest-validator')
+const Validator = require('fastest-validator');
+const nodemailer = require('nodemailer');
 
 const schema = {
     Name: {type:"string", optional:true},
@@ -93,6 +94,7 @@ function login(req, res) {
     }).catch(error => {
         res.status(500).json({
             message: "Something went wrong!",
+            error: error
         });
     });
 }
@@ -102,7 +104,8 @@ function index(req, res){
         res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
-            message: "Something went wrong!"
+            message: "Something went wrong!",
+            error: error
         });
     });
 }
@@ -120,7 +123,8 @@ function show(req, res){
         }
     }).catch(error => {
         res.status(500).json({
-            message: "Something went wrong!"
+            message: "Something went wrong!",
+            error: error
         })
     });
 }
@@ -128,9 +132,10 @@ function show(req, res){
 function update(req, res){
     const id = req.params.id;
 
+    var updateUser;
     bcryptjs.genSalt(10, function(err, salt){
         bcryptjs.hash(req.body.Password, salt, function(err, hash){
-            const updateUser = {
+            updateUser = {
                 Password: hash,
                 Role: 0,
                 Full_name: req.body.Full_name,
@@ -177,11 +182,95 @@ function destroy(req, res){
     });
 }
 
+function forgot(req, res){
+    const id = req.params.id;
+
+    models.User.findByPk(id).then(result => {
+        if(result){
+            const id = result.id;
+            const email = result.Email;
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let newPassword = "";
+            for ( var i = 0; i < 10; i++ ) {
+                newPassword += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            sendEmail(email, newPassword);
+            resetPassword(id, newPassword);
+        }
+        else{
+            res.status(404).json({
+                message: "Email not found!"
+            }) 
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        })
+    });
+}
+
+const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+        user: "arcadegamewebsite@outlook.com", 
+        pass: "arcade2001"
+    }
+})
+
+function sendEmail(email, newPassword){
+    const options = {
+        from: "arcadegamewebsite@outlook.com",
+        to: email,
+        subject: "Reset password for account: " + email,
+        text: "Your new password is: " + newPassword + "\nDo not share this email or password to any one!"
+            + "\nIf you not doing this, just ignore this message!"
+            + "\n---ArcadeGameWebsite - GoNin Team---"
+    }
+    
+    transporter.sendMail(options, function(err, info){
+        if (err){ 
+            console.log(err);
+            return false;
+        }
+        console.log("Send: " + info.response);
+    })
+}
+
+function resetPassword(id, newPassword){
+    var updateUser;
+    bcryptjs.genSalt(10, function(err, salt){
+        bcryptjs.hash(newPassword, salt, function(err, hash){
+            updateUser = {
+                Password: hash,
+                Role: result.Role,
+                Full_name: result.Full_name,
+                Gender: result.Gender,
+                DayOfBirth: result.DayOfBirth,
+                Friends: result.Friends 
+            }
+        })
+    });
+
+    models.User.update(updateUser, {where: {id:id}}).then(result => {
+        res.status(200).json({
+            message: "Password reset successfully!",
+            post: updateUser
+        });
+    }).catch(error => {
+        res.status(200).json({
+            message: "Something went wrong",
+            error: error
+        });
+    })
+}
+
 module.exports = {
     signUp: signUp,
     login: login,
     index:index,
     show: show,
     update: update,
-    destroy: destroy
+    destroy: destroy,
+    forgot: forgot,
 }

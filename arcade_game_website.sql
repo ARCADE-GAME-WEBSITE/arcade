@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 27, 2021 lúc 09:59 AM
+-- Thời gian đã tạo: Th10 27, 2021 lúc 10:50 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -90,7 +90,7 @@ INSERT INTO `categories` (`id`, `CategoryName`, `createdAt`, `updatedAt`) VALUES
 (7, 'Chess', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (8, 'Obstacle', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (9, 'Role-playing', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, '2 players', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, '2-players', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (11, 'Block', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (12, 'Ball', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (13, 'Bounce', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -142,7 +142,7 @@ CREATE TABLE `games` (
   `DemoUrl` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Title` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Avatar` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `CategoryID` int(11) DEFAULT NULL,
+  `Category` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `GamePlayImage` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Description` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Played` int(11) DEFAULT NULL,
@@ -155,16 +155,16 @@ CREATE TABLE `games` (
 -- Đang đổ dữ liệu cho bảng `games`
 --
 
-INSERT INTO `games` (`id`, `DevID`, `Url`, `DemoUrl`, `Title`, `Avatar`, `CategoryID`, `GamePlayImage`, `Description`, `Played`, `Rate`, `createdAt`, `updatedAt`) VALUES
-(1, 1, '2048.html', 'https://www.youtube.com/watch?v=kQhkkqjGkFA', '2048', '2048.jpg', 5, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 1, 'FlappyBird.html', 'https://www.youtube.com/watch?v=fQoJZuBwrkU', 'FlappyBird', 'FlappyBird.jpg', 8, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 1, 'Memory.html', 'https://www.youtube.com/watch?v=Um1EXbwmYYs', 'Memory', 'Memory.jpg', 5, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 1, 'Pong.html', 'https://www.youtube.com/watch?v=fiShX2pTz9A', 'Pong', 'Pong.jpg', 10, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 1, 'RedRect.html', 'https://www.youtube.com/watch?v=vGVoF_CbKmk', 'RedRect', 'RedRect.jpg', 10, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 1, 'Snake.html', 'https://www.youtube.com/watch?v=DekS8Pgb1qc', 'Snake', 'Snake.jpg', 10, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 1, 'Sodoku.html', 'https://www.youtube.com/watch?v=8zRXDsGydeQ', 'Sodoku', 'Sodoku.jpg', 5, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 1, 'Tetris.html', 'https://www.youtube.com/watch?v=AP9FAF0gGZs', 'Tetris', 'Tetris.jpg', 5, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 1, 'TicTacToe.html', 'https://www.youtube.com/watch?v=5n2aQ3UQu9Y', 'TicTacToe', 'TicTacToe.jpg', 10, '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `games` (`id`, `DevID`, `Url`, `DemoUrl`, `Title`, `Avatar`, `Category`, `GamePlayImage`, `Description`, `Played`, `Rate`, `createdAt`, `updatedAt`) VALUES
+(1, 1, '2048.html', 'https://www.youtube.com/watch?v=kQhkkqjGkFA', '2048', '2048.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 1, 'FlappyBird.html', 'https://www.youtube.com/watch?v=fQoJZuBwrkU', 'FlappyBird', 'FlappyBird.jpg', 'Obstacle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 1, 'Memory.html', 'https://www.youtube.com/watch?v=Um1EXbwmYYs', 'Memory', 'Memory.jpg', 'Puzzle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 1, 'Pong.html', 'https://www.youtube.com/watch?v=fiShX2pTz9A', 'Pong', 'Pong.jpg', 'Ball 2-players', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 1, 'RedRect.html', 'https://www.youtube.com/watch?v=vGVoF_CbKmk', 'RedRect', 'RedRect.jpg', 'Obstacle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 'Snake.html', 'https://www.youtube.com/watch?v=DekS8Pgb1qc', 'Snake', 'Snake.jpg', 'Snake', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 1, 'Sodoku.html', 'https://www.youtube.com/watch?v=8zRXDsGydeQ', 'Sodoku', 'Sodoku.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 1, 'Tetris.html', 'https://www.youtube.com/watch?v=AP9FAF0gGZs', 'Tetris', 'Tetris.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 1, 'TicTacToe.html', 'https://www.youtube.com/watch?v=5n2aQ3UQu9Y', 'TicTacToe', 'TicTacToe.jpg', '2-players', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,10 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20211026184342-create-category.js'),
 ('20211026184455-create-comment.js'),
 ('20211026185251-create-game.js'),
-('20211027073433-create-game.js');
+('20211027073433-create-game.js'),
+('20211027184633-create-game.js'),
+('20211027185541-create-game.js'),
+('20211027185740-create-user.js');
 
 -- --------------------------------------------------------
 
@@ -224,10 +227,17 @@ CREATE TABLE `users` (
   `Gender` tinyint(1) DEFAULT NULL,
   `DayOfBirth` datetime DEFAULT NULL,
   `Avatar` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Friends` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`Friends`)),
+  `Friends` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `Email`, `Password`, `Role`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `Friends`, `createdAt`, `updatedAt`) VALUES
+(1, 'tuankietnk2001@gmail.com', '$2a$10$3Kd6jXYk2vMUkxvMFLF0rey.8g.B7c7e9Zj5gqzhdcwjLYYI83J1W', 0, 'Tuấn Kiệt', 1, '0000-00-00 00:00:00', 'male.jpg', '', '2021-10-27 20:46:36', '2021-10-27 20:46:36');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -274,9 +284,7 @@ ALTER TABLE `error_feedbacks`
 -- Chỉ mục cho bảng `games`
 --
 ALTER TABLE `games`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `CategoryID` (`CategoryID`),
-  ADD KEY `DevID` (`DevID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `sequelizemeta`
@@ -337,7 +345,7 @@ ALTER TABLE `error_feedbacks`
 -- AUTO_INCREMENT cho bảng `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `upload_game_requests`
@@ -349,7 +357,7 @@ ALTER TABLE `upload_game_requests`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -376,13 +384,6 @@ ALTER TABLE `error_feedbacks`
   ADD CONSTRAINT `error_feedbacks_ibfk_1` FOREIGN KEY (`GameID`) REFERENCES `games` (`id`),
   ADD CONSTRAINT `error_feedbacks_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `error_feedbacks_ibfk_3` FOREIGN KEY (`AdminID`) REFERENCES `admins` (`AdminID`);
-
---
--- Các ràng buộc cho bảng `games`
---
-ALTER TABLE `games`
-  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `games_ibfk_2` FOREIGN KEY (`DevID`) REFERENCES `admins` (`AdminID`);
 
 --
 -- Các ràng buộc cho bảng `upload_game_requests`
