@@ -1,6 +1,6 @@
 .sidebar,
 .off-canvas-sidebar {
-  height: calc(92vh - 90px);
+  height: calc(94vh - 99px);
   width: 230px;
   position: absolute;
   top: 0;
@@ -13,29 +13,9 @@
   margin-left: 20px;
   border-radius: 5px;
 }
-.sidebar .nav,
-.off-canvas-sidebar .nav {
-  margin-top: 20px;
-  display: block;
-}
-.sidebar .nav .caret,
-.off-canvas-sidebar .nav .caret {
-  top: 14px;
-  position: absolute;
-  right: 10px;
-}
-.sidebar .nav li > a + div .nav,
-.off-canvas-sidebar .nav li > a + div .nav {
-  margin-top: 5px;
-}
-.sidebar .nav li > a + div .nav li > a,
-.off-canvas-sidebar .nav li > a + div .nav li > a {
-  margin-top: 0px;
-  padding: 8px 8px;
-}
+
 .sidebar .nav li > a,
 .off-canvas-sidebar {
-  
   margin: 10px 15px 0;
   border-radius: 30px;
   color:white;
@@ -58,7 +38,6 @@
 }
 .sidebar .nav i,
 .off-canvas-sidebar {
-  
   font-size: 20px;
   float: left;
   margin-right: 20px;
@@ -74,30 +53,33 @@
   padding: 0.5rem 0.7rem;
   z-index: 4;
 }
-.sidebar .logo a.logo-mini,
-.off-canvas-sidebar .logo a.logo-mini {
-  float: left;
-  text-align: center;
-  margin-left: 12px;
-  margin-right: 12px;
+img{
+  border-radius: 50%
 }
 
-.sidebar .logo a.logo-mini img,
-.off-canvas-sidebar .logo a.logo-mini img {
-  text-align: center;
-  width: 180px;
+.inputImg{
+
+  width: 85px;
+  font-size: 17px;
+  margin-left: 60px;
+  opacity: 0;
+  transition: opacity .25s ease;
+  position: absolute;
+  top: 150px;
+  right: 75px;
 }
-.sidebar .logo .simple-text,
-.off-canvas-sidebar{
-  padding: 0.5rem 0;
-  white-space: nowrap;
+.logo:hover .inputImg{
+  opacity: 1;
+}
+.username{
   font-size: "Poppins", sans-serif;
+  text-align: center;
   color: white;
-  text-decoration: none;
-  font-weight: 400;
-  margin-left: 45px;
-  overflow: hidden;
+  font-size: 1.4em;
+  padding-top: 15px;
 }
+
+
 .sidebar,
 .off-canvas-sidebar {
   background-color: #1d8cf8;
@@ -107,13 +89,13 @@
   float: right;
   width: 100%;
   min-height: 100vh;
-  border-top: 2px solid #e14eca;
+  border-top: 0.3px solid #e14eca;
   background: white;
 }
 
 .main-panel > .content {
   padding: 78px 20px 20px 300px;
-  min-height: calc(90vh - 90px);
+  min-height: calc(100vh - 105px);
 }
 .main-panel > .navbar {
   margin-bottom: 0;

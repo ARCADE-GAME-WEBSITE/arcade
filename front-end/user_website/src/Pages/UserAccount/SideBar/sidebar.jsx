@@ -3,7 +3,7 @@ import React from "react";
 
 import './sidebar.css'
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
 import {
   BackgroundColorContext
@@ -11,44 +11,24 @@ import {
 
 function SideBar(props) {
   const sidebarRef = React.useRef(null);
- 
-  const { routes, rtlActive, logo } = props;
-  let logoImg = null;
-  let logoText = null;
-     
-      logoText = (
-        <a
-          href={logo.outterLink}
-          className="simple-text logo-normal"
-          onClick={props.toggleSidebar}
-        >
-          {logo.text}
-        </a>
-      );
-  
-      logoImg = (
-        <Link
-          to={logo.innerLink}
-          className="simple-text logo-mini"
-          onClick={props.toggleSidebar}
-        >
-          <div className="logo-img">
-            <img src={logo.imgSrc} alt="react-logo" />
-          </div>
-        </Link>
-      );
-  
+  const { routes, rtlActive } = props;
+
+      var showImg = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+      };
   return (
     <BackgroundColorContext.Consumer>
       {({ color }) => (
         <div className="sidebar" data={color}>
           <div className="sidebar-wrapper" ref={sidebarRef}>
-            {logoImg !== null || logoText !== null ? (
               <div className="logo">
-                {logoImg}
-                {logoText}
+                <form runat="server">
+                  <img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" alt=""   id="output"  width="200px" height="200px" />            
+                  <input accept="image/*" className="inputImg" type='file' onChange={showImg}/>
+                </form>
+                <p className="username">bduyphuong12</p>
               </div>
-            ) : null}
             <Nav>
               {routes.map((prop) => {
                 if (prop.redirect) return null;
