@@ -32,6 +32,18 @@ module.exports = {
       },
       {
         CategoryName: '2 players'
+      },
+      {
+        CategoryName: 'Block'
+      },
+      {
+        CategoryName: 'Ball'
+      },
+      {
+        CategoryName: 'Bounce'
+      },
+      {
+        CategoryName: 'Snake'
       }
     ]);
   },
