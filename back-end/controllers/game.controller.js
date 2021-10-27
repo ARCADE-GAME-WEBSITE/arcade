@@ -4,6 +4,7 @@ const Validator = require('fastest-validator')
 const schema = {
     DevID: {type:"number", optional: false},
     Url: {type:"string", optional: false},
+    DemoUrl: {type:"string", optional: false},
     Title: {type:"string", optional: false},
     Avatar: {type:"string", optional: false},
     CategoryID: {type:"number", optional: false},
@@ -20,6 +21,7 @@ function save(req, res){
     const game = {
         DevID: req.body.DevID,
         Url: req.body.Url,
+        DemoUrl: req.body.DemoUrl,
         Title: req.body.Title,
         Avatar: req.body.Avatar,
         CategoryID: req.body.CategoryID,
@@ -87,6 +89,7 @@ function update(req, res){
     const updateGame = {
         DevID: req.userData.userId,
         Url: req.body.Url,
+        DemoUrl: req.body.DemoUrl,
         Title: req.body.Title,
         Avatar: req.body.Avatar,
         CategoryID: req.body.CategoryID,

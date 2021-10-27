@@ -97,6 +97,16 @@ function login(req, res) {
     });
 }
 
+function index(req, res){
+    models.User.findAll().then(result => {
+        res.status(200).json(result);
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!"
+        });
+    });
+}
+
 function show(req, res){
     const id = req.params.id;
 
@@ -170,6 +180,7 @@ function destroy(req, res){
 module.exports = {
     signUp: signUp,
     login: login,
+    index:index,
     show: show,
     update: update,
     destroy: destroy
