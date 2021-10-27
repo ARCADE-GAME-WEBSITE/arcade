@@ -11,7 +11,7 @@ import InfiniteCarousel from 'react-leaf-carousel';
 const FamousGame = () => {
     return (
         <div>
-            <h3>NEW GAME</h3>
+            <h3>FAMOUS GAME</h3>
             <InfiniteCarousel 
                 breakpoints={[
                 {

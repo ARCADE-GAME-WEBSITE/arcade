@@ -14,6 +14,9 @@ module.exports = {
       Url: {
         type: Sequelize.STRING
       },
+      DemoUrl: {
+        type: Sequelize.STRING
+      },
       Title: {
         type: Sequelize.STRING
       },
