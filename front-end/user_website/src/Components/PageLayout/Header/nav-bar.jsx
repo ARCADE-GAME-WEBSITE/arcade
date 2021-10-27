@@ -27,6 +27,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     }
     
     if (user){
+        
         buttons = (
             <div className="nav-right-side collapse navbar-collapse">
                 <Collapse navbar isOpen={collapseOpen}>

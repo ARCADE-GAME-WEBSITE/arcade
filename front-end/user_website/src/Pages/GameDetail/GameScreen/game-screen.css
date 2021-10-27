@@ -42,3 +42,6 @@
 .game-screen__btn a:hover {
   color: rgb(162, 210, 255);
 }
+.game-screen__btn .btn__play {
+  padding: 0;
+}

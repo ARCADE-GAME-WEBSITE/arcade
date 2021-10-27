@@ -23,6 +23,13 @@
   float: left;
   margin: 5px 0px;
   align-items: center;
+  border: 1px solid #999;
+  border-radius: 3px;
+  background-color: #fff;
+}
+.game-tag__item:hover{
+  opacity: 0.7;
+  background-color: rgb(136, 191, 255);
 }
 
 .game-tag__img {

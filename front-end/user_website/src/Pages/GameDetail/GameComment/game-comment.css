@@ -23,6 +23,12 @@
   display: flex;
   justify-content: center;
 }
+.game-comment__account-send{
+  border-radius: 10px;
+  background-color:rgb(15, 113, 194);
+  color: #fff;
+  font-weight: 500;
+}
 
 .game-comment__account-login {
   margin: 5px 8px 10px 8px;

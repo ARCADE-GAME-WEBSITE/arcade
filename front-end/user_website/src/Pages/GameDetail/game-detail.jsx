@@ -13,6 +13,8 @@ import GameSame from './GameSame/game-same'
 import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
+
+
 function GameDetail({user}) {
     return (
         <div className="grid wide-1">
@@ -33,7 +35,7 @@ function GameDetail({user}) {
             </div>
             
             <div className="row">
-                <GameComment/>
+                <GameComment user={user}/>
                 <GameTag/>
                 <GameDiff/>
                 <GameSame/>

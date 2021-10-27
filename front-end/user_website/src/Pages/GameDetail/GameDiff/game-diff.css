@@ -2,10 +2,10 @@
   height: 580px;
   background-color: rgb(199, 228, 255);
   margin: 10px 0;
-  width: 40.7%;
+  width: 39.7%;
   border-radius: 10px;
   position: absolute;
-  top: 1480px;
+  top: 1525px;
 }
 .game-diff--css {
   display: flex;

@@ -14,8 +14,12 @@
   }
     
   .like,.unlike{
-    font-size: rem;
+    font-size: 1rem;
     margin: 10px 0 5px 10px;   
+    border: 1px solid #999;
+    border-radius: 10px;
+    float: right;
+    background-color: #fff;
   }
   .like:hover,.unlike:hover, .game-info__report:hover{
     opacity: 0.7;
@@ -23,6 +27,15 @@
   .game-info__report{
     display: flex;
     margin: 10px 10px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #999;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  .game-info__report h4{
+    font-weight: 500 !important;
+    font-size: 1rem !important;
   }
   .report-flag{
     padding: 8px 5px 0 5px;

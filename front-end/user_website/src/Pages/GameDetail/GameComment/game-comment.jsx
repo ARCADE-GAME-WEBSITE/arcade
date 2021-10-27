@@ -1,13 +1,40 @@
-import React from 'react'
+import React, { useEffect , useState}from 'react'
 
 import './game-comment.css'
-// const logined = document.getElementById('logined')
-// logined.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     document.getElementById('test1').style.display = 'none'
-//     document.getElementById('test2').style.display = 'flex'
-// })
-export default function GameComment() {
+import 
+
+
+function getComment() {
+    var cmt = document.getElementById("game-comment__account-btn").value
+}
+
+const games = [
+    {
+        id: 1, 
+        name: '2048'
+    },
+    {
+        id: 2, 
+        name: 'flappy'
+    },
+    {
+        id: 3, 
+        name: 'sudoku'
+    }
+]
+
+
+
+function GameComment({user}) {
+    
+    useEffect(() =>{
+        if(user){
+            document.getElementById('test1').style.display = 'none'
+            document.getElementById('test2').style.display = 'flex'
+        }
+    },[user])
+
+    
     return (
             <div className="game-comment game-desc">
                 <h3>COMMENTS</h3>
@@ -28,8 +55,8 @@ export default function GameComment() {
                 </div>
                 <div className="game-comment__account-login" id="test2">
                     <img className="comment__img" src="https://cdn.y8.com/assets/avatars/male/1-48x48-4815f3410d5aef5c9512021dd6c02c7f.png" alt="" />
-                    <input type="text" placeholder="Comment text" className="game-comment__account-btn" />
-                    <input type="submit" value="Send" />
+                    <input type="text" placeholder="Comment text" className="game-comment__account-btn" id="game-comment__account-btn"/>
+                    <input type="submit" value="Send" className="game-comment__account-send" onclick={getComment()}/>
                 </div>
                 <div className="game-comment__content">
                     <div className="game-comment__content1">
@@ -71,3 +98,4 @@ export default function GameComment() {
             </div>
     )
 }
+export default GameComment
