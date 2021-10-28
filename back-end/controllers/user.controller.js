@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
 function signUp(req, res){
     models.User.findOne({where:{Email:req.body.Email}}).then(result => {
         if(result){
-            res.status(409).json({
+            res.status(209).json({
                 message: "Email already exists!",
             });
         }
@@ -217,7 +217,7 @@ function forgot(req, res){
                         Friends: req.body.Friends 
                     }
 
-                    models.User.update(updateUser, {where: {id:result.id}}).then(result1 => {
+                    models.User.update(updateUser, {where: {id:result.id}}).then(result => {
                         res.status(200).json({
                             message: "Password reset successfully!",
                             post: updateUser
