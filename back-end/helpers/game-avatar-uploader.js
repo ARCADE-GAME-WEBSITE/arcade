@@ -30,7 +30,7 @@ const upload = multer ({
         fileSize: 1024*1024*10,
     },
     fileFilter: fileFilter
-});
+})
 
 module.exports = {
     upload: upload
