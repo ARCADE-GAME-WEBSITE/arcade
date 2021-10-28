@@ -100,7 +100,7 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
                     res => {
                         setDialogState({
                             title: "Notify!",
-                            message: res.data.message,
+                            message: "Your password have been reset successfully! Please check your email for new password! (Make sure to check spam too)",
                             show: true
                         })
                         setShowForm(false)

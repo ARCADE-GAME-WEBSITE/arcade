@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import './reset-password.css'
+import './change-password.css'
 
-class ResetPassword extends Component {
+class ChangePassword extends Component {
     state = {}
     handleSubmit = e => {
         e.preventDefault();
@@ -34,4 +34,4 @@ class ResetPassword extends Component {
     }
 }
  
-export default ResetPassword;
+export default ChangePassword;

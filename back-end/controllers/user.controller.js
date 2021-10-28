@@ -8,10 +8,21 @@ const schema = {
     Name: {type:"string", optional:true},
     Email: {type:"string", optional: false},
     Password: {type:"string", optional: false},
+    Role: {type: "number", optional:false},
     Gender: {type:"number", optional:false},
+    DayOfBirth: {type:"string", optional: true},
+    Friends: {type:"string", optional: true}
 }
 
 const v = new Validator();
+
+const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+        user: "ArcadeGameWebsite@outlook.com.vn", 
+        pass: "arcade2001"
+    }
+})
 
 function signUp(req, res){
     models.User.findOne({where:{Email:req.body.Email}}).then(result => {
@@ -38,7 +49,7 @@ function signUp(req, res){
                     const validationResponse = v.validate(user, schema);
                     if(validationResponse !== true){
                         return res.status(400).json({
-                            message: "Validation failed",
+                            message: "Validation failed!",
                             errors: validationResponse
                         });
                     }
@@ -132,39 +143,39 @@ function show(req, res){
 function update(req, res){
     const id = req.params.id;
 
-    var updateUser;
     bcryptjs.genSalt(10, function(err, salt){
         bcryptjs.hash(req.body.Password, salt, function(err, hash){
-            updateUser = {
+            const updateUser = {
+                Email: req.body.Email,
                 Password: hash,
-                Role: 0,
+                Role: req.body.Role,
                 Full_name: req.body.Full_name,
                 Gender: req.body.Gender,
                 DayOfBirth: req.body.DayOfBirth,
                 Friends: req.body.Friends 
             }
+
+            const validationResponse = v.validate(updateUser, schema);
+            if(validationResponse !== true){
+                return res.status(400).json({
+                    message: "Validation failed!",
+                    errors: validationResponse
+                });
+            }
+
+            models.User.update(updateUser, {where: {id:id}}).then(result => {
+                res.status(200).json({
+                    message: "User updated successfully!",
+                    post: updateUser
+                });
+            }).catch(error => {
+                res.status(200).json({
+                    message: "Something went wrong!",
+                    error: error
+                });
+            })
         });
     });
-
-    const validationResponse = v.validate(updateUser, schema);
-    if(validationResponse !== true){
-        return res.status(400).json({
-            message: "Validation failed",
-            errors: validationResponse
-        });
-    }
-
-    models.User.update(updateUser, {where: {id:id}}).then(result => {
-        res.status(200).json({
-            message: "User updated successfully",
-            post: updateUser
-        });
-    }).catch(error => {
-        res.status(200).json({
-            message: "Something went wrong",
-            error: error
-        });
-    })
 }
 
 function destroy(req, res){
@@ -172,30 +183,53 @@ function destroy(req, res){
 
     models.User.destroy({where:{id:id}}).then(result => {
         res.status(200).json({
-            message: "User deleted successfully"
+            message: "User deleted successfully!"
         });
     }).catch(error => {
         res.status(200).json({
-            message: "Something went wrong",
+            message: "Something went wrong!",
             error: error
         });
     });
 }
 
 function forgot(req, res){
-    const id = req.params.id;
-
-    models.User.findByPk(id).then(result => {
+    models.User.findOne({where: {Email:req.body.Email}}).then(result => {
         if(result){
-            const id = result.id;
             const email = result.Email;
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let newPassword = "";
             for ( var i = 0; i < 10; i++ ) {
                 newPassword += characters.charAt(Math.floor(Math.random() * characters.length));
             }
+
             sendEmail(email, newPassword);
-            resetPassword(id, newPassword);
+
+            bcryptjs.genSalt(10, function(err, salt){
+                bcryptjs.hash(newPassword, salt, function(err, hash){
+                    const updateUser = {
+                        Email: req.body.Email,
+                        Password: hash,
+                        Role: req.body.Role,
+                        Full_name: req.body.Full_name,
+                        Gender: req.body.Gender,
+                        DayOfBirth: req.body.DayOfBirth,
+                        Friends: req.body.Friends 
+                    }
+
+                    models.User.update(updateUser, {where: {id:result.id}}).then(result1 => {
+                        res.status(200).json({
+                            message: "Password reset successfully!",
+                            post: updateUser
+                        });
+                    }).catch(error => {
+                        res.status(200).json({
+                            message: "Something went wrong!",
+                            error: error
+                        });
+                    });
+                });
+            });
         }
         else{
             res.status(404).json({
@@ -210,21 +244,17 @@ function forgot(req, res){
     });
 }
 
-const transporter = nodemailer.createTransport({
-    service: "hotmail",
-    auth: {
-        user: "arcadegamewebsite@outlook.com", 
-        pass: "arcade2001"
-    }
-})
-
 function sendEmail(email, newPassword){
     const options = {
-        from: "arcadegamewebsite@outlook.com",
+        from: "ArcadeGameWebsite@outlook.com.vn",
         to: email,
         subject: "Reset password for account: " + email,
-        text: "Your new password is: " + newPassword + "\nDo not share this email or password to any one!"
-            + "\nIf you not doing this, just ignore this message!"
+        text: "Hello " + email + ", you have just reset your password for ArcadeGameWebsite.com!"
+            + "\n\nYour new password is: " + newPassword 
+            + "\n\nDo not share this email or password to any one!"
+            + "\n\nIf you not doing this, please report back to us!"
+            + "\n\nOr else, you can just ignore this message!"
+            + "\n\nThank you,"
             + "\n---ArcadeGameWebsite - GoNin Team---"
     }
     
@@ -234,34 +264,6 @@ function sendEmail(email, newPassword){
             return false;
         }
         console.log("Send: " + info.response);
-    })
-}
-
-function resetPassword(id, newPassword){
-    var updateUser;
-    bcryptjs.genSalt(10, function(err, salt){
-        bcryptjs.hash(newPassword, salt, function(err, hash){
-            updateUser = {
-                Password: hash,
-                Role: result.Role,
-                Full_name: result.Full_name,
-                Gender: result.Gender,
-                DayOfBirth: result.DayOfBirth,
-                Friends: result.Friends 
-            }
-        })
-    });
-
-    models.User.update(updateUser, {where: {id:id}}).then(result => {
-        res.status(200).json({
-            message: "Password reset successfully!",
-            post: updateUser
-        });
-    }).catch(error => {
-        res.status(200).json({
-            message: "Something went wrong",
-            error: error
-        });
     })
 }
 
