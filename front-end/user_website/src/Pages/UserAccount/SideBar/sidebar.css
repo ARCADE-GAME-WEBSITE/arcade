@@ -1,6 +1,6 @@
 .sidebar,
 .off-canvas-sidebar {
-  height: calc(94vh - 99px);
+  height: calc(94vh - 110px);
   width: 230px;
   position: absolute;
   top: 0;
@@ -76,7 +76,7 @@
   text-align: center;
   color: white;
   font-size: 1.4em;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 .sidebar,
@@ -94,7 +94,7 @@
 
 .main-panel > .content {
   padding: 78px 20px 20px 300px;
-  min-height: calc(100vh - 105px);
+  min-height: calc(100vh - 150px);
 }
 .main-panel > .navbar {
   margin-bottom: 0;

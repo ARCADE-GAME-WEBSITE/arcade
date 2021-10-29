@@ -71,35 +71,5 @@
     color: rgb(79, 151, 233);
   }
   
-  .form-link:hover {
-    text-decoration: underline;
-    color: rgb(21, 71, 129);
-    cursor: pointer;
-  }
-  
-  .form-radio-label {
-    margin: 0px 30px 0 50px;
-  }
-  
-  .form-radio-label:hover {
-    cursor: pointer;
-  }
-  
-  .form-radio-btn {
-    margin-left: 8px;
-  }
-  
-  .form-radio-btn:hover {
-    cursor: pointer;
-  }
-  
-  .form-para-link {
-    margin-left: 5px;
-  }
-  
-  .form-group .validator {
-    color: red;
-    text-size-adjust: 80%;
-    margin: 0;
-  }
+ 
   
