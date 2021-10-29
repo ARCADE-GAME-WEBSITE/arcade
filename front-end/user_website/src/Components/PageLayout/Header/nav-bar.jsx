@@ -70,7 +70,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                                 </Link>
                             </NavLink>
                             <NavLink tag="li">
-                                <Link to={'/user-account/friend-list/' + user.id}>
+                                <Link to={'/user-account/friends-list/' + user.id}>
                                     <DropdownItem className="nav-item">Friends</DropdownItem>
                                 </Link>
                             </NavLink>

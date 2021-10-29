@@ -12,7 +12,6 @@ import {
 function SideBar(props) {
   const sidebarRef = React.useRef(null);
   const { routes, rtlActive } = props;
-
       var showImg = function(event) {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
