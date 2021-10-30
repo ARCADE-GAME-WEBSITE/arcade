@@ -10,6 +10,7 @@ router.get('/', checkAuthMiddleware.checkAuth, userController.index);
 router.get('/:id', checkAuthMiddleware.checkAuth, userController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, userController.update);
 router.delete('/:id', checkAuthMiddleware.checkAuth, userController.destroy);
+router.get('/get-list-friend/:id', checkAuthMiddleware.checkAuth, userController.getListFriendsByEmails);
 router.post("/forgot-password", userController.forgot);
 
 module.exports = router;

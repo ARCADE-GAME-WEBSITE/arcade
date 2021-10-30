@@ -193,6 +193,47 @@ function destroy(req, res){
     });
 }
 
+function getListFriendsByEmails(req, res){
+    const id = req.params.id;
+
+    models.User.findByPk(id).then(result => {
+        if(result){
+            const listFriend = result.Friends.split(' ');
+
+            var listUser = [];
+            listFriend.forEach(email => {
+                models.User.findOne({where: {Email:email}}).then(result1 => {
+                    if(result1){
+                        listUser.push(result1.dataValues);
+                    }else{
+                        listUser.push(email + "not found!");
+                    }
+                }).catch(error => {
+                    res.status(500).json({
+                        message: "Something went wrong!",
+                        error: error
+                    })
+                });
+            });
+
+            console.log(listUser);
+            res.status(200).json({
+                message: "Get list friends successfully!",
+                post: listUser
+            });
+        }else{
+            res.status(404).json({
+                message: "User not found!"
+            }) 
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        })
+    });
+}
+
 function forgot(req, res){
     models.User.findOne({where: {Email:req.body.Email}}).then(result => {
         if(result){
@@ -270,9 +311,10 @@ function sendEmail(email, newPassword){
 module.exports = {
     signUp: signUp,
     login: login,
-    index:index,
+    index: index,
     show: show,
     update: update,
     destroy: destroy,
+    getListFriendsByEmails: getListFriendsByEmails,
     forgot: forgot,
 }
