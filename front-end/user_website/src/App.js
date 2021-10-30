@@ -43,7 +43,7 @@ function App() {
         <Switch>
           <Route path="/home" component={() => <HomePage user={user}/>} />
           <Route path='/game-detail' component={() => <GameDetail user={user}/>} />
-          <Route path="/user-account" render={(props) => <UserAccount {...props} user={user}  />}></Route>
+          <Route path="/user-account" component={() => <UserAccount user={user} />} />
           <Redirect from="/" to="/home" />
         </Switch>
 

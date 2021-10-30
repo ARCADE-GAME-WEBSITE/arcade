@@ -1,4 +1,3 @@
-
 import React from "react";
 import axios from 'axios';
 import './sidebar.css'
@@ -9,19 +8,19 @@ import {
   BackgroundColorContext
 } from "../BackgroundColorContext";
 
-function SideBar(props,{user}) {
+function SideBar({routes, user}) {
   const sidebarRef = React.useRef(null);
   const getAvatar = () => {
     axios.get('/uploads/images/users/' + user.Avatar ).then(res => {
       console.log(res);
     });
   }
-  const { routes, rtlActive } = props;
+  // const { route, rtlActive } = routes;
   var showImg = function(event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-      };
-  return(user) ?(
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+  return(user) ? (
     <BackgroundColorContext.Consumer>
       {({ color }) => (
         <div className="sidebar" data={color}>
@@ -44,10 +43,10 @@ function SideBar(props,{user}) {
                       to={prop.layout + prop.path}
                       className="nav-link"
                       activeClassName="active"
-                      onClick={props.toggleSidebar}
+                      onClick={routes.toggleSidebar}
                     >
                       <i className={prop.icon} />
-                      <p>{rtlActive ? prop.rtlName : prop.name}</p>
+                      <p>{prop.name}</p>
                     </NavLink>
                   </li>
                 );
