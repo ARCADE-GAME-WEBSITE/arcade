@@ -201,12 +201,19 @@ function getListFriendsByEmails(req, res){
             const listFriend = result.Friends.split(' ');
 
             var listUser = [];
-            listFriend.forEach(email => {
+            listFriend.forEach((email) => {
                 models.User.findOne({where: {Email:email}}).then(result1 => {
                     if(result1){
                         listUser.push(result1.dataValues);
                     }else{
                         listUser.push(email + "not found!");
+                    }
+
+                    if (listUser.length == listFriend.length){
+                        res.status(200).json({
+                            message: "Get list friends successfully!",
+                            post: listUser
+                        });
                     }
                 }).catch(error => {
                     res.status(500).json({
@@ -214,12 +221,6 @@ function getListFriendsByEmails(req, res){
                         error: error
                     })
                 });
-            });
-
-            console.log(listUser);
-            res.status(200).json({
-                message: "Get list friends successfully!",
-                post: listUser
             });
         }else{
             res.status(404).json({
