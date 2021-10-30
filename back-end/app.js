@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const adminRoute = require('./routes/admins')
 const gameRoute = require('./routes/games');
-const userRoute = require('./routes/user');
+const userRoute = require('./routes/users');
 const imageRoute = require('./routes/images');
 const commentRoute = require('./routes/comments');
 
@@ -16,6 +17,7 @@ app.use(cors({
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
+app.use('/admin', adminRoute);
 app.use('/game', gameRoute);
 app.use('/user', userRoute);
 app.use('/images', imageRoute);

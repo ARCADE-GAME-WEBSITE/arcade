@@ -5,14 +5,12 @@ const Validator = require('fastest-validator');
 const nodemailer = require('nodemailer');
 
 const schema = {
-    Full_name: {type:"string", optional:true},
     Email: {type:"string", optional: false},
     Password: {type:"string", optional: false},
-    Role: {type: "number", optional:false},
+    Full_name: {type:"string", optional:true},
     Gender: {type:"number", optional:false},
     DayOfBirth: {type:"string", optional: true},
-    Avatar: {type:"string", optional: true},
-    Friends: {type:"string", optional: true}
+    Avatar: {type:"string", optional: true}
 }
 
 const v = new Validator();
@@ -25,8 +23,8 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-function signUp(req, res){
-    models.User.findOne({where:{Email:req.body.Email}}).then(result => {
+function create(req, res){
+    models.Admin.findOne({where:{Email:req.body.Email}}).then(result => {
         if(result){
             res.status(209).json({
                 message: "Email already exists!",
@@ -36,18 +34,16 @@ function signUp(req, res){
             bcryptjs.genSalt(10, function(err, salt){
                 bcryptjs.hash(req.body.Password, salt, function(err, hash){
                     const default_ava = (req.body.Gender == 1) ? 'male.jpg' : 'female.jpg';
-                    const user = {
+                    const admin = {
                         Email: req.body.Email,
                         Password: hash,
-                        Role: 0,
                         Full_name: req.body.Full_name,
                         Gender: req.body.Gender,
                         DayOfBirth: "0000-00-00",
                         Avatar: default_ava,
-                        Friends: ""
                     }
 
-                    const validationResponse = v.validate(user, schema);
+                    const validationResponse = v.validate(admin, schema);
                     if(validationResponse !== true){
                         return res.status(400).json({
                             message: "Validation failed!",
@@ -55,9 +51,9 @@ function signUp(req, res){
                         });
                     }
                 
-                    models.User.create(user).then(result => {
+                    models.Admin.create(admin).then(result => {
                         res.status(201).json({
-                            message: "User created successfully!",
+                            message: "Admin account created successfully!",
                         });
                     }).catch(error => {
                         res.status(500).json({
@@ -75,24 +71,24 @@ function signUp(req, res){
     });
 }
 
-function login(req, res) {
-    models.User.findOne({where:{Email: req.body.Email}}).then(user => {
-        if(user === null){
+function login(req, res){
+    models.Admin.findOne({where:{Email: req.body.Email}}).then(admin => {
+        if(admin === null){
             res.status(401).json({
                 message: "Invalid credentials!",
             });
         }
         else {
-            bcryptjs.compare(req.body.Password, user.Password, function(err, result){
+            bcryptjs.compare(req.body.Password, admin.Password, function(err, result){
                 if(result){
                     const token = jwt.sign({
-                        email: user.Email,
-                        userId: user.id
+                        email: admin.Email,
+                        adminId: admin.id
                     }, 'secret', function(err, token){
                         res.status(200).json({
                             message: "Authentication successful!",
                             token: token,
-                            user: user
+                            admin: admin
                         });
                     });
                 }
@@ -112,7 +108,7 @@ function login(req, res) {
 }
 
 function index(req, res){
-    models.User.findAll().then(result => {
+    models.Admin.findAll().then(result => {
         res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
@@ -125,12 +121,12 @@ function index(req, res){
 function show(req, res){
     const id = req.params.id;
 
-    models.User.findByPk(id).then(result => {
+    models.Admin.findByPk(id).then(result => {
         if(result){
             res.status(200).json(result);
         }else{
             res.status(404).json({
-                message: "User not found!"
+                message: "Admin not found!"
             }) 
         }
     }).catch(error => {
@@ -146,17 +142,15 @@ function update(req, res){
 
     bcryptjs.genSalt(10, function(err, salt){
         bcryptjs.hash(req.body.Password, salt, function(err, hash){
-            const updateUser = {
+            const updateAdmin = {
                 Email: req.body.Email,
                 Password: hash,
-                Role: req.body.Role,
                 Full_name: req.body.Full_name,
                 Gender: req.body.Gender,
-                DayOfBirth: req.body.DayOfBirth,
-                Friends: req.body.Friends 
+                DayOfBirth: req.body.DayOfBirth
             }
 
-            const validationResponse = v.validate(updateUser, schema);
+            const validationResponse = v.validate(updateAdmin, schema);
             if(validationResponse !== true){
                 return res.status(400).json({
                     message: "Validation failed!",
@@ -164,10 +158,10 @@ function update(req, res){
                 });
             }
 
-            models.User.update(updateUser, {where: {id:id}}).then(result => {
+            models.Admin.update(updateAdmin, {where: {id:id}}).then(result => {
                 res.status(200).json({
-                    message: "User updated successfully!",
-                    post: updateUser
+                    message: "Admin account updated successfully!",
+                    post: updateAdmin
                 });
             }).catch(error => {
                 res.status(200).json({
@@ -182,64 +176,21 @@ function update(req, res){
 function destroy(req, res){
     const id = req.params.id;
 
-    models.User.destroy({where:{id:id}}).then(result => {
+    models.Admin.destroy({where:{id:id}}).then(result => {
         res.status(200).json({
-            message: "User deleted successfully!"
+            message: "Admin account deleted successfully!"
         });
     }).catch(error => {
         res.status(200).json({
             message: "Something went wrong!",
             error: error
         });
-    });
-}
-
-function getListFriendsByEmails(req, res){
-    const id = req.params.id;
-
-    models.User.findByPk(id).then(result => {
-        if(result){
-            const listFriend = result.Friends.split(' ');
-
-            var listUser = [];
-            listFriend.forEach((email) => {
-                models.User.findOne({where: {Email:email}}).then(result1 => {
-                    if(result1){
-                        listUser.push(result1.dataValues);
-                    }else{
-                        listUser.push(email + "not found!");
-                    }
-
-                    if (listUser.length == listFriend.length){
-                        res.status(200).json({
-                            message: "Get list friends successfully!",
-                            post: listUser
-                        });
-                    }
-                }).catch(error => {
-                    res.status(500).json({
-                        message: "Something went wrong!",
-                        error: error
-                    })
-                });
-            });
-        }else{
-            res.status(404).json({
-                message: "User not found!"
-            }) 
-        }
-    }).catch(error => {
-        res.status(500).json({
-            message: "Something went wrong!",
-            error: error
-        })
     });
 }
 
 function forgot(req, res){
-    models.User.findOne({where: {Email:req.body.Email}}).then(result => {
+    models.Admin.findOne({where: {Email:req.body.Email}}).then(result => {
         if(result){
-            console.log(result);
             const email = result.Email;
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let newPassword = "";
@@ -251,11 +202,11 @@ function forgot(req, res){
 
             bcryptjs.genSalt(10, function(err, salt){
                 bcryptjs.hash(newPassword, salt, function(err, hash){
-                    const updateUser = {
-                        Password: hash
+                    const updateAdmin = {
+                        Password: hash,
                     }
 
-                    models.User.update(updateUser, {where: {id:result.id}}).then(result => {
+                    models.Admin.update(updateAdmin, {where: {id:result.id}}).then(result => {
                         res.status(200).json({
                             message: "Password reset successfully!"
                         });
@@ -305,12 +256,11 @@ function sendEmail(email, newPassword){
 }
 
 module.exports = {
-    signUp: signUp,
+    create: create,
     login: login,
     index: index,
     show: show,
     update: update,
     destroy: destroy,
-    getListFriendsByEmails: getListFriendsByEmails,
-    forgot: forgot,
+    forgot: forgot
 }
