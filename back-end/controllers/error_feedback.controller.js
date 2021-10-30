@@ -4,19 +4,25 @@ const Validator = require('fastest-validator');
 const schema = {
     UserID: {type: "number", optional:false},
     GameID: {type: "number", optional:false},
-    Content: {type: "string", optional:false}
+    ErrorType: {type:"string", optional:false},
+    ErrorInfo: {type:"string", optional:false},
+    AdminID: {type: "number", optional:true},
+    ProcessStatus: {type:"string", optional:true}
 }
 
 const v = new Validator();
 
 function save(req, res){
-    const comment = {
+    const error_feedback = {
         UserID: req.body.UserID,
         GameID: req.body.GameID,
-        Content: req.body.Content
+        ErrorType: req.body.ErrorType,
+        ErrorInfo: req.body.ErrorInfo,
+        AdminID: req.body.AdminID,
+        ProcessStatus: req.body.ProcessStatus
     }
 
-    const validationResponse = v.validate(comment, schema);
+    const validationResponse = v.validate(error_feedback, schema);
     if(validationResponse !== true){
         return res.status(400).json({
             message: "Validation failed!",
@@ -24,11 +30,22 @@ function save(req, res){
         });
     }
 
-    models.Comment.create(comment).then(result => {
+    models.Error_feedback.create(error_feedback).then(result => {
         res.status(201).json({
-            message: "Comment created successfully!",
+            message: "Error feedback created successfully!",
             post: result
         });
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    });
+}
+
+function index(req, res){
+    models.Error_feedback.findAll().then(result => {
+        res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
             message: "Something went wrong!",
@@ -40,7 +57,7 @@ function save(req, res){
 function indexByGameID(req, res){
     const id = req.params.id;
 
-    models.Comment.findAll({where: {GameID:id}}).then(result => {
+    models.Error_feedback.findAll({where: {GameID:id}}).then(result => {
         res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
@@ -53,7 +70,7 @@ function indexByGameID(req, res){
 function indexByUserID(req, res){
     const id = req.params.id;
 
-    models.Comment.findAll({where: {UserID:id}}).then(result => {
+    models.Error_feedback.findAll({where: {UserID:id}}).then(result => {
         res.status(200).json(result);
     }).catch(error => {
         res.status(500).json({
@@ -66,12 +83,12 @@ function indexByUserID(req, res){
 function show(req, res){
     const id = req.params.id;
 
-    models.Comment.findByPk(id).then(result => {
+    models.Error_feedback.findByPk(id).then(result => {
         if(result){
             res.status(200).json(result);
         }else{
             res.status(404).json({
-                message: "Comment not found!"
+                message: "Error feedback not found!"
             });
         }
     }).catch(error => {
@@ -84,13 +101,16 @@ function show(req, res){
 
 function update(req, res){
     const id = req.params.id;
-    const comment = {
+    const error_feedback = {
         UserID: req.body.UserID,
         GameID: req.body.GameID,
-        Content: req.body.Content
+        ErrorType: req.body.ErrorType,
+        ErrorInfo: req.body.ErrorInfo,
+        AdminID: req.body.AdminID,
+        ProcessStatus: req.body.ProcessStatus
     }
 
-    const validationResponse = v.validate(comment, schema);
+    const validationResponse = v.validate(error_feedback, schema);
     if(validationResponse !== true){
         return res.status(400).json({
             message: "Validation failed!",
@@ -98,10 +118,10 @@ function update(req, res){
         });
     }
 
-    models.Comment.update(comment, {where: {id:id}}).then(result => {
+    models.Error_feedback.update(error_feedback, {where: {id:id}}).then(result => {
         res.status(200).json({
-            message: "Comment updated successfully!",
-            post: comment
+            message: "Error feedback updated successfully!",
+            post: error_feedback
         });
     }).catch(error => {
         res.status(500).json({
@@ -114,9 +134,9 @@ function update(req, res){
 function destroy(req, res){
     const id = req.params.id;
 
-    models.Comment.destroy({where:{id:id}}).then(result => {
+    models.Error_feedback.destroy({where:{id:id}}).then(result => {
         res.status(200).json({
-            message: "Comment deleted successfully!"
+            message: "Error feedback deleted successfully!"
         });
     }).catch(error => {
         res.status(200).json({
@@ -127,10 +147,11 @@ function destroy(req, res){
 }
 
 module.exports = {
-    save: save,
+    save:save,   
+    index: index,
     indexByGameID: indexByGameID,
     indexByUserID: indexByUserID,
     show: show,
     update: update,
-    destroy: destroy,
+    destroy: destroy
 }

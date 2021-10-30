@@ -5,8 +5,8 @@ const checkAuthMiddleware = require('../middleware/check-auth');
 const router = express.Router();
 
 router.post('/', checkAuthMiddleware.checkAuth, commentController.save);
-router.get('/get-by-game-id/:id', commentController.indexByIDGame);
-router.get('/get-by-user-id/:id', commentController.indexByIDUser);
+router.get('/get-by-game-id/:id', commentController.indexByGameID);
+router.get('/get-by-user-id/:id', commentController.indexByUserID);
 router.get('/:id', commentController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, commentController.update);
 router.delete('/:id', checkAuthMiddleware.checkAuth, commentController.destroy);
