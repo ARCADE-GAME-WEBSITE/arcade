@@ -35,20 +35,19 @@ function save(req, res){
     const validationResponse = v.validate(game, schema);
     if(validationResponse !== true){
         return res.status(400).json({
-            message: "Validation failed",
+            message: "Validation failed!",
             errors: validationResponse
         });
     }
 
     models.Game.create(game).then(result => {
         res.status(201).json({
-            message: "Game created successfully",
-            post: result,
-            insertId: result.id
+            message: "Game created successfully!",
+            post: result
         });
     }).catch(error => {
         res.status(500).json({
-            message: "Something went wrong",
+            message: "Something went wrong!",
             error: error
         });
     });
@@ -105,19 +104,19 @@ function update(req, res){
     const validationResponse = v.validate(updateGame, schema);
     if(validationResponse !== true){
         return res.status(400).json({
-            message: "Validation failed",
+            message: "Validation failed!",
             errors: validationResponse
         });
     }
 
     models.Game.update(updateGame, {where: {id:id}}).then(result => {
         res.status(200).json({
-            message: "Game updated successfully",
+            message: "Game updated successfully!",
             post: updateGame
         });
     }).catch(error => {
         res.status(200).json({
-            message: "Something went wrong",
+            message: "Something went wrong!",
             error: error
         });
     })
@@ -129,11 +128,11 @@ function destroy(req, res){
 
     models.Game.destroy({where:{id:id}}).then(result => {
         res.status(200).json({
-            message: "Game deleted successfully"
+            message: "Game deleted successfully!"
         });
     }).catch(error => {
         res.status(200).json({
-            message: "Something went wrong",
+            message: "Something went wrong!",
             error: error
         });
     });
