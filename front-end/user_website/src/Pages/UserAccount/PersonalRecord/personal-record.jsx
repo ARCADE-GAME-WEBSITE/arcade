@@ -1,6 +1,5 @@
 import React from "react";
-import { Component } from "react";
-import axios from "axios";
+
 import {
   Card,
   CardHeader,
@@ -10,21 +9,9 @@ import {
   Col,
 } from "reactstrap";
 
-class PersonalRecord extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      users: []
-    }
-  }
-  componentDidMount() {
-    axios.get('/user/').then(res => {
-        this.setState({
-            users: res.data,
-        });
-    });
-}
-  render(){
+function PersonalRecord() {
+  
+
     return (
       <>
         <div className="content">
@@ -85,7 +72,6 @@ class PersonalRecord extends Component {
       </>
     );
   }
- 
-}
+
 
 export default PersonalRecord;

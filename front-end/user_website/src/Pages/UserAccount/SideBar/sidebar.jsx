@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from 'axios';
 import './sidebar.css'
 
@@ -8,39 +8,38 @@ import {
   BackgroundColorContext
 } from "../BackgroundColorContext";
 
-function SideBar({routes, user}) {
-  const sidebarRef = React.useRef(null);
-  const getAvatar = () => {
-    axios.get('/uploads/images/users/' + user.Avatar ).then(res => {
-      console.log(res);
-    });
-  }
-  // const { route, rtlActive } = routes;
+function SideBar({routes,user}) {
+  var avatar;
+  useEffect(() => {
+      axios.get('/uploads/images/users/' + user.Avatar ).then(res => {
+        console.log(res.data);
+        avatar=res.data;
+      });
+  }, [])
+  
   var showImg = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  };
-  return(user) ? (
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+      };
+  return(user)?(
     <BackgroundColorContext.Consumer>
       {({ color }) => (
         <div className="sidebar" data={color}>
-          <div className="sidebar-wrapper" ref={sidebarRef} > 
+          <div className="sidebar-wrapper"  > 
               <div className="logo">
                 <form runat="server">
-                  <img className="avatar-img" src="" alt=""   id="output"  width="200px" height="200px" />            
+                  <img className="avatar-img" src={avatar} alt=''   id="output"  width="200px" height="200px" />            
                   <input accept="image/*" className="inputImg" type='file' onChange={showImg}/>
                 </form>
-                <p className="username"></p>
-                <button onClick={getAvatar}>abc</button>
+                
               </div>
             <Nav>
               {routes.map((prop) => {
-                if (prop.redirect) return null;
                 return (
                   <li 
                   >
                     <NavLink
-                      to={prop.layout + prop.path}
+                      to={prop.layout + prop.path + '/'+ user.id}
                       className="nav-link"
                       activeClassName="active"
                       onClick={routes.toggleSidebar}
@@ -56,8 +55,6 @@ function SideBar({routes, user}) {
         </div>
       )}
     </BackgroundColorContext.Consumer>
-  ):null ;
+  ):null;
 }
-
-
 export default SideBar;

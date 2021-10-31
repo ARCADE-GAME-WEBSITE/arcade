@@ -1,8 +1,6 @@
-
-import React from "react";
+import React, {useEffect} from "react";
 
 import './user-profile.css'
-import ChangePassword from './change-password.jsx'
 import axios from 'axios';
 import {
   Button,
@@ -12,68 +10,53 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { Component } from "react";
 
-class UserProfile extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      isDisplayFormChangePass: false,
-      user : props.user,
-      Full_name : '',
-      Gender : false,
-      DateOfBirth : ''
-    }
-    this.handleChange1 = this.handleChange1.bind(this);
-    this.handleChange2 = this.handleChange2.bind(this);
-    this.handleChange3 = this.handleChange3.bind(this);
-  }
-  componentDidMount(){
-    axios.get('/user/')
-    .then(response => {
-      this.setState({ Full_name: response.data.Full_name, Gender: response.data.Gender, DateOfBirth:response.data.DateOfBirth });
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  }
-  handleChange1(e){
-    this.setState({
-      Full_name: e.target.value
-    })
-  }
-  handleChange2(e){
-    this.setState({
-      Gender: e.target.value
-    })
-  }
-  handleChange3(e){
-    this.setState({
-      DateOfBirth: e.target.value
-    })
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-  OpenForm = () =>{
-      this.setState({
-        isDisplayFormChangePass : !this.state.isDisplayFormChangePass
-      });
-  }
-  onCloseForm =() =>{
-    this.setState({
-      isDisplayFormChangePass : !this.state.isDisplayFormChangePass
-    });
-  }
+
+function UserProfile({user}){
+
   
-  render(){
-    var {isDisplayFormChangePass} = this.state;
-    var show = isDisplayFormChangePass ? <ChangePassword onCloseForm={this.onCloseForm} /> : '';
-    return (this.state.user ?(
+  // setName= (event) => {
+  //   this.setState({Full_name: event.target.value});
+  // }
+  // setGender= (event) => {
+  //   this.setState({Gender: event.target.value});
+  // }
+  // setDate= (event) => {
+  //   this.setState({Date: event.target.value});
+  // }
+  // submitSave = () =>{
+  //   console.log(this.state);
+  // }
+  // componentDidMount() {
+  //   axios.get('/user')
+  //        .then(res => {
+  //           const user = res.data;
+  //           this.setState({ user: user.user });
+  //         })
+  //        .catch(error => console.log(error));
+  // };
+
+
+ 
+  // const OpenForm = () =>{
+  //     this.setState({
+  //       isDisplayFormChangePass : !this.state.isDisplayFormChangePass
+  //     });
+  // }
+  // const onCloseForm =() =>{
+  //   this.setState({
+  //     isDisplayFormChangePass : !this.state.isDisplayFormChangePass
+  //   });
+  // }
+
+    // var {isDisplayFormChangePass} = this.state;
+    // var show = isDisplayFormChangePass ? <ChangePassword onCloseForm={this.onCloseForm} /> : '';
+    
+    return(user)? (
       <>
         <div className="content">
           <div>
-            {show}
+            {/* {show} */}
           </div>
           <Row>
             <Col md="8">
@@ -83,12 +66,12 @@ class UserProfile extends Component{
                 </CardHeader>
                   <div className="row Card-space" >
                   
-                  <div className="col-md-3 " key = {this.state.user.id} onSubmit={this.handleSubmit} >
+                  <div className="col-md-3 " key = {user.id}  >
                     <h5>Full Name:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
                     <form>
-                      <input type="text" name="fullname" className="o" value={this.state.user.Full_name} onChange={this.handleChange1} /> 
+                      <input type="text" name="fullname" className="o" value={user.Full_name} /> 
                     </form>
                   </div>
                   </div>
@@ -98,8 +81,8 @@ class UserProfile extends Component{
                     <h5>Sex:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="radio" name="gender" className="a" checked={this.state.user.Gender ? 'checked' : ''}  /> Male
-                    <input type="radio" name="gender" className="a" onChange={this.handleChange2} /> Female
+                    <input type="radio" name="gender" className="a"   /> Male
+                    <input type="radio" name="gender" className="a" /> Female
                   </div>
                   </div>
                   <hr />
@@ -108,7 +91,7 @@ class UserProfile extends Component{
                     <h5>Date of birth:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="date" name="bday" className="o" value={this.state.user.DateOfBirth} onChange={this.handleChange3}   />
+                    <input type="date" name="bday" className="o"   />
                   </div>
                   </div>
                   <hr />
@@ -118,7 +101,7 @@ class UserProfile extends Component{
                   </div>
                   <div className="col-md-3 text-secondary">
                     <form>
-                      <input type="text" name="email" className="o" value={this.state.user.Email} />
+                      <input type="text" name="email" className="o"  value={user.Email}/>
                     </form>
                   </div>
                 </div>
@@ -128,17 +111,18 @@ class UserProfile extends Component{
                     <h5>Password:</h5>
                   </div>
                   <div className="col-md-3 text-secondary"  >
-                    <p>*******************</p>
+                    <p>*************************</p>
                   </div>
                 </div>
             
                 <CardFooter>
-                  <Button className="btn btn-fill" >
+                  <Button className="btn btn-fill"
+                  >
                     Save
                   </Button>
                   <Button 
                     className="btn btn-fill"   
-                    onClick={this.OpenForm}
+                   
                   >
                     Change Password
                   </Button>
@@ -148,9 +132,7 @@ class UserProfile extends Component{
           </Row>
         </div>
       </>
-    ):null);
-  }
+    ):null;
 }
-
 
 export default UserProfile;
