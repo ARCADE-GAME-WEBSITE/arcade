@@ -14,7 +14,6 @@ import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
 
-
 function GameDetail({user}) {
     return (
         <div className="grid wide-1">

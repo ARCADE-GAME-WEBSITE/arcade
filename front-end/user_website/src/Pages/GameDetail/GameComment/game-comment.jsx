@@ -1,30 +1,78 @@
 import React, { useEffect , useState }from 'react'
 
 import './game-comment.css'
+import axios from 'axios'
 
-function getComment() {
-    // var cmt = document.getElementById("game-comment__account-btn").value
-}
+    
 
-const games = [
-    {
-        id: 1, 
-        name: '2048'
-    },
-    {
-        id: 2, 
-        name: 'flappy'
-    },
-    {
-        id: 3, 
-        name: 'sudoku'
-    }
-]
 
+
+// useEffect(() => {
+//     axios.get('/comment')
+//     .then((res) => {
+//         // setGames((prev)=>[...prev,res.data]);
+//       setGames(res.data);
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     })
+// },[]);
+// return (
+//     <div >
+//         <ul>
+//             {
+//                 games.map(game=>{
+//                     <li key={game.id}>{game.title}</li>
+//                 })
+//             }
+//         </ul>
+//     </div>
+// )
 
 
 function GameComment({user}) {
     
+    var inputCmt = document.getElementById("game-comment__account-btn")
+
+
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
+    const [cmt,setCmt] = useState([])
+    const [userName,setUserName] = useState([])
+
+    const getComment = () => {
+        console.log(inputCmt.value);
+        axios.post('/comment', {
+            GameID:1,
+            UserID: user.id,
+            Content: inputCmt.value,
+
+            }, config)
+            .then(function (response) {
+                console.log(response)
+                
+                    return axios.get('/comment/get-by-game-id/1/')
+                    .then((res) => {
+                    console.log(res.data)
+                    const cmtArr = res.data.slice(res.data.length - 3,res.data.length)
+                    const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
+                    const saveArrName = [cmtArr[0].UserID,cmtArr[1].UserID,cmtArr[2].UserID]
+                    setCmt(saveArrContent)
+                    setUserName(saveArrName)
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            })
+            .catch(function (error) {
+                console.log(error);
+                });
+    }
+    
+    console.log(cmt);
+    console.log(userName);
+
     useEffect(() =>{
         if(user){
             document.getElementById('test1').style.display = 'none'
@@ -53,17 +101,17 @@ function GameComment({user}) {
                 <div className="game-comment__account-login" id="test2">
                     <img className="comment__img" src="https://cdn.y8.com/assets/avatars/male/1-48x48-4815f3410d5aef5c9512021dd6c02c7f.png" alt="" />
                     <input type="text" placeholder="Comment text" className="game-comment__account-btn" id="game-comment__account-btn"/>
-                    <input type="submit" value="Send" className="game-comment__account-send" onclick={getComment()}/>
+                    <input type="submit" value="Send" className="game-comment__account-send" onClick={getComment}/>
                 </div>
                 <div className="game-comment__content">
                     <div className="game-comment__content1">
                         <img className="comment__img" src="https://cdn.y8.com/assets/avatars/male/1-48x48-4815f3410d5aef5c9512021dd6c02c7f.png" alt="" />
                         <div className="game-comment__desc">
                             <div className="comment__user">
-                                Player 1
+                                {userName[2]}
                             </div>
                             <div className="comment__cmt">
-                                I passed the entire second sphere, it cost me, I lost like 5 times but I beat him 
+                                {cmt[2]}
                             </div>
                         </div>
                     </div>
@@ -72,10 +120,10 @@ function GameComment({user}) {
                             <img className="comment__img" src="https://cdn.y8.com/assets/avatars/male/2-48x48-133d7ce1c8ccb095a7b84c29d898c830.png" alt="" />
                             <div className="game-comment__desc">
                                 <div className="comment__user">
-                                    Player 2
+                                    {userName[1]}
                                 </div>
                                 <div className="comment__cmt">
-                                    I love it
+                                    {cmt[1]}
                                 </div>
                             </div>
                         </div>
@@ -83,10 +131,10 @@ function GameComment({user}) {
                             <img className="comment__img" src="https://cdn.y8.com/assets/avatars/female/1-48x48-f9d569b01ef34ef639b5b1031fea7f23.png" alt="" />
                             <div className="game-comment__desc">
                                 <div className="comment__user">
-                                    Player 3
+                                    {userName[0]}
                                 </div>
                                 <div className="comment__cmt">
-                                    I love it too!
+                                    {cmt[0]}
                                 </div>
                             </div>
                         </div>
