@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 27, 2021 lúc 10:50 PM
+-- Thời gian đã tạo: Th10 01, 2021 lúc 04:43 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -28,40 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `AdminID` int(255) NOT NULL,
-  `Email` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `Password` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `Name` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `Email` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `Password` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `Full_name` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Gender` tinyint(1) DEFAULT NULL,
   `DayOfBirth` date DEFAULT NULL,
-  `Avatar` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `Avatar` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `admins`
 --
 
-INSERT INTO `admins` (`AdminID`, `Email`, `Password`, `Name`, `Gender`, `DayOfBirth`, `Avatar`) VALUES
-(1, 'tuankietnk2001@gmail.com', 'admin01', 'Nguyễn Đặng Tuấn Kiệt', 1, '2001-04-09', NULL),
-(2, 'oppahd96@gmail.com', 'admin02', 'Hồ Minh Hiếu', 1, '0000-00-00', NULL),
-(3, 'bduyphuong12@gmail.com', 'admin03', 'Bùi Duy Phương', 1, NULL, NULL),
-(4, 'nghia567123@gmail.com', 'admin04', 'Lê Trung Nghĩa', 1, NULL, NULL),
-(5, '19521953@gm.uit.edu.vn', 'admin05', 'Mã Hải Nhật', 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `all_user_records`
---
-
-CREATE TABLE `all_user_records` (
-  `id` int(255) NOT NULL,
-  `UserID` int(255) NOT NULL,
-  `GameID` int(255) NOT NULL,
-  `HighScore` int(255) NOT NULL,
-  `createdAt` date NOT NULL,
-  `updatedAt` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+INSERT INTO `admins` (`id`, `Email`, `Password`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `createdAt`, `updatedAt`) VALUES
+(1, 'tuankietnk2001@gmail.com', 'admin01', 'Nguyễn Đặng Tuấn Kiệt', 1, '2001-04-09', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'oppahd96@gmail.com', 'admin02', 'Hồ Minh Hiếu', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'bduyphuong12@gmail.com', 'admin03', 'Bùi Duy Phương', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'nghia567123@gmail.com', 'admin04', 'Lê Trung Nghĩa', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, '19521953@gm.uit.edu.vn', 'admin05', 'Mã Hải Nhật', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -118,15 +105,15 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `error_feedbacks` (
-  `id` int(255) NOT NULL,
-  `UserID` int(255) NOT NULL,
-  `GameID` int(255) NOT NULL,
-  `ErrorType` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `ErrorInfo` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `AdminID` int(255) DEFAULT NULL,
-  `ProcessStatus` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `createdAt` date NOT NULL,
-  `updatedAt` date NOT NULL
+  `id` int(11) NOT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `GameID` int(11) DEFAULT NULL,
+  `ErrorType` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `ErrorInfo` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `AdminID` int(11) DEFAULT NULL,
+  `ProcessStatus` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -188,7 +175,14 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20211027073433-create-game.js'),
 ('20211027184633-create-game.js'),
 ('20211027185541-create-game.js'),
-('20211027185740-create-user.js');
+('20211027185740-create-user.js'),
+('20211030112244-create-admin.js'),
+('20211030200618-create-all-user-records.js'),
+('20211030202933-create-user-records.js'),
+('20211030210013-create-error-feedbacks.js'),
+('20211030211416-create-user-record.js'),
+('20211030211503-create-error-feedback.js'),
+('20211030212945-create-upload-game-request.js');
 
 -- --------------------------------------------------------
 
@@ -197,19 +191,18 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 --
 
 CREATE TABLE `upload_game_requests` (
-  `id` int(255) NOT NULL,
-  `UserID` int(255) NOT NULL,
-  `IFrame` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
-  `RequestDate` date NOT NULL,
-  `GameTitle` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `Category` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `GameAvatar` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
-  `GamePlayImage` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Description` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `AdminID` int(255) DEFAULT NULL,
-  `RequestStatus` tinyint(1) NOT NULL,
-  `createdAt` date NOT NULL,
-  `updatedAt` date NOT NULL
+  `id` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `Url` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `GameTitle` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `Category` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `GameAvatar` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `GamePlayImage` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Description` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `AdminID` int(11) DEFAULT NULL,
+  `RequestStatus` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -237,7 +230,29 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `Email`, `Password`, `Role`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `Friends`, `createdAt`, `updatedAt`) VALUES
-(1, 'tuankietnk2001@gmail.com', '$2a$10$3Kd6jXYk2vMUkxvMFLF0rey.8g.B7c7e9Zj5gqzhdcwjLYYI83J1W', 0, 'Tuấn Kiệt', 1, '0000-00-00 00:00:00', 'male.jpg', '', '2021-10-27 20:46:36', '2021-10-27 20:46:36');
+(1, 'tuankietnk2001@gmail.com', '$2a$10$OXazhhESBQ0vE9zRmr3eZ..QwEdWfw3N2VPLP.uR7/xCXDHzK0vhG', 0, 'Tuấn Kiệt', 1, '2001-09-04 00:00:00', 'male.jpg', 'a@gmail.com c@gmail.com', '2021-10-27 20:46:36', '2021-10-30 13:36:24');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_records`
+--
+
+CREATE TABLE `user_records` (
+  `id` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `GameID` int(11) NOT NULL,
+  `HighScore` double NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_records`
+--
+
+INSERT INTO `user_records` (`id`, `UserID`, `GameID`, `HighScore`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 1, 9600, '2021-10-30 20:43:03', '2021-10-30 20:43:03');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -247,15 +262,7 @@ INSERT INTO `users` (`id`, `Email`, `Password`, `Role`, `Full_name`, `Gender`, `
 -- Chỉ mục cho bảng `admins`
 --
 ALTER TABLE `admins`
-  ADD PRIMARY KEY (`AdminID`);
-
---
--- Chỉ mục cho bảng `all_user_records`
---
-ALTER TABLE `all_user_records`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `GameID` (`GameID`),
-  ADD KEY `UserID` (`UserID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `categories`
@@ -276,15 +283,16 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `error_feedbacks`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `GameID` (`GameID`),
   ADD KEY `UserID` (`UserID`),
+  ADD KEY `GameID` (`GameID`),
   ADD KEY `AdminID` (`AdminID`);
 
 --
 -- Chỉ mục cho bảng `games`
 --
 ALTER TABLE `games`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `DevID` (`DevID`);
 
 --
 -- Chỉ mục cho bảng `sequelizemeta`
@@ -298,14 +306,22 @@ ALTER TABLE `sequelizemeta`
 --
 ALTER TABLE `upload_game_requests`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `AdminID` (`AdminID`),
-  ADD KEY `UserID` (`UserID`);
+  ADD KEY `UserID` (`UserID`),
+  ADD KEY `AdminID` (`AdminID`);
 
 --
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `user_records`
+--
+ALTER TABLE `user_records`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `UserID` (`UserID`),
+  ADD KEY `GameID` (`GameID`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -315,13 +331,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `AdminID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT cho bảng `all_user_records`
---
-ALTER TABLE `all_user_records`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -333,13 +343,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `error_feedbacks`
 --
 ALTER TABLE `error_feedbacks`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `games`
@@ -351,24 +361,23 @@ ALTER TABLE `games`
 -- AUTO_INCREMENT cho bảng `upload_game_requests`
 --
 ALTER TABLE `upload_game_requests`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `user_records`
+--
+ALTER TABLE `user_records`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
-
---
--- Các ràng buộc cho bảng `all_user_records`
---
-ALTER TABLE `all_user_records`
-  ADD CONSTRAINT `all_user_records_ibfk_1` FOREIGN KEY (`GameID`) REFERENCES `games` (`id`),
-  ADD CONSTRAINT `all_user_records_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`);
 
 --
 -- Các ràng buộc cho bảng `comments`
@@ -381,16 +390,30 @@ ALTER TABLE `comments`
 -- Các ràng buộc cho bảng `error_feedbacks`
 --
 ALTER TABLE `error_feedbacks`
-  ADD CONSTRAINT `error_feedbacks_ibfk_1` FOREIGN KEY (`GameID`) REFERENCES `games` (`id`),
-  ADD CONSTRAINT `error_feedbacks_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `error_feedbacks_ibfk_3` FOREIGN KEY (`AdminID`) REFERENCES `admins` (`AdminID`);
+  ADD CONSTRAINT `error_feedbacks_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `error_feedbacks_ibfk_2` FOREIGN KEY (`GameID`) REFERENCES `games` (`id`),
+  ADD CONSTRAINT `error_feedbacks_ibfk_3` FOREIGN KEY (`AdminID`) REFERENCES `admins` (`id`);
+
+--
+-- Các ràng buộc cho bảng `games`
+--
+ALTER TABLE `games`
+  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`DevID`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `games_ibfk_2` FOREIGN KEY (`DevID`) REFERENCES `users` (`id`);
 
 --
 -- Các ràng buộc cho bảng `upload_game_requests`
 --
 ALTER TABLE `upload_game_requests`
-  ADD CONSTRAINT `upload_game_requests_ibfk_1` FOREIGN KEY (`AdminID`) REFERENCES `admins` (`AdminID`),
-  ADD CONSTRAINT `upload_game_requests_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `upload_game_requests_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `upload_game_requests_ibfk_2` FOREIGN KEY (`AdminID`) REFERENCES `admins` (`id`);
+
+--
+-- Các ràng buộc cho bảng `user_records`
+--
+ALTER TABLE `user_records`
+  ADD CONSTRAINT `user_records_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_records_ibfk_2` FOREIGN KEY (`GameID`) REFERENCES `games` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
