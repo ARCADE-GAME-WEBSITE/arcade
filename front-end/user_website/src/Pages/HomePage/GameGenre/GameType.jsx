@@ -1,15 +1,69 @@
-import React from 'react';
-
+import React, { useEffect , useState , useRef }from 'react'
+import axios from 'axios'
 import "./GameType.css";
-import "./GameTypeID";
 
 import InfiniteCarousel from 'react-leaf-carousel';
 /* <!--Game Picture --> */
 
 /* <!--Game Link --> */
 
+function GameGenre({categories}){
+    
+    
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+      const [CategoriesID,setCategoriesID] = useState([])
+      const [CategoriesName,setCategoriesName] = useState([])
+      const [createdAt,setCreatedAt] = useState([])
+      let avatarGameUrl = useRef()
 
-const GameGenre = () => {
+      const getCategories = () => {
+       
+        axios.post('games/Category', {
+            categoriesID:categories.id,
+            CategoryName: categories.CategoryName,
+            createdAt: categories.createdAt,
+            }, config)
+            .then(function (response) {
+                console.log(response)
+                
+                    return axios.get('games/get-by-game-id/1/')
+                    .then((res) => {
+                    console.log(res.data)
+                    const categoriesArr = res.data.slice(res.data.length - 3,res.data.length)
+                    const saveArrcategoriesID = [categoriesArr[0].categoriesID,categoriesArr[1].categoriesID,categoriesArr[2].categoriesID]
+                    const saveArrCategoryName = [categoriesArr[0].CategoryName,categoriesArr[1].CategoryName,categoriesArr[2].CategoryName]
+                    const saveArrcreatedAt = [categoriesArr[0].createdAt,categoriesArr[1].createdAt,categoriesArr[2].createdAt]
+                    setCategoriesID(saveArrcategoriesID)
+                    setCategoriesName(saveArrCategoryName)
+                    setCreatedAt(saveArrcreatedAt)
+                    avatarGameUrl.current = axios.defaults.baseURL + 'uploads/images/games/' + categories.Avatar;
+                    
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+                });
+    }
+    
+    console.log(CategoriesName);
+    console.log(createdAt);
+    console.log(avatarGameUrl.current)
+
+    useEffect(() =>{
+        if(categories){
+            document.getElementById('test1').style.display = 'none'
+            document.getElementById('test2').style.display = 'flex'
+        }
+    },[categories])
+
+
+
+
     return (
         <div>
             <h3>Game Type</h3>
@@ -42,40 +96,41 @@ const GameGenre = () => {
             
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://static1.thegamerimages.com/wordpress/wp-content/uploads/2019/11/Best-Arcade-Racing-Games-Of-All-Time-Ranked-10.jpg?q=50&fit=contain&w=750&h=375&dpr=1.5" alt="" />
-                    <div className="game-type__name">Racing</div>
+                    <div className="game-type__name"> {CategoriesName[3]} </div>
                 </a>
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://cdn-icons-png.flaticon.com/512/2394/2394697.png" alt="" />
-                    <div className="game-type__name">FPS</div>
+                    <div className="game-type__name">{CategoriesName[2]}</div>
                 </a>
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://cdn-icons-png.flaticon.com/512/103/103874.png" alt="" />
-                    <div className="game-type__name">Fighting</div>
+                    <div className="game-type__name">{CategoriesName[4]}</div>
                 </a>
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://freepngimg.com/thumb/sports_equipment/22530-7-sport.png" alt="" />
-                    <div className="game-type__name">Sports</div>
+                    <div className="game-type__name">{CategoriesName[6]}</div>
                 </a>
             
             
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://image.freepik.com/free-vector/pixel-art-style-character-game-arcade-play_273625-565.jpg" alt="" />
-                    <div className="game-type__name">Action And Adventure</div>
+                    <div className="game-type__name">{CategoriesName[1]}</div>
                 </a>
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://media.istockphoto.com/vectors/strategy-game-icon-trendy-strategy-game-logo-concept-on-white-from-vector-id1127577302" alt="" />
-                    <div className="game-type__name">Strategy</div>
+                    <div className="game-type__name">{CategoriesName[7]}</div>
                 </a>
                 <a className="game-type-link" href="/">
                     <img className="game-type__img" src="https://cdn3.iconfinder.com/data/icons/gaming-54/100/video-game2-512.png" alt="" />
-                    <div className="game-type__name">Puzzel</div>
+                    <div className="game-type__name">{CategoriesName[5]}</div>
                 </a>
                 <a className="game-type-link" href="/">
-                    <img className="game-type__img" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/447e941c-1eec-4bb6-9a93-177687a767bc/d85eoaj-d9177c0a-5145-4bf6-9aaa-eb26b8015aff.jpg/v1/fill/w_1024,h_1366,q_75,strp/oriental_flirting_game_by_bluemagic_neko234_d85eoaj-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTM2NiIsInBhdGgiOiJcL2ZcLzQ0N2U5NDFjLTFlZWMtNGJiNi05YTkzLTE3NzY4N2E3NjdiY1wvZDg1ZW9hai1kOTE3N2MwYS01MTQ1LTRiZjYtOWFhYS1lYjI2YjgwMTVhZmYuanBnIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ._xuImqmluSvjUunBUg4Zb9OWafD9_BxY5B9FddXK-H4" alt="" />
-                    <div className="game-type__name">For Girl</div>
+                    <img className="game-type__img" src="https://2player.co/upload/cache/upload/imgs/zombie-mission-2-m344x260.jpg" alt="" />
+                    <div className="game-type__name">{CategoriesName[10]}</div>
                 </a>               
             </InfiniteCarousel>
         </div>
     );
 };
+
 export default GameGenre;

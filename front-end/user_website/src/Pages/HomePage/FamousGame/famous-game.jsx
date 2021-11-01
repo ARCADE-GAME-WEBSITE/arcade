@@ -1,9 +1,9 @@
 import React from 'react';
-
-import GameGenreType from "../GameGenre/GameTypeID";
+import {Link} from 'react-router-dom';
 import "./famous-game.css";
-
+import GameDetail from '../../GameDetail/game-detail';
 import InfiniteCarousel from 'react-leaf-carousel';
+import { Button } from 'semantic-ui-react'
 /* <!--Game Picture --> */
 
 /* <!--Game Link --> */
@@ -37,13 +37,17 @@ const FamousGame = () => {
                 slidesToShow={4}
                 scrollOnDevice={true}
             >
-                    
-            
-                <a className="famous-game-link" href="/">
-                    <img className="famous-game__img" src="https://media.contentapi.ea.com/content/dam/gin/images/2021/06/battlefield-2042-key-art.jpg.adapt.crop1x1.767p.jpg" alt="" />
-                    <div className="famous-game__name">Battle Field</div>
-                    <div className="famous-game__dev">Arcade games</div>
-                </a>
+                <Link to='/game-detail'>
+                    <Button type="button">
+                        <a className="famous-game-link" href="/">
+                            <img className="famous-game__img" src="https://media.contentapi.ea.com/content/dam/gin/images/2021/06/battlefield-2042-key-art.jpg.adapt.crop1x1.767p.jpg" alt="" />
+                            <div className="famous-game__name">Battle Field</div>
+                            <div className="famous-game__dev">Arcade games</div>
+                        </a>
+                    </Button>
+                </Link>
+
+
                 <a className="famous-game-link" href="/">
                     <img className="famous-game__img" src="https://thaotruong.com/wp-content/uploads/2019/09/dao-vang-y8.jpg" alt="" />
                     <div className="famous-game__name">Gold miner</div>
