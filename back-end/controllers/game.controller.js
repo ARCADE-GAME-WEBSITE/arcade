@@ -2,12 +2,12 @@ const models = require('../models')
 const Validator = require('fastest-validator')
 
 const schema = {
-    DevID: {type:"number", optional: false},
-    Url: {type:"string", optional: false},
-    DemoUrl: {type:"string", optional: false},
-    Title: {type:"string", optional: false},
-    Avatar: {type:"string", optional: false},
-    Category: {type:"string", optional: false},
+    DevID: {type:"number", optional: true},
+    Url: {type:"string", optional: true},
+    DemoUrl: {type:"string", optional: true},
+    Title: {type:"string", optional: true},
+    Avatar: {type:"string", optional: true},
+    Category: {type:"string", optional: true},
     GamePlayImage: {type:"string", optional: true},
     Description: {type:"string", optional: true},
     Played: {type:"number", optional: true},

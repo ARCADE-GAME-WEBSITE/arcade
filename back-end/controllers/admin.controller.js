@@ -5,12 +5,12 @@ const Validator = require('fastest-validator');
 const nodemailer = require('nodemailer');
 
 const schema = {
-    Email: {type:"string", optional: false},
-    Password: {type:"string", optional: false},
+    Email: {type:"string", optional:true},
+    Password: {type:"string", optional:true},
     Full_name: {type:"string", optional:true},
-    Gender: {type:"number", optional:false},
-    DayOfBirth: {type:"string", optional: true},
-    Avatar: {type:"string", optional: true}
+    Gender: {type:"number", optional:true},
+    DayOfBirth: {type:"string", optional:true},
+    Avatar: {type:"string", optional:true}
 }
 
 const v = new Validator();

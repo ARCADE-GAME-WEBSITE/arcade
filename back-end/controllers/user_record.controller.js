@@ -2,9 +2,9 @@ const models = require('../models');
 const Validator = require('fastest-validator');
 
 const schema = {
-    UserID: {type: "number", optional:false},
-    GameID: {type: "number", optional:false},
-    HighScore: {type: "number", optional:false}
+    UserID: {type: "number", optional:true},
+    GameID: {type: "number", optional:true},
+    HighScore: {type: "number", optional:true}
 }
 
 const v = new Validator();

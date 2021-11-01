@@ -6,10 +6,10 @@ const nodemailer = require('nodemailer');
 
 const schema = {
     Full_name: {type:"string", optional:true},
-    Email: {type:"string", optional: false},
-    Password: {type:"string", optional: false},
-    Role: {type: "number", optional:false},
-    Gender: {type:"number", optional:false},
+    Email: {type:"string", optional: true},
+    Password: {type:"string", optional: true},
+    Role: {type: "number", optional:true},
+    Gender: {type:"number", optional:true},
     DayOfBirth: {type:"string", optional: true},
     Avatar: {type:"string", optional: true},
     Friends: {type:"string", optional: true}
@@ -161,38 +161,32 @@ function show(req, res){
 
 function update(req, res){
     const id = req.params.id;
+    const updateUser = {
+        Email: req.body.Email,
+        Role: req.body.Role,
+        Full_name: req.body.Full_name,
+        Gender: req.body.Gender,
+        DayOfBirth: req.body.DayOfBirth,
+        Friends: req.body.Friends 
+    }
 
-    bcryptjs.genSalt(10, function(err, salt){
-        bcryptjs.hash(req.body.Password, salt, function(err, hash){
-            const updateUser = {
-                Email: req.body.Email,
-                Password: hash,
-                Role: req.body.Role,
-                Full_name: req.body.Full_name,
-                Gender: req.body.Gender,
-                DayOfBirth: req.body.DayOfBirth,
-                Friends: req.body.Friends 
-            }
+    const validationResponse = v.validate(updateUser, schema);
+    if(validationResponse !== true){
+        return res.status(400).json({
+            message: "Validation failed!",
+            errors: validationResponse
+        });
+    }
 
-            const validationResponse = v.validate(updateUser, schema);
-            if(validationResponse !== true){
-                return res.status(400).json({
-                    message: "Validation failed!",
-                    errors: validationResponse
-                });
-            }
-
-            models.User.update(updateUser, {where: {id:id}}).then(result => {
-                res.status(200).json({
-                    message: "User updated successfully!",
-                    post: updateUser
-                });
-            }).catch(error => {
-                res.status(200).json({
-                    message: "Something went wrong!",
-                    error: error
-                });
-            })
+    models.User.update(updateUser, {where: {id:id}}).then(result => {
+        res.status(200).json({
+            message: "User updated successfully!",
+            post: updateUser
+        });
+    }).catch(error => {
+        res.status(200).json({
+            message: "Something went wrong!",
+            error: error
         });
     });
 }

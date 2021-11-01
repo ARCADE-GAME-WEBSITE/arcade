@@ -2,10 +2,10 @@ const models = require('../models');
 const Validator = require('fastest-validator');
 
 const schema = {
-    UserID: {type: "number", optional:false},
-    GameID: {type: "number", optional:false},
-    ErrorType: {type:"string", optional:false},
-    ErrorInfo: {type:"string", optional:false},
+    UserID: {type: "number", optional:true},
+    GameID: {type: "number", optional:true},
+    ErrorType: {type:"string", optional:true},
+    ErrorInfo: {type:"string", optional:true},
     AdminID: {type: "number", optional:true},
     ProcessStatus: {type:"string", optional:true}
 }
