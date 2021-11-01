@@ -86,7 +86,6 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDia
                             value={0}
                             onChange={handleChange}/>
                     </label>
-                    {errors.Gender && <p className="validator">{errors.Gender}</p>}
                 </div>
                 
                 <div className="form-group">

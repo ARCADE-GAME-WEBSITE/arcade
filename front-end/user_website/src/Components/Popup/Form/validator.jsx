@@ -31,11 +31,6 @@ export default function Validator(FormType, values){
             else if (values.Confirm_password !== values.Password){
                 errors.Confirm_password = "Password not match!"
             }
-    
-            // Gender
-            if (!values.Gender){
-                errors.Gender = "Gender is required!"
-            }
         }
     
         if (FormType === "Login"){

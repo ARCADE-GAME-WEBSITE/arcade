@@ -37,7 +37,8 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setDialogState
     const [values, setValues] = useState(default_values)
 
     const handleChange = e => {
-        const { name, value } = e.target
+        let { name, value } = e.target
+        if (name === "Gender") value = Number(value);
         setValues({
             ...values,
             [name]: value
