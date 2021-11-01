@@ -3,8 +3,8 @@ import './form.css'
 import useForm from './useForm.jsx'
 import Validator from "./validator";
 
-export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSignUp, formRef, setUser, setDialogState}) => {
-    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("Login", formRef, setShowLogin, Validator, null, setUser, setDialogState)
+export const Login = ({showLogin, setShowLogin, setShowForgotPassword, setShowSignUp, formRef, setDialogState}) => {
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("Login", formRef, setShowLogin, Validator, null, setDialogState)
 
     return (showLogin) ? (
         <form onSubmit={handleSubmit} className="popup-form fixed-top"

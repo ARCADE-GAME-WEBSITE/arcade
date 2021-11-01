@@ -4,7 +4,7 @@ import useForm from './useForm'
 import validator from './validator'
 
 export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDialogState}) => {
-    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("SignUp", formRef, setShowSignUp, validator, null, null, setDialogState)
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("SignUp", formRef, setShowSignUp, validator, null, setDialogState)
 
     return (showSignUp) ? (
         <form onSubmit={handleSubmit} className="popup-form fixed-top"
@@ -72,7 +72,7 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDia
                             type="radio" 
                             className="form-radio-btn"
                             name="Gender"
-                            checked={values.Gender === 1} 
+                            checked={values.Gender == 1} 
                             value={1}
                             onChange={handleChange}/>
                     </label>
@@ -82,7 +82,7 @@ export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDia
                             type="radio" 
                             className="form-radio-btn"
                             name="Gender"
-                            checked={values.Gender === 0}
+                            checked={values.Gender == 0}
                             value={0}
                             onChange={handleChange}/>
                     </label>

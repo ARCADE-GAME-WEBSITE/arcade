@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from 'axios';
 
-const useForm = (FormType, formRef, setShowForm, validator, user, setUser, setDialogState) => {
+const useForm = (FormType, formRef, setShowForm, validator, user, setDialogState) => {
     const default_values = useCallback(() => {
         if (FormType === "Login"){
             return {
@@ -64,7 +64,6 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setUser, setDi
                         if (res.data.message === 'Authentication successful!'){
                             localStorage.setItem('token', res.data.token)
                             axios.defaults.headers.common['Authorization'] = res.data.token
-                            setUser(res.data.user)
                             setShowForm(false)
                         }
                     }
@@ -152,7 +151,7 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setUser, setDi
             setValues(default_values);
             setIsSubmitted(false);
         }
-    }, [errors, FormType, default_values, isSubmitted, setDialogState, setShowForm, setUser, validator, values])
+    }, [errors, FormType, default_values, isSubmitted, setDialogState, setShowForm, validator, values])
 
     const handleClose = (e) => {
         if (formRef.current === e.target || e.target.className === "close-btn"){

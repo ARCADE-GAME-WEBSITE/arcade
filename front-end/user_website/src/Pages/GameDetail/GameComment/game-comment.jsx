@@ -8,10 +8,10 @@ function GameComment({user}) {
     
     var inputCmt = document.getElementById("game-comment__account-btn")
 
-
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
+    
     const [cmt,setCmt] = useState([])
     const [userName,setUserName] = useState([])
     let avatarUrl = useRef()

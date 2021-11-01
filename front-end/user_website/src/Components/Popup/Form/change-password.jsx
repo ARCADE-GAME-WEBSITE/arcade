@@ -6,7 +6,7 @@ import useForm from "./useForm";
 import validator from "./validator";
 
 function ChangePassword({showChangePassword, setShowChangePassword, formRef, setDialogState, user}) {
-    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("ChangePassword", formRef, setShowChangePassword, validator, user, null, setDialogState)
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("ChangePassword", formRef, setShowChangePassword, validator, user, setDialogState)
     
     return (showChangePassword) ? (
         <form onSubmit={handleSubmit} className="popup-form fixed-top"
