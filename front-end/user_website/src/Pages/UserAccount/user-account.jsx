@@ -10,7 +10,7 @@ import Records from "./PersonalRecord/personal-record";
 import PlayedGames from "./PlayedGames/played-games";
 
 
-function UserAccount({user})  {
+function UserAccount({user, setShowChangePassword})  {
   const mainPanelRef = React.useRef(null);
  
   return (
@@ -25,7 +25,7 @@ function UserAccount({user})  {
             <div className="main-panel" ref={mainPanelRef} data={color} >
           
             <Switch>
-          <Route path={'/user-account/user-profile/' + user.id} component={() => <UserProfile user={user}  />} icon="tim-icons icon-single-02" name= "User Profile"  />
+          <Route path={'/user-account/user-profile/' + user.id} component={() => <UserProfile user={user} setShowChangePassword={setShowChangePassword}/>} icon="tim-icons icon-single-02" name= "User Profile"  />
           <Route path={'/user-account/records/' + user.id} component={() => <Records user={user}  />} icon="tim-icons icon-puzzle-10" name= "Records games"  />
           <Route path={'/user-account/friends-list/' + user.id} component={() => <ListFriend user={user}  />} icon="tim-icons icon-align-center" name= "Friends list"  />
           <Route path={'/user-account/played-games/' + user.id} component={() => <PlayedGames user={user}  />} icon="tim-icons icon-atom" name= "Played games"  />

@@ -4,7 +4,7 @@ import useForm from './useForm.jsx'
 import Validator from "./validator";
 
 export const ForgotPassword = ({showForgotPassword, setShowForgotPassword, formRef, setDialogState}) => {
-    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("ForgotPassword", formRef, setShowForgotPassword, Validator, null, setDialogState)
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("ForgotPassword", formRef, setShowForgotPassword, Validator, null, null, setDialogState)
 
     return (showForgotPassword) ? (
         <form onSubmit={handleSubmit} className="popup-form fixed-top"

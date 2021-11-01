@@ -62,6 +62,26 @@ export default function Validator(FormType, values){
                 errors.Email = "Email is not valid!"
             }
         }
+
+        if (FormType === "ChangePassword"){
+            // Old Password
+            if (!values.Old_password){
+                errors.Old_password = "Old password is required!"
+            }
+
+            // New Password
+            if (!values.New_password){
+                errors.New_password = "New password is required!"
+            }
+    
+            // Confirm password
+            if (!values.Confirm_password){
+                errors.Confirm_password = "Confirm password is required!"
+            }
+            else if (values.Confirm_password !== values.New_password){
+                errors.Confirm_password = "Password not match!"
+            }
+        }
     }
 
     return errors;

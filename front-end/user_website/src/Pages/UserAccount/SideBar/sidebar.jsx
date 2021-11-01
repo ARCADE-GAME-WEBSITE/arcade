@@ -18,9 +18,10 @@ function SideBar({routes,user}) {
   }, [])
   
   var showImg = function(event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-      };
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+  
   return(user)?(
     <BackgroundColorContext.Consumer>
       {({ color }) => (

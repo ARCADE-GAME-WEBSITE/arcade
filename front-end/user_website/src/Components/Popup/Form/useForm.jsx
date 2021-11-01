@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from 'axios';
 
-const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogState) => {
+const useForm = (FormType, formRef, setShowForm, validator, user, setUser, setDialogState) => {
     const default_values = useCallback(() => {
         if (FormType === "Login"){
             return {
@@ -22,6 +22,14 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
         if (FormType === "ForgotPassword"){
             return {
                 Email: ""
+            }
+        }
+
+        if (FormType === "ChangePassword"){
+            return {
+                Old_password: "",
+                New_password: "",
+                Confirm_password: ""
             }
         }
     }, [FormType])
@@ -116,9 +124,34 @@ const useForm = (FormType, formRef, setShowForm, validator, setUser, setDialogSt
                     }
                 )
             }
+
+            if (FormType === "ChangePassword"){
+                const config = {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                };
+                
+                axios.post("user/change-password/" + user.id, values, config).then(res => {
+                    setDialogState({
+                        title: "Notify!",
+                        message: "Your password have been changed successfully! Now you can login again with new password!",
+                        show: true
+                    })
+                    setShowForm(false)
+                }).catch(
+                    err => {
+                        
+                        setDialogState({
+                            title: "Error!",
+                            message: err.message,
+                            show: true
+                        })
+                    }
+                )
+            }
+
             setValues(default_values);
             setIsSubmitted(false);
-        }  
+        }
     }, [errors, FormType, default_values, isSubmitted, setDialogState, setShowForm, setUser, validator, values])
 
     const handleClose = (e) => {

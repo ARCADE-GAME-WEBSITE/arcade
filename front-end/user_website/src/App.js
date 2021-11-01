@@ -13,6 +13,7 @@ import UserAccount from './Pages/UserAccount/user-account';
 import Login from './Components/Popup/Form/login';
 import SignUp from './Components/Popup/Form/sign-up';
 import ForgotPassword from './Components/Popup/Form/forgot-password';
+import ChangePassword from './Components/Popup/Form/change-password';
 import AboutUs from './Components/PageLayout/Footer/about-us';
 
 function App() {
@@ -22,11 +23,12 @@ function App() {
     show: false
   })
 
-  const [showLogin, setShowLogin] = useState(false)
-  const [showSignUp, setShowSignUp] = useState(false)
-  const [showForgotPassword, setShowForgotPassword] = useState(false)
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   const formRef = useRef();
 
@@ -43,7 +45,7 @@ function App() {
         <Switch>
           <Route path="/home" component={() => <HomePage user={user}/>} />
           <Route path='/game-detail' component={() => <GameDetail user={user}/>} />
-          <Route path="/user-account" component={() => <UserAccount user={user}  />}/>
+          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword}/>} />
           <Redirect from="/" to="/home" />
         </Switch>
 
@@ -79,6 +81,14 @@ function App() {
           setShowForgotPassword={setShowForgotPassword}
           formRef={formRef}
           setDialogState={setDialogState}
+        />
+
+        <ChangePassword
+          showChangePassword={showChangePassword}
+          setShowChangePassword={setShowChangePassword}
+          formRef={formRef}
+          setDialogState={setDialogState}
+          user={user}
         />
       </div> 
     </BrowserRouter>

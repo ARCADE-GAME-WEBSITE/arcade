@@ -29,7 +29,7 @@ function signUp(req, res){
     models.User.findOne({where:{Email:req.body.Email}}).then(result => {
         if(result){
             res.status(209).json({
-                message: "Email already exists!",
+                message: "Email already exists!"
             });
         }
         else {
@@ -304,6 +304,52 @@ function sendEmail(email, newPassword){
     })
 }
 
+function changePassword(req, res){
+    const id = req.params.id;
+
+    models.User.findOne({where:{id: id}}).then(user => {
+        if(user === null){
+            res.status(401).json({
+                message: "User not found!"
+            });
+        }
+        else {
+            bcryptjs.compare(req.body.Old_password, user.Password, function(err, result){
+                if(result){
+                    bcryptjs.genSalt(10, function(err, salt){
+                        bcryptjs.hash(req.body.New_password, salt, function(err, hash){
+                            const updateUser = {
+                                Password: hash
+                            }
+        
+                            models.User.update(updateUser, {where: {id: user.id}}).then(result => {
+                                res.status(200).json({
+                                    message: "Password changed successfully!"
+                                });
+                            }).catch(error => {
+                                res.status(200).json({
+                                    message: "Something went wrong!",
+                                    error: error
+                                });
+                            });
+                        });
+                    });
+                }
+                else {
+                    res.status(401).json({
+                        message: "Wrong old password!"
+                    });
+                }
+            });
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    });
+}
+
 module.exports = {
     signUp: signUp,
     login: login,
@@ -313,4 +359,5 @@ module.exports = {
     destroy: destroy,
     getListFriendsByEmails: getListFriendsByEmails,
     forgot: forgot,
+    changePassword: changePassword
 }

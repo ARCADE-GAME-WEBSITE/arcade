@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 import './user-profile.css'
-import axios from 'axios';
+
 import {
   Button,
   Card,
@@ -11,10 +11,8 @@ import {
   Col,
 } from "reactstrap";
 
+function UserProfile({user, setShowChangePassword}){
 
-function UserProfile({user}){
-
-  
   // setName= (event) => {
   //   this.setState({Full_name: event.target.value});
   // }
@@ -55,9 +53,6 @@ function UserProfile({user}){
     return(user)? (
       <>
         <div className="content">
-          <div>
-            {/* {show} */}
-          </div>
           <Row>
             <Col md="8">
               <Card>
@@ -121,8 +116,8 @@ function UserProfile({user}){
                     Save
                   </Button>
                   <Button 
-                    className="btn btn-fill"   
-                   
+                    className="btn btn-fill"
+                    onClick={() => setShowChangePassword(true)}
                   >
                     Change Password
                   </Button>
