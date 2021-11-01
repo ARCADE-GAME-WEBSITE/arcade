@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/sign-up', userController.signUp);
 router.post('/login', userController.login);
+router.get('/get-current-user', checkAuthMiddleware.checkAuth, userController.getCurrentUser);
 router.get('/', checkAuthMiddleware.checkAuth, userController.index); 
 router.get('/:id', checkAuthMiddleware.checkAuth, userController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, userController.update);

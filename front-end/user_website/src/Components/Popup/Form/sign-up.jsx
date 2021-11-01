@@ -4,7 +4,7 @@ import useForm from './useForm'
 import validator from './validator'
 
 export const SignUp = ({showSignUp, setShowSignUp, setShowLogin, formRef, setDialogState}) => {
-    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("SignUp", formRef, setShowSignUp, validator, null, null, setDialogState)
+    const {handleSubmit, handleClose, handleChange, values, errors} = useForm("SignUp", formRef, setShowSignUp, validator, null, setDialogState)
 
     return (showSignUp) ? (
         <form onSubmit={handleSubmit} className="popup-form fixed-top"

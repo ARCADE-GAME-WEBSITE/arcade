@@ -91,8 +91,7 @@ function login(req, res) {
                     }, 'secret', function(err, token){
                         res.status(200).json({
                             message: "Authentication successful!",
-                            token: token,
-                            user: user
+                            token: token
                         });
                     });
                 }
@@ -108,6 +107,25 @@ function login(req, res) {
             message: "Something went wrong!",
             error: error
         });
+    });
+}
+
+function getCurrentUser(req, res){
+    const id = req.userData.userId;
+
+    models.User.findByPk(id).then(result => {
+        if(result){
+            res.status(200).json(result);
+        }else{
+            res.status(404).json({
+                message: "User not found!"
+            }) 
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        })
     });
 }
 
@@ -353,6 +371,7 @@ function changePassword(req, res){
 module.exports = {
     signUp: signUp,
     login: login,
+    getCurrentUser:getCurrentUser,
     index: index,
     show: show,
     update: update,

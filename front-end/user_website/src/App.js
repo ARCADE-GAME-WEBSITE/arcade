@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './Styles/App.css';
 import './Styles/grid.css';
@@ -15,6 +15,7 @@ import SignUp from './Components/Popup/Form/sign-up';
 import ForgotPassword from './Components/Popup/Form/forgot-password';
 import ChangePassword from './Components/Popup/Form/change-password';
 import AboutUs from './Components/PageLayout/Footer/about-us';
+import axios from 'axios';
 
 function App() {
   const [dialogState, setDialogState] = useState({
@@ -31,6 +32,21 @@ function App() {
   const [user, setUser] = useState(null);
 
   const formRef = useRef();
+
+  useEffect(() => {
+    if (localStorage.getItem('token') != null){
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      };
+
+      axios.get('user/get-current-user', config).then(result => {
+        setUser(result.data);
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+  }, [localStorage.getItem('token')]);
+  
 
   return (
     <BrowserRouter>

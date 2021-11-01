@@ -20,7 +20,6 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     const [collapseOpen] = React.useState(false);
 
     let buttons;
-    let avatarURL;
 
     const handleLogout = () => {
         localStorage.clear();
@@ -28,8 +27,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     }
 
     if (user){
-        avatarURL = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
-        console.log(avatarURL);
+        const avatarURL = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
         buttons = (
             <div className="nav-right-side collapse navbar-collapse">
                 <Collapse navbar isOpen={collapseOpen}>
