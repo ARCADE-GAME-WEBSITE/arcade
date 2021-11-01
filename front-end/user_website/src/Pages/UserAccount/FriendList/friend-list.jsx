@@ -27,7 +27,8 @@ class ListFriend extends Component{
   }
   onCloseForm =() =>{
     this.setState({
-      isDisplayForm : !this.state.isDisplayForm
+      isDisplayForm : !this.state.isDisplayForm,
+      user:[]
     });
   }
   render(){

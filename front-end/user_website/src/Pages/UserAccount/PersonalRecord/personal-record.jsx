@@ -10,8 +10,6 @@ import {
 } from "reactstrap";
 
 function PersonalRecord() {
-  
-
     return (
       <>
         <div className="content">

@@ -1,5 +1,5 @@
-import React from "react";
-
+import React,{useState} from "react";
+import axios from 'axios';
 import './user-profile.css'
 
 import {
@@ -12,44 +12,27 @@ import {
 } from "reactstrap";
 
 function UserProfile({user, setShowChangePassword}){
-
-  // setName= (event) => {
-  //   this.setState({Full_name: event.target.value});
-  // }
-  // setGender= (event) => {
-  //   this.setState({Gender: event.target.value});
-  // }
-  // setDate= (event) => {
-  //   this.setState({Date: event.target.value});
-  // }
-  // submitSave = () =>{
-  //   console.log(this.state);
-  // }
-  // componentDidMount() {
-  //   axios.get('/user')
-  //        .then(res => {
-  //           const user = res.data;
-  //           this.setState({ user: user.user });
-  //         })
-  //        .catch(error => console.log(error));
-  // };
-
-
+  const[name,setName] = useState("");
+  // const[gender,setGender] = useState(true);
+  const[date,setDate] = useState("");
  
-  // const OpenForm = () =>{
-  //     this.setState({
-  //       isDisplayFormChangePass : !this.state.isDisplayFormChangePass
-  //     });
-  // }
-  // const onCloseForm =() =>{
-  //   this.setState({
-  //     isDisplayFormChangePass : !this.state.isDisplayFormChangePass
-  //   });
-  // }
+  const onSubmit = () => {
+    const obj = {
+      Full_name : name,
+      Gender : Number(user.Gender),
+      DayOfBirth : date.toString(),
+      Role : Number(user.Role),
+      Email : user.Email,
+      Friends:user.Friends
+    };
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
+    axios.patch('/user/'+ user.id , obj,config)
+        .then(res => console.log(res.data));
+}
 
-    // var {isDisplayFormChangePass} = this.state;
-    // var show = isDisplayFormChangePass ? <ChangePassword onCloseForm={this.onCloseForm} /> : '';
-    
+  console.log(user.Gender);
     return(user)? (
       <>
         <div className="content">
@@ -66,7 +49,7 @@ function UserProfile({user, setShowChangePassword}){
                   </div>
                   <div className="col-md-3 text-secondary">
                     <form>
-                      <input type="text" name="fullname" className="o" value={user.Full_name} /> 
+                      <input type="text" name="fullname" className="o" placeholder={user.Full_name} onChange={(event)=>{ setName(event.target.value); }} /> 
                     </form>
                   </div>
                   </div>
@@ -76,8 +59,9 @@ function UserProfile({user, setShowChangePassword}){
                     <h5>Sex:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="radio" name="gender" className="a"   /> Male
-                    <input type="radio" name="gender" className="a" /> Female
+                    <input type="radio" name="gender" className="a" id='gender_Male' /> Male
+                  
+                    <input type="radio" name="gender" className="a" id='gender_Female'   /> Female
                   </div>
                   </div>
                   <hr />
@@ -86,7 +70,7 @@ function UserProfile({user, setShowChangePassword}){
                     <h5>Date of birth:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="date" name="bday" className="o"   />
+                    <input type="date" name="bday" className="o" value={Date(user.DayOfBirth)} onChange={(event)=>{ setDate(event.target.value); }} />
                   </div>
                   </div>
                   <hr />
@@ -112,6 +96,7 @@ function UserProfile({user, setShowChangePassword}){
             
                 <CardFooter>
                   <Button className="btn btn-fill"
+                  onClick={onSubmit}
                   >
                     Save
                   </Button>

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import axios from 'axios';
 import './sidebar.css'
 
@@ -9,13 +9,8 @@ import {
 } from "../BackgroundColorContext";
 
 function SideBar({routes,user}) {
-  var avatar;
-  useEffect(() => {
-      axios.get('/uploads/images/users/' + user.Avatar ).then(res => {
-        console.log(res.data);
-        avatar=res.data;
-      });
-  }, [])
+  var avatarURL;
+  avatarURL = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
   
   var showImg = function(event) {
     var output = document.getElementById('output');
@@ -29,10 +24,10 @@ function SideBar({routes,user}) {
           <div className="sidebar-wrapper"  > 
               <div className="logo">
                 <form runat="server">
-                  <img className="avatar-img" src={avatar} alt=''   id="output"  width="200px" height="200px" />            
+                  <img className="avatar-img" src={avatarURL} alt=''   id="output"  width="200px" height="200px" />            
                   <input accept="image/*" className="inputImg" type='file' onChange={showImg}/>
                 </form>
-                
+                <p className='username'>{user.Full_name}</p>
               </div>
             <Nav>
               {routes.map((prop) => {

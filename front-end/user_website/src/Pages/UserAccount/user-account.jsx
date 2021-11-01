@@ -13,7 +13,7 @@ import PlayedGames from "./PlayedGames/played-games";
 function UserAccount({user, setShowChangePassword})  {
   const mainPanelRef = React.useRef(null);
  
-  return (
+  return(user) ? (
     <BackgroundColorContext.Consumer>
       {({ color }) => (
         <React.Fragment>
@@ -37,7 +37,7 @@ function UserAccount({user, setShowChangePassword})  {
       )}
     </BackgroundColorContext.Consumer>
 
-  );
+  ): null;
 }
 
 export default UserAccount;
