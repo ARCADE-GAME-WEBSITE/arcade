@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -14,20 +14,22 @@ import './nav-bar.css'
 import logo from '../../../Assets/Images/App/app-logo.png';
 import vietnam_icon from '../../../Assets/Images/Icons/vietnam.png'
 import bell_icon from '../../../Assets/Images/Icons/bell.png'
-import avatar from '../../../Assets/Images/User/avatar1.jpg'
+import axios from "axios";
 
 function NavBar({setShowLogin, setShowSignUp, user, setUser}) { 
     const [collapseOpen] = React.useState(false);
 
     let buttons;
+    let avatarURL;
 
     const handleLogout = () => {
         localStorage.clear();
         setUser(null)
     }
-    
+
     if (user){
-        
+        avatarURL = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
+        console.log(avatarURL);
         buttons = (
             <div className="nav-right-side collapse navbar-collapse">
                 <Collapse navbar isOpen={collapseOpen}>
@@ -52,10 +54,9 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                             caret
                             color="default"
                             nav
-                            onClick={(e) => e.preventDefault()}
-                        >
+                            onClick={(e) => e.preventDefault()}>
                             <div class="navbar-dropdown">
-                                <img src={avatar} className="navbar-dropdown-avatar" alt="" />
+                                <img className="navbar-dropdown-avatar" alt="" src={avatarURL} />
                             </div>
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-navbar" right tag="ul">
