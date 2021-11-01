@@ -162,9 +162,8 @@ function show(req, res){
 function update(req, res){
     const id = req.params.id;
     const updateUser = {
-        Email: req.body.Email,
-        Role: req.body.Role,
         Full_name: req.body.Full_name,
+        Role: req.body.Role,
         Gender: req.body.Gender,
         DayOfBirth: req.body.DayOfBirth,
         Friends: req.body.Friends 
