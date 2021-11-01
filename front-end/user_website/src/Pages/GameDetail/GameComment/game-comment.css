@@ -19,10 +19,7 @@
   text-align: center;
   margin: 5px;
 }
-.game-comment__account-btn {
-  display: flex;
-  justify-content: center;
-}
+
 .game-comment__account-send{
   border-radius: 10px;
   background-color:rgb(15, 113, 194);
@@ -33,10 +30,13 @@
 .game-comment__account-login {
   margin: 5px 8px 10px 8px;
   display: flex;
+  width: 30px;
 }
 
 .game-comment__account-btn {
+  display: flex;
   flex: 1;
+  justify-content: center;
   margin: 0 5px;
   border-radius: 5px;
 }
@@ -72,7 +72,7 @@
   font-size: 0.8rem;
 }
 .comment__img {
-  height: 100%;
+  height: 50px;
   border-radius: 5px;
 }
 
@@ -83,6 +83,9 @@
   color: red;
   font-size: 1rem;
   font-weight: 700;
+}
+.comment__delete{
+  float: right;
 }
 
 .login-out {
