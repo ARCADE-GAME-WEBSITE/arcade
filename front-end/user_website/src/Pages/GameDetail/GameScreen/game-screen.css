@@ -45,3 +45,12 @@
 .game-screen__btn .btn__play {
   padding: 0;
 }
+.playGame{
+  width:1000px;
+  height:800px;
+  border:1px solid black;
+}
+.playGame__screen{
+  width:100%;
+  height:100%;
+}

@@ -9,7 +9,7 @@ import img4 from '../../../Assets/Images/Game/4.png'
 
 function GameScreen() {
     return (
-            <div className="game-screen">
+            /* <div className="game-screen">
                 <div className="game-screen__img">
                     <img src={img1} className="game-screen__img--css" alt="" />
                     <img src={img2} className="game-screen__img--css" alt="" />
@@ -30,7 +30,13 @@ function GameScreen() {
                         <a href="/" className="btn-setting-link">SETTING</a>
                     </li>
                 </ul>
+            </div> */
+            <div className="playGame">
+                <iframe className="playGame__screen" src="http://localhost:8000/uploads/games/2048.html">
+                
+                </iframe>
             </div>
+
     )
 }
 

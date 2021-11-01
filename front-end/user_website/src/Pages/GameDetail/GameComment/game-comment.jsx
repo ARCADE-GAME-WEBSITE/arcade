@@ -15,6 +15,7 @@ function GameComment({user}) {
     const [cmt,setCmt] = useState([])
     const [userName,setUserName] = useState([])
     let avatarUrl = useRef()
+    const [timeSend,setTimeSend] = useState('')
 
     const getComment = () => {
        
@@ -35,7 +36,9 @@ function GameComment({user}) {
                     setCmt(saveArrContent)
                     setUserName(saveArrName)
                     avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
-                    
+                    const saveArrTimeSend =  [cmtArr[0].updatedAt,cmtArr[1].updatedAt,cmtArr[2].updatedAt]
+                    setTimeSend(saveArrTimeSend)
+                    console.log(saveArrTimeSend);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -49,6 +52,7 @@ function GameComment({user}) {
     
     console.log(cmt);
     console.log(userName);
+    console.log(timeSend);
     console.log(avatarUrl.current)
 
     useEffect(() =>{
@@ -78,42 +82,75 @@ function GameComment({user}) {
                 </div>
                 <div className="game-comment__account-login" id="test2">
                     <img className="comment__img" src={avatarUrl.current} alt="" />
-                    <input type="text" placeholder="Comment text" className="game-comment__account-btn" id="game-comment__account-btn"/>
+                    <input type="text" placeholder="Comment text" className="game-comment__input" id="game-comment__account-btn"/>
                     <input type="submit" value="Send" className="game-comment__account-send" onClick={getComment}/>
                 </div>
                 <div className="game-comment__content">
                     <div className="game-comment__content1">
                         <img className="comment__img" src={avatarUrl.current} alt="" />
                         <div className="game-comment__desc">
-                            <div className="comment__user">
-                                {userName[2]}
+                            <div className="comment__top">
+                                <div className="comment__user">
+                                    {userName[2]}
+                                </div>
+                                <div className="comment__time">
+                                    <time>{timeSend[2]}</time>
+                                </div>
                             </div>
                             <div className="comment__cmt">
                                 {cmt[2]}
                             </div>
                         </div>
+                        <div className="comment__update">
+                            <i class="comment__update-icon fas fa-pen-alt"></i>
+                        </div>
+                        <div className="comment__delete">
+                            <i class="comment__delete-icon far fa-trash-alt"></i>
+                        </div>
                     </div>
                     <div className="game-comment--css">
                         <div className="game-comment__content2">
-                            <img className="comment__img" src="https://cdn.y8.com/assets/avatars/male/2-48x48-133d7ce1c8ccb095a7b84c29d898c830.png" alt="" />
+                            <img className="comment__img" src={avatarUrl.current} alt="" />
                             <div className="game-comment__desc">
-                                <div className="comment__user">
-                                    {userName[1]}
+                                <div className="comment__top">
+                                    <div className="comment__user">
+                                        {userName[1]}
+                                    </div>
+                                    <div className="comment__time">
+                                        <time>{timeSend[1]}</time>
+                                    </div>
                                 </div>
                                 <div className="comment__cmt">
                                     {cmt[1]}
                                 </div>
                             </div>
+                            <div className="comment__update">
+                                <i class="comment__update-icon fas fa-pen-alt"></i>
+                            </div>
+                            <div className="comment__delete">
+                                <i class="comment__delete-icon far fa-trash-alt"></i>
+                            </div>
                         </div>
                         <div className="game-comment__content3">
-                            <img className="comment__img" src="https://cdn.y8.com/assets/avatars/female/1-48x48-f9d569b01ef34ef639b5b1031fea7f23.png" alt="" />
+                            <img className="comment__img" src={avatarUrl.current} alt="" />
                             <div className="game-comment__desc">
-                                <div className="comment__user">
-                                    {userName[0]}
+                                <div className="comment__top">
+                                    <div className="comment__user">
+                                        {userName[0]}
+                                    </div>
+                                    <div className="comment__time">
+                                        <time>{timeSend[0]}</time>
+                                    </div>
                                 </div>
                                 <div className="comment__cmt">
                                     {cmt[0]}
                                 </div>
+                            </div>
+                            <div className="comment__update">
+                                <i class="comment__update-icon fas fa-pen-alt"></i>
+                            </div>
+                            <div className="comment__delete">
+                                <i class="comment__delete-icon far fa-trash-alt"></i>
                             </div>
                         </div>
                     </div>
