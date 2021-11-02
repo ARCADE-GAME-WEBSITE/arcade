@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './game-detail.css'
 
 import GameScreen from './GameScreen/game-screen'
@@ -14,7 +13,9 @@ import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
 
-function GameDetail({user}) {
+function GameDetail({user,game}) {
+    
+    console.log(game)
     return (
         <div className="grid wide-1">
             <div className="row">

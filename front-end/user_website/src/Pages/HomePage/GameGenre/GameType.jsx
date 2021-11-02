@@ -7,7 +7,7 @@ import InfiniteCarousel from 'react-leaf-carousel';
 
 /* <!--Game Link --> */
 
-function GameGenre({categories}){
+function GameCategories({categories}){
     
     
     const config = {
@@ -20,7 +20,7 @@ function GameGenre({categories}){
 
       const getCategories = () => {
        
-        axios.post('games/Category', {
+        axios.get('games/', {
             categoriesID:categories.id,
             CategoryName: categories.CategoryName,
             createdAt: categories.createdAt,
@@ -133,4 +133,4 @@ function GameGenre({categories}){
     );
 };
 
-export default GameGenre;
+export default GameCategories;
