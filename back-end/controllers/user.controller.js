@@ -55,7 +55,7 @@ function signUp(req, res){
                         });
                     }
                 
-                    models.User.create(user).then(result => {
+                    models.User.create(user).then(result1 => {
                         res.status(201).json({
                             message: "User created successfully!",
                         });
@@ -205,36 +205,40 @@ function destroy(req, res){
     });
 }
 
-function getListFriendsByEmails(req, res){
+function getListFriends(req, res){
     const id = req.params.id;
 
     models.User.findByPk(id).then(result => {
         if(result){
             const listFriend = result.Friends.split(' ');
 
-            var listUser = [];
-            listFriend.forEach((email) => {
-                models.User.findOne({where: {Email:email}}).then(result1 => {
-                    if(result1){
-                        listUser.push(result1.dataValues);
-                    }else{
-                        listUser.push(email + "not found!");
-                    }
+            if (listFriend.length != 0) {
+                var listUser = [];
+                var user_not_found = 0;
+                listFriend.forEach((email) => {
+                    models.User.findOne({where: {Email:email}}).then(result1 => {
+                        if(result1){
+                            listUser.push(result1.dataValues);
+                        }else{
+                            user_not_found += 1;
+                        }
 
-                    if (listUser.length == listFriend.length){
-                        res.status(200).json({
-                            message: "Get list friends successfully!",
-                            post: listUser
-                        });
-                    }
-                }).catch(error => {
-                    res.status(500).json({
-                        message: "Something went wrong!",
-                        error: error
+                        if (listUser.length == listFriend.length - user_not_found){
+                            res.status(200).json({
+                                message: "Get list friends successfully!",
+                                post: listUser
+                            });
+                        }
                     })
                 });
-            });
-        }else{
+            }
+            else {
+                res.status(404).json({
+                    message: "User have no friend!"
+                }) 
+            }
+        }
+        else {
             res.status(404).json({
                 message: "User not found!"
             }) 
@@ -266,7 +270,7 @@ function forgot(req, res){
                         Password: hash
                     }
 
-                    models.User.update(updateUser, {where: {id:result.id}}).then(result => {
+                    models.User.update(updateUser, {where: {id:result.id}}).then(result1 => {
                         res.status(200).json({
                             message: "Password reset successfully!"
                         });
@@ -333,7 +337,7 @@ function changePassword(req, res){
                                 Password: hash
                             }
         
-                            models.User.update(updateUser, {where: {id: user.id}}).then(result => {
+                            models.User.update(updateUser, {where: {id: user.id}}).then(result1 => {
                                 res.status(200).json({
                                     message: "Password changed successfully!"
                                 });
@@ -369,7 +373,7 @@ module.exports = {
     show: show,
     update: update,
     destroy: destroy,
-    getListFriendsByEmails: getListFriendsByEmails,
+    getListFriends: getListFriends,
     forgot: forgot,
     changePassword: changePassword
 }

@@ -7,6 +7,7 @@ const gameRoute = require('./routes/games');
 const userRoute = require('./routes/users');
 const imageRoute = require('./routes/images');
 const commentRoute = require('./routes/comments');
+const categoryRoute = require('./routes/categories');
 const userRecordRoute = require('./routes/user_records');
 const errorFeedbackRoute = require('./routes/error_feedbacks')
 
@@ -24,6 +25,7 @@ app.use('/game', gameRoute);
 app.use('/user', userRoute);
 app.use('/images', imageRoute);
 app.use('/comment', commentRoute);
+app.use('/category', categoryRoute);
 app.use('/user-record', userRecordRoute);
 app.use('/error-feedback', errorFeedbackRoute);
 

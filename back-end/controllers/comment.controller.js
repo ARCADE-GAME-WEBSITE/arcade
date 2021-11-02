@@ -41,7 +41,36 @@ function indexByGameID(req, res){
     const id = req.params.id;
 
     models.Comment.findAll({where: {GameID:id}}).then(result => {
-        res.status(200).json(result);
+        if (result) {
+            var listComment = [];
+            result.forEach(comment => {
+                models.User.findOne({where: {id:comment.dataValues.UserID}}).then(user => {
+                    const resultComment = {
+                        id: comment.dataValues.id,
+                        UserID: comment.dataValues.UserID,
+                        GameID: comment.dataValues.GameID,
+                        Content: comment.dataValues.Content,
+                        createdAt: comment.dataValues.createdAt,
+                        UserName: user.dataValues.Full_name,
+                        UserAvatar: user.dataValues.Avatar
+                    }
+                    
+                    listComment.push(resultComment);
+                    
+                    if (listComment.length == result.length){
+                        res.status(200).json({
+                            message: "Get list comments successfully!",
+                            post: listComment
+                        });
+                    }
+                });
+            });
+        }
+        else {
+            res.status(404).json({
+                message: "No comment found!"
+            })
+        }
     }).catch(error => {
         res.status(500).json({
             message: "Something went wrong!",
@@ -85,8 +114,6 @@ function show(req, res){
 function update(req, res){
     const id = req.params.id;
     const comment = {
-        UserID: req.body.UserID,
-        GameID: req.body.GameID,
         Content: req.body.Content
     }
 
@@ -100,8 +127,7 @@ function update(req, res){
 
     models.Comment.update(comment, {where: {id:id}}).then(result => {
         res.status(200).json({
-            message: "Comment updated successfully!",
-            post: comment
+            message: "Comment updated successfully!"
         });
     }).catch(error => {
         res.status(500).json({
