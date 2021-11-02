@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 01, 2021 lúc 04:43 PM
+-- Thời gian đã tạo: Th10 02, 2021 lúc 04:22 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -143,15 +143,15 @@ CREATE TABLE `games` (
 --
 
 INSERT INTO `games` (`id`, `DevID`, `Url`, `DemoUrl`, `Title`, `Avatar`, `Category`, `GamePlayImage`, `Description`, `Played`, `Rate`, `createdAt`, `updatedAt`) VALUES
-(1, 1, '2048.html', 'https://www.youtube.com/watch?v=kQhkkqjGkFA', '2048', '2048.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 1, 'FlappyBird.html', 'https://www.youtube.com/watch?v=fQoJZuBwrkU', 'FlappyBird', 'FlappyBird.jpg', 'Obstacle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 1, 'Memory.html', 'https://www.youtube.com/watch?v=Um1EXbwmYYs', 'Memory', 'Memory.jpg', 'Puzzle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 1, 'Pong.html', 'https://www.youtube.com/watch?v=fiShX2pTz9A', 'Pong', 'Pong.jpg', 'Ball 2-players', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 1, 'RedRect.html', 'https://www.youtube.com/watch?v=vGVoF_CbKmk', 'RedRect', 'RedRect.jpg', 'Obstacle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 1, 'Snake.html', 'https://www.youtube.com/watch?v=DekS8Pgb1qc', 'Snake', 'Snake.jpg', 'Snake', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 1, 'Sodoku.html', 'https://www.youtube.com/watch?v=8zRXDsGydeQ', 'Sodoku', 'Sodoku.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 1, 'Tetris.html', 'https://www.youtube.com/watch?v=AP9FAF0gGZs', 'Tetris', 'Tetris.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 1, 'TicTacToe.html', 'https://www.youtube.com/watch?v=5n2aQ3UQu9Y', 'TicTacToe', 'TicTacToe.jpg', '2-players', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 1, '2048.html', 'https://www.youtube.com/watch?v=kQhkkqjGkFA', '2048', '1.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 1, 'FlappyBird.html', 'https://www.youtube.com/watch?v=fQoJZuBwrkU', 'FlappyBird', '2.jpg', 'Obstacle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 1, 'Memory.html', 'https://www.youtube.com/watch?v=Um1EXbwmYYs', 'Memory', '3.jpg', 'Puzzle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 1, 'Pong.html', 'https://www.youtube.com/watch?v=fiShX2pTz9A', 'Pong', '4.jpg', 'Ball 2-players', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 1, 'RedRect.html', 'https://www.youtube.com/watch?v=vGVoF_CbKmk', 'RedRect', '5.jpg', 'Obstacle', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 'Snake.html', 'https://www.youtube.com/watch?v=DekS8Pgb1qc', 'Snake', '6.jpg', 'Snake', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 1, 'Sodoku.html', 'https://www.youtube.com/watch?v=8zRXDsGydeQ', 'Sodoku', '7.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 1, 'Tetris.html', 'https://www.youtube.com/watch?v=AP9FAF0gGZs', 'Tetris', '8.jpg', 'Puzzle Block', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 1, 'TicTacToe.html', 'https://www.youtube.com/watch?v=5n2aQ3UQu9Y', 'TicTacToe', '9.jpg', '2-players', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -230,7 +230,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `Email`, `Password`, `Role`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `Friends`, `createdAt`, `updatedAt`) VALUES
-(1, 'tuankietnk2001@gmail.com', '$2a$10$OXazhhESBQ0vE9zRmr3eZ..QwEdWfw3N2VPLP.uR7/xCXDHzK0vhG', 0, 'Tuấn Kiệt', 1, '2001-09-04 00:00:00', 'male.jpg', 'a@gmail.com c@gmail.com', '2021-10-27 20:46:36', '2021-10-30 13:36:24');
+(1, 'tuankietnk2001@gmail.com', '$2a$10$JW1Eqm9Yg4HyQT3tG75iKO/qTW.OYlTCPSD6TbYXQKhFc0KrPaJdK', 0, 'Tuấn Kiệt', 1, '2001-09-04 00:00:00', 'male.jpg', 'a@gmail.com c@gmail.com', '2021-10-27 20:46:36', '2021-11-01 15:46:18'),
+(7, 'a@gmail.com', '$2a$10$OLhmGHMxxc6MTgomoDWKsOEB9m.qkp63bYIe4zu.nsXdZ7PskJAj6', 0, 'Nguyễn Đặng Tuấn Kiệt', 0, '0000-00-00 00:00:00', 'female.jpg', '', '2021-11-01 18:11:52', '2021-11-01 18:11:52');
 
 -- --------------------------------------------------------
 
@@ -246,13 +247,6 @@ CREATE TABLE `user_records` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
---
--- Đang đổ dữ liệu cho bảng `user_records`
---
-
-INSERT INTO `user_records` (`id`, `UserID`, `GameID`, `HighScore`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 1, 9600, '2021-10-30 20:43:03', '2021-10-30 20:43:03');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -367,7 +361,7 @@ ALTER TABLE `upload_game_requests`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `user_records`
