@@ -18,6 +18,15 @@ function HomePage({user}) {
     })
   }, [])  
   
+  const [listCategory,setCategory] = useState([]);
+
+  useEffect (() =>{
+    axios.get('category/').then(result => {
+      setCategory(result.data)
+    }) .catch(err => {
+      console.log(err)
+    })
+  }, [])
 
   return (
     <div>
@@ -29,7 +38,7 @@ function HomePage({user}) {
         <div className='grid wide'>
               <div className='row'>
                 <div className='col-sm-9 col-md-6 col-lg-8'>
-                  <GameType/>
+                  <GameType listCategory = {listCategory}/>
                 </div>
               </div>
             </div>

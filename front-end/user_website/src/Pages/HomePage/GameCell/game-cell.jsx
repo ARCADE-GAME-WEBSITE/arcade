@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react'
 import {Link, } from 'react-router-dom';
 
 function GameCell({game}){
-    const gameAvaUrl = axios.defaults.baseURL + 'uploads/images/games/avatar/9.png';
+    const gameAvaUrl = axios.defaults.baseURL + 'uploads/images/games/avatar/' + game.Url;
 
     return (
         // <Link path={'/game-detail/' + game.Url}>
