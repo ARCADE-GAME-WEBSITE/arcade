@@ -89,7 +89,7 @@ function index(req, res){
 function update(req, res){
     const id = req.params.id;
     const updateGame = {
-        DevID: req.userData.userId,
+        DevID: req.body.DevID,
         Url: req.body.Url,
         DemoUrl: req.body.DemoUrl,
         Title: req.body.Title,

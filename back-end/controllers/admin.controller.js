@@ -107,6 +107,26 @@ function login(req, res){
     });
 }
 
+
+function getCurrentAdmin(req, res){
+    const id = req.userData.userId;
+
+    models.Admin.findByPk(id).then(result => {
+        if(result){
+            res.status(200).json(result);
+        }else{
+            res.status(404).json({
+                message: "Admin not found!"
+            }) 
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        })
+    });
+}
+
 function index(req, res){
     models.Admin.findAll().then(result => {
         res.status(200).json(result);
@@ -258,6 +278,7 @@ function sendEmail(email, newPassword){
 module.exports = {
     create: create,
     login: login,
+    getCurrentAdmin:getCurrentAdmin,
     index: index,
     show: show,
     update: update,

@@ -63,8 +63,7 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setDialogState
                 axios.post('user/login', values).then(
                     res => {
                         if (res.data.message === 'Authentication successful!'){
-                            localStorage.setItem('token', res.data.token)
-                            axios.defaults.headers.common['Authorization'] = res.data.token
+                            localStorage.setItem('token', res.data.token);
                             setShowForm(false)
                         }
                     }

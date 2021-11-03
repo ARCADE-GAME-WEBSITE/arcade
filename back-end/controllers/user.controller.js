@@ -166,7 +166,7 @@ function update(req, res){
         Role: req.body.Role,
         Gender: req.body.Gender,
         DayOfBirth: req.body.DayOfBirth,
-        Friends: req.body.Friends 
+        Friends: req.body.Friends
     }
 
     const validationResponse = v.validate(updateUser, schema);
