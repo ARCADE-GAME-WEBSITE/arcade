@@ -123,6 +123,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                     <button 
                         className="navbar-btn" 
                         name="showLogin"
+                        id="btnLogIn"
                         onClick={() => setShowLogin(true)}
                         >Login
                     </button>
@@ -130,6 +131,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                     <button 
                         className="navbar-btn" 
                         name="showSignUp"
+                        id="btnSignUp"
                         onClick={() => setShowSignUp(true)}
                         >Sign up
                     </button>

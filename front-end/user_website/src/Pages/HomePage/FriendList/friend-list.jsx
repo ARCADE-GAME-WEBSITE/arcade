@@ -10,7 +10,7 @@ import friendImg3 from '../../../Assets/Images/User/avatar4.jpg'
 
 function FriendList({user}) {
     return (user) ? (
-        <div class="col l-2">
+        <div>
             <div class="friend-list">      
                 <div class="friend-list__heading">
                     <div class="friend-list__friend active">

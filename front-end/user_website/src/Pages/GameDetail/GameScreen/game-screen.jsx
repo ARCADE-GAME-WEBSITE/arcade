@@ -7,9 +7,15 @@ import img2 from '../../../Assets/Images/Game/2.png'
 import img3 from '../../../Assets/Images/Game/3.png'
 import img4 from '../../../Assets/Images/Game/4.png'
 
+const playGame = () =>{
+    document.getElementById('gameScreenBtnPlay').style.display = 'none'
+    document.getElementById('openGameScreen').style.display = 'block'
+}
+
 function GameScreen() {
     return (
-            /* <div className="game-screen">
+        <div>
+            <div className="game-screen">
                 <div className="game-screen__img">
                     <img src={img1} className="game-screen__img--css" alt="" />
                     <img src={img2} className="game-screen__img--css" alt="" />
@@ -17,8 +23,8 @@ function GameScreen() {
                     <img src={img4} className="game-screen__img--css" alt="" />
                 </div>
                 <ul className="game-screen__btn">
-                    <li onclick="openGame()" className="btn-play">
-                        <a href="/" className="btn-play-link">PLAY</a>
+                    <li onclick="openGame()" className="btn-play" id="gameScreenBtnPlay" onClick={playGame}>
+                        <a  className="btn-play-link">PLAY</a>
                     </li>
                     <li className="btn-toturial">
                         <a href="/" className="btn-toturial-link">TOTURIAL</a>
@@ -30,13 +36,13 @@ function GameScreen() {
                         <a href="/" className="btn-setting-link">SETTING</a>
                     </li>
                 </ul>
-            </div> */
-            <div className="playGame">
-                <iframe className="playGame__screen" src="http://localhost:8000/uploads/games/2048.html">
-                
-                </iframe>
+            </div> 
+            <div className="playGame" id="openGameScreen">
+                <iframe className="playGame__screen" src="http://localhost:8000/uploads/games/2048.html"></iframe>
             </div>
-
+        </div>
+            
+        
     )
 }
 
