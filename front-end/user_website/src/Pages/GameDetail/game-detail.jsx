@@ -13,9 +13,9 @@ import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
 
-function GameDetail({user,game}) {
+function GameDetail({user}) {
     
-    console.log(game)
+    console.log(user)
     return (
         <div className="grid wide-1">
             <div className="row">

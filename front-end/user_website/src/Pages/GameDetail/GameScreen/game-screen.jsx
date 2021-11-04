@@ -11,11 +11,14 @@ const playGame = () =>{
     document.getElementById('gameScreenBtnPlay').style.display = 'none'
     document.getElementById('openGameScreen').style.display = 'block'
 }
+const stopScrool = ()=>{
+    window.addEventListener("scroll",(e) =>{ e.preventDefault() })
+}
 
 function GameScreen() {
     return (
-        <div>
-            <div className="game-screen">
+        <div className="game-screen-outside" focused={stopScrool}>
+            <div className="game-screen" id="gameScreenBtnPlay">
                 <div className="game-screen__img">
                     <img src={img1} className="game-screen__img--css" alt="" />
                     <img src={img2} className="game-screen__img--css" alt="" />
@@ -23,22 +26,22 @@ function GameScreen() {
                     <img src={img4} className="game-screen__img--css" alt="" />
                 </div>
                 <ul className="game-screen__btn">
-                    <li onclick="openGame()" className="btn-play" id="gameScreenBtnPlay" onClick={playGame}>
-                        <a  className="btn-play-link">PLAY</a>
+                    <li className="btn-play" onClick={playGame}>
+                        <button className="btn-play-link">PLAY</button>
                     </li>
                     <li className="btn-toturial">
-                        <a href="/" className="btn-toturial-link">TOTURIAL</a>
+                        <button className="btn-toturial-link">TOTURIAL</button>
                     </li>
                     <li className="btn-music">
-                        <a href="/" className="btn-music-link">MUSIC</a>
+                        <button className="btn-music-link">MUSIC</button>
                     </li>
                     <li className="btn-setting">
-                        <a href="/" className="btn-setting-link">SETTING</a>
+                        <button className="btn-setting-link">SETTING</button>
                     </li>
                 </ul>
             </div> 
             <div className="playGame" id="openGameScreen">
-                <iframe className="playGame__screen" src="http://localhost:8000/uploads/games/2048.html"></iframe>
+                    <iframe className="playGame__screen" src="http://localhost:8000/uploads/games/2048.html"></iframe>
             </div>
         </div>
             

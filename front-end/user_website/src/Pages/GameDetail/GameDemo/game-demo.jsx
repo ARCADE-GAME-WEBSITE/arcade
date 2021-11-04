@@ -1,8 +1,14 @@
 import React from 'react'
+import axios from 'axios'
 
 import './game-demo.css'
 
 function GameDemo() {
+    axios.get('/comment/get-by-game-id/1/')
+        .then((res) => {})
+        .catch((err) => {
+            console.log(err);
+        })
     return (
         <div>
             <div className="game-demo game-desc">

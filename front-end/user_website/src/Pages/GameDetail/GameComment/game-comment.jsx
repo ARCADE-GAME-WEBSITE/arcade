@@ -31,8 +31,9 @@ function GameComment({user}) {
                 
                     return axios.get('/comment/get-by-game-id/1/')
                         .then((res) => {
-                            console.log(res.data.post)
+                            console.log(res.data)
                             const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)
+                            console.log(cmtArr);
                             const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
                             cmtCurrent.current = cmtArr[2].Content
                             const saveArrName = [cmtArr[0].UserName,cmtArr[1].UserName,cmtArr[2].UserName]
@@ -40,6 +41,7 @@ function GameComment({user}) {
                             setCmt(saveArrContent)
                             setUserName(saveArrName)
                             avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
+                            
                             for (var i = 0; i <=2;i++){
                                 cmtArr[i].createdAt=cmtArr[i].createdAt.replace("T","  ")
                                 cmtArr[i].createdAt=cmtArr[i].createdAt.replace(".000Z", "s")
