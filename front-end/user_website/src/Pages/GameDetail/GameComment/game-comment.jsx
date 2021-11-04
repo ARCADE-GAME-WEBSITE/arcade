@@ -7,18 +7,20 @@ import axios from 'axios'
 function GameComment({user}) {
     
     var inputCmt = document.getElementById("game-comment__account-btn")
-
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
     
-    const [cmt,setCmt] = useState([])
-    const [userName,setUserName] = useState([])
     let avatarUrl = useRef()
+    let cmtCurrent = useRef()
+    let userNameCurrent = useRef()
+    const [cmt,setCmt] = useState([cmtCurrent.current])
+    const [userName,setUserName] = useState([userNameCurrent.current])
     const [timeSend,setTimeSend] = useState('')
-
+    console.log(timeSend);
+    const getUrlGame= window.location.href
+    
     const getComment = () => {
-       
         axios.post('/comment', {
             GameID:1,
             UserID: user.id,
@@ -28,18 +30,26 @@ function GameComment({user}) {
                 console.log(response)
                 
                     return axios.get('/comment/get-by-game-id/1/')
-                    .then((res) => {
-                    console.log(res.data)
-                    const cmtArr = res.data.slice(res.data.length - 3,res.data.length)
-                    const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
-                    const saveArrName = [cmtArr[0].UserID,cmtArr[1].UserID,cmtArr[2].UserID]
-                    setCmt(saveArrContent)
-                    setUserName(saveArrName)
-                    avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
-                    const saveArrTimeSend =  [cmtArr[0].updatedAt,cmtArr[1].updatedAt,cmtArr[2].updatedAt]
-                    setTimeSend(saveArrTimeSend)
-                    console.log(saveArrTimeSend);
-                })
+                        .then((res) => {
+                            console.log(res.data.post)
+                            const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)
+                            const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
+                            cmtCurrent.current = cmtArr[2].Content
+                            const saveArrName = [cmtArr[0].UserName,cmtArr[1].UserName,cmtArr[2].UserName]
+                            userNameCurrent.current = cmtArr[2].UserName
+                            setCmt(saveArrContent)
+                            setUserName(saveArrName)
+                            avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
+                            for (var i = 0; i <=2;i++){
+                                cmtArr[i].createdAt=cmtArr[i].createdAt.replace("T","  ")
+                                cmtArr[i].createdAt=cmtArr[i].createdAt.replace(".000Z", "s")
+                            }
+                            
+                            const saveArrTimeSend =  [cmtArr[0].createdAt,cmtArr[1].createdAt,cmtArr[2].createdAt]
+
+                            setTimeSend(saveArrTimeSend)
+                            console.log(saveArrTimeSend);
+                    })
                 .catch((err) => {
                     console.log(err);
                 })
@@ -48,6 +58,10 @@ function GameComment({user}) {
                 console.log(error);
                 });
         inputCmt.value = null
+    }
+
+    const cmtDelete = () => {
+        axios.delete('/comment')
     }
     
     console.log(cmt);
@@ -69,14 +83,14 @@ function GameComment({user}) {
                     <div className="game-comment__account-header">Please register or login to post a comment</div>
                     <div className="game-comment__account-btn">
                         <div className="login-out">
-                            <a href="/" className="login-out__btn" id='logined'>
+                            <label for="btnLogIn" className="login-out__btn" id='logined'>
                             LOGIN
-                            </a>
+                            </label>
                         </div>
-                        <div className="login-out">
-                            <a href="/" className="login-out__btn--css">
-                            REGISTER
-                            </a>
+                        <div for="btnSignUp" className="login-out">
+                            <label for="btnSignUp" className="login-out__btn--css">
+                            SIGN UP
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -104,7 +118,7 @@ function GameComment({user}) {
                         <div className="comment__update">
                             <i class="comment__update-icon fas fa-pen-alt"></i>
                         </div>
-                        <div className="comment__delete">
+                        <div className="comment__delete" onClick={cmtDelete}>
                             <i class="comment__delete-icon far fa-trash-alt"></i>
                         </div>
                     </div>
