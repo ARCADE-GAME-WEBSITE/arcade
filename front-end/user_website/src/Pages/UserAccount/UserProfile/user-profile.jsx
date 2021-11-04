@@ -32,7 +32,6 @@ function UserProfile({user, setShowChangePassword}){
         .then(res => console.log(res.data));
 }
 
-  console.log(user.Gender);
     return(user)? (
       <>
         <div className="content">
@@ -70,7 +69,7 @@ function UserProfile({user, setShowChangePassword}){
                     <h5>Date of birth:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="date" name="bday" className="o" value={Date(user.DayOfBirth)} onChange={(event)=>{ setDate(event.target.value); }} />
+                    <input type="date" name="bday" className="o" value={user.DayOfBirth}  onChange={(event)=>{ setDate(event.target.value); }} />
                   </div>
                   </div>
                   <hr />
