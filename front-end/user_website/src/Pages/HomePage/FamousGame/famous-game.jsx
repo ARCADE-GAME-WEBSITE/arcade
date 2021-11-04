@@ -1,10 +1,10 @@
 import React from 'react';
 
 import "./famous-game.css";
-import InfiniteCarousel from 'react-leaf-carousel';
 
+import InfiniteCarousel from 'react-leaf-carousel';
 import GameCell from '../GameCell/game-cell';
-import { Switch } from 'react-router';
+
 
 function FamousGame({listGame}) {
     const allGames = listGame.map(game => {

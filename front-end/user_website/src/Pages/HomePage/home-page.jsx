@@ -5,8 +5,10 @@ import FriendList from "./FriendList/friend-list";
 import FamousGame from "./FamousGame/famous-game";
 import NewGame from "./NewGame/new-game";
 import GameType from "./GameGenre/GameType";
+import GameCategories from "./GameGenre/GameType";
 
-function HomePage({user}) {
+
+function HomePage({user,categories}) {
 
   const [listGame,setListGame] = useState([]) ;
 
@@ -27,6 +29,38 @@ function HomePage({user}) {
       console.log(err)
     })
   }, [])
+  
+  
+// if('/home/' + categories.CategoryName){
+//   return (
+//     <div>
+//       <div className="App-left-sidebar">
+//         <FriendList user={user}/>
+//       </div>
+//     <div>
+//     <div className="App-main">
+//         <div className='row'>
+//                 <div className='col-sm-9 col-md-6 col-lg-8'>
+//             <GameType listCategory = {listCategory}/>
+//                 </div>
+//         </div>
+//       </div>
+
+      
+//         <div className='grid wide'>
+//               <div className='row'>
+//                 <div className='col-sm-9 col-md-6 col-lg-8'>
+//                   <GameCategories listGame = {listGame}/>
+//                 </div>
+//               </div>
+//             </div>
+//       </div>
+//     </div>
+  
+//   )
+// }  
+
+
 
   return (
     <div>
@@ -58,6 +92,9 @@ function HomePage({user}) {
           </div>
       </div>
     </div>
+    
+
+    
   );
 }
  
