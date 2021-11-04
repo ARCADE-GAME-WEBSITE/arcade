@@ -51,6 +51,7 @@ function indexByGameID(req, res){
                         GameID: comment.dataValues.GameID,
                         Content: comment.dataValues.Content,
                         createdAt: comment.dataValues.createdAt,
+                        updatedAt: comment.dataValues.updatedAt,
                         UserName: user.dataValues.Full_name,
                         UserAvatar: user.dataValues.Avatar
                     }
