@@ -4,7 +4,7 @@ import './game-comment.css'
 import axios from 'axios'
 
     
-function GameComment({user}) {
+function GameComment({user,gameId}) {
     
     var inputCmt = document.getElementById("game-comment__account-btn")
     const config = {
@@ -18,11 +18,10 @@ function GameComment({user}) {
     const [userName,setUserName] = useState([userNameCurrent.current])
     const [timeSend,setTimeSend] = useState('')
     console.log(timeSend);
-    const getUrlGame= window.location.href
     
     const getComment = () => {
         axios.post('/comment', {
-            GameID:1,
+            GameID:gameId,
             UserID: user.id,
             Content: inputCmt.value,
             }, config)
