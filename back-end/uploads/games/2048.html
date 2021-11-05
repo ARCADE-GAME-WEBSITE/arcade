@@ -162,7 +162,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="clickStopScroll">
     <div id="container">
       <div id="splash" class="screen">
         <h1>20<span class="char1">4</span><span class="char2">8</span></h1>
@@ -687,6 +687,23 @@
           down();
         }
       });
+
+      var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+      function preventDefault(e) {
+          e.preventDefault();
+        }
+      function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+          }
+        }
+        function stopScroll(e){
+          // alert('stop')
+      window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+      e.stopPropagation();
+  }
+      document.getElementById("clickStopScroll").addEventListener("click",stopScroll)
     </script>
   </body>
 </html>

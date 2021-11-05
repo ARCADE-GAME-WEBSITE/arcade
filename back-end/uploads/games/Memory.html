@@ -272,7 +272,7 @@ footer p a:hover {
 }
     </style>
 </head>
-<body>
+<body id="clickStopScroll">
     <header>
         <h1>MEMORY</h1>
       </header>
@@ -606,7 +606,22 @@ function resetGame() {
 //   }
 // }
 // var checkPageInterval = setInterval(checkPageFocus, 300);
-
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+      function preventDefault(e) {
+          e.preventDefault();
+        }
+      function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+          }
+        }
+        function stopScroll(e){
+          // alert('stop')
+      window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+      e.stopPropagation();
+  }
+      document.getElementById("clickStopScroll").addEventListener("click",stopScroll)
     </script>
 </body>
 </html>

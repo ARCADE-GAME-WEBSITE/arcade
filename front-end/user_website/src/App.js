@@ -30,7 +30,7 @@ function App() {
   const [showChangePassword, setShowChangePassword] = useState(false);
 
   const [user, setUser] = useState(null);
-
+  const [game, setGame] = useState(null);
   const formRef = useRef();
 
   useEffect(() => {
@@ -46,8 +46,21 @@ function App() {
       });
     }
   }, [localStorage.getItem('token')]);
-  
 
+  // useEffect(() => {
+  //   if (localStorage.getItem('token') != null){
+  //     const config = {
+  //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+  //     };
+
+  //     axios.get('games/', config).then(result => {
+  //       setGame(result.data);
+  //     }).catch(err => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }, [localStorage.getItem('token')]);
+  // console.log(game);
   return (
     <BrowserRouter>
       <div className="App">

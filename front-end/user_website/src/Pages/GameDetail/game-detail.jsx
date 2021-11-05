@@ -1,5 +1,6 @@
 import React from 'react';
 import './game-detail.css'
+import axios from 'axios'
 
 import GameScreen from './GameScreen/game-screen'
 import GameControl from './GameControl/game-control'
@@ -14,8 +15,17 @@ import FriendList from '../HomePage/FriendList/friend-list'
 
 
 function GameDetail({user}) {
-    
-    console.log(user)
+    const getUrlGame= window.location.href
+
+    const gameUrl = getUrlGame.slice(getUrlGame.lastIndexOf("/")+ 1 )
+    axios.get('/game/'+gameUrl)
+    .then((res)=>{
+        console.log(res);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+
     return (
         <div className="grid wide-1">
             <div className="row">

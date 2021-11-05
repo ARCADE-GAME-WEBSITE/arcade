@@ -1,4 +1,6 @@
-
+:root{
+  --gameScreen-height: 600px;
+}
 .App-header {
   position: fixed;
   width: 100%;

@@ -151,7 +151,7 @@ table {
 
     </style>
 </head>
-  <body onload="initialize()">
+  <body onload="initialize()" id="clickStopScroll">
     <h1>Tic-Tac-Toe</h1>
     <table id="table_game">
       <tr><td class="td_game"><div id="cell0" onclick="cellClicked(this.id)" class="fixed"></div></td><td class="td_game"><div id="cell1" onclick="cellClicked(this.id)" class="fixed"></div></td><td class="td_game"><div id="cell2" onclick="cellClicked(this.id)" class="fixed"></div></td></tr>
@@ -848,7 +848,22 @@ function endGame(who) {
     }
     setTimeout(restartGame, 800);
 }
-
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+      function preventDefault(e) {
+          e.preventDefault();
+        }
+      function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+          }
+        }
+        function stopScroll(e){
+          // alert('stop')
+      window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+      e.stopPropagation();
+  }
+      document.getElementById("clickStopScroll").addEventListener("click",stopScroll)
     </script>
   </body>
 </html>

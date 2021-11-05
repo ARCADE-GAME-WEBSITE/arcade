@@ -22,7 +22,7 @@ canvas {
 }
     </style>
 </head>
-<body>
+<body id="clickStopScroll">
     
 
 Player 1
@@ -737,7 +737,22 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 var then = Date.now();
 reset();
 main();
-
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+      function preventDefault(e) {
+          e.preventDefault();
+        }
+      function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+          }
+        }
+        function stopScroll(e){
+          // alert('stop')
+      window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+      e.stopPropagation();
+  }
+      document.getElementById("clickStopScroll").addEventListener("click",stopScroll)
 </script>
 </body>
 </html>

@@ -11,13 +11,10 @@ const playGame = () =>{
     document.getElementById('gameScreenBtnPlay').style.display = 'none'
     document.getElementById('openGameScreen').style.display = 'block'
 }
-const stopScrool = ()=>{
-    window.addEventListener("scroll",(e) =>{ e.preventDefault() })
-}
 
-function GameScreen() {
+function GameScreen({game}) {
     return (
-        <div className="game-screen-outside" focused={stopScrool}>
+        <div className="game-screen-outside" id="game-screen-outside">
             <div className="game-screen" id="gameScreenBtnPlay">
                 <div className="game-screen__img">
                     <img src={img1} className="game-screen__img--css" alt="" />
@@ -27,21 +24,21 @@ function GameScreen() {
                 </div>
                 <ul className="game-screen__btn">
                     <li className="btn-play" onClick={playGame}>
-                        <button className="btn-play-link">PLAY</button>
+                        <a className="btn-play-link">PLAY</a>
                     </li>
                     <li className="btn-toturial">
-                        <button className="btn-toturial-link">TOTURIAL</button>
+                        <a className="btn-toturial-link">TOTURIAL</a>
                     </li>
                     <li className="btn-music">
-                        <button className="btn-music-link">MUSIC</button>
+                        <a className="btn-music-link">MUSIC</a>
                     </li>
                     <li className="btn-setting">
-                        <button className="btn-setting-link">SETTING</button>
+                        <a className="btn-setting-link">SETTING</a>
                     </li>
                 </ul>
             </div> 
             <div className="playGame" id="openGameScreen">
-                    <iframe className="playGame__screen" src="http://localhost:8000/uploads/games/2048.html"></iframe>
+                    <iframe className="playGame__screen" src=''></iframe>
             </div>
         </div>
             
