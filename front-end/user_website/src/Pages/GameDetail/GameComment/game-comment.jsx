@@ -18,17 +18,17 @@ function GameComment({user,gameId}) {
     const [userName,setUserName] = useState([userNameCurrent.current])
     const [timeSend,setTimeSend] = useState('')
     console.log(timeSend);
-    
-    const getComment = () => {
+    const GAMEID= useRef()
+    GAMEID.current = gameId
+    function getComment(){
         axios.post('/comment', {
-            GameID:gameId,
+            GameID:GAMEID.current,
             UserID: user.id,
             Content: inputCmt.value,
             }, config)
             .then(function (response) {
                 console.log(response)
-                
-                    return axios.get('/comment/get-by-game-id/1/')
+                    return axios.get('comment/get-by-game-id/' + GAMEID.current)
                         .then((res) => {
                             console.log(res.data)
                             const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)

@@ -2,11 +2,11 @@ import React from 'react'
 
 import './game-info.css'
 
-function GameInfo() {
+function GameInfo({gameTitle}) {
     return (
             <div className="game-info">
                 <div className="game-info__left">
-                    <h1>TETRIS GAME</h1>
+                    <h1>{gameTitle + ' Game'}</h1>
                     <button className="game-info__report">
                         <i className="far fa-flag report-flag"></i>
                         <h4>Report a bug</h4>
