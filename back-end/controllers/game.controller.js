@@ -16,10 +16,9 @@ const schema = {
 
 const v = new Validator();
 
-// This function create a new Game post and save it to database
 function save(req, res){
     const game = {
-        DevID: req.userData.id, 
+        DevID: req.body.DevID, 
         Url: req.body.Url,
         DemoUrl: req.body.DemoUrl,
         Title: req.body.Title,
@@ -52,7 +51,6 @@ function save(req, res){
     });
 }
 
-// This function return a Game post founded in database by a given id
 function show(req, res){
     const id = req.params.id;
 
@@ -91,7 +89,6 @@ function showByUrl(req, res){
     });
 }
 
-// This function get all Game post in database
 function index(req, res){
     models.Game.findAll().then(result => {
         res.status(200).json(result);
@@ -103,7 +100,6 @@ function index(req, res){
     });
 }
 
-// This function update a Game post in database by a given id
 function update(req, res){
     const id = req.params.id;
     const updateGame = {
@@ -140,7 +136,6 @@ function update(req, res){
     })
 }
 
-// This function delete a Game post in database by a given id
 function destroy(req, res){
     const id = req.params.id;
 

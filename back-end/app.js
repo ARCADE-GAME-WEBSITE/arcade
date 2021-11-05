@@ -5,6 +5,7 @@ const cors = require('cors');
 const adminRoute = require('./routes/admins')
 const gameRoute = require('./routes/games');
 const userRoute = require('./routes/users');
+const friendRoute = require('./routes/friends');
 const imageRoute = require('./routes/images');
 const commentRoute = require('./routes/comments');
 const categoryRoute = require('./routes/categories');
@@ -23,6 +24,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/admin', adminRoute);
 app.use('/game', gameRoute);
 app.use('/user', userRoute);
+app.use('/friend', friendRoute);
 app.use('/images', imageRoute);
 app.use('/comment', commentRoute);
 app.use('/category', categoryRoute);

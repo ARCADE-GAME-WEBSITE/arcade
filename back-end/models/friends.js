@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     FriendID: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Friends',
+    modelName: 'Friend',
   });
   return Friends;
 };

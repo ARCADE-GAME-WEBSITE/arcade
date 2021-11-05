@@ -8,14 +8,13 @@ const schema = {
 
 const v = new Validator();
 
-// This function create a new Game post and save it to database
 function save(req, res){
     const friend = {
-        UserID: req.userData.id, 
-        FriendEmail: req.body.FriendEmail,
+        UserID: req.body.UserID, 
+        FriendEmail: req.body.FriendEmail
     }
 
-    const validationResponse = v.validate(game, schema);
+    const validationResponse = v.validate(friend, schema);
     if(validationResponse !== true){
         return res.status(400).json({
             message: "Validation failed!",
@@ -25,7 +24,7 @@ function save(req, res){
 
     models.User.findOne({where: {Email: req.body.FriendEmail}}).then(result => {
         if (result) {
-            models.Friend.findOne({where: {UserID: req.userData.id, FriendID: result.id}}).then(result1 => {
+            models.Friend.findOne({where: {UserID: req.body.UserID, FriendID: result.dataValues.id}}).then(result1 => {
                 if (result1){
                     res.status(401).json({
                         message: "Already friend!"
@@ -33,25 +32,23 @@ function save(req, res){
                 }
                 else {
                     const newFriend = {
-                        UserID: req.userData.id, 
-                        FriendID: result.id,
+                        UserID: req.body.UserID, 
+                        FriendID: result.dataValues.id,
                     }
-                    models.Friend.create(friend)
+                    models.Friend.create(newFriend).then(result2 => {
+                        res.status(201).json({
+                            message: "Friend added successfully!",
+                            post: result2.dataValues
+                        });
+                    })
                 }
             })
         }
         else {
             res.status(401).json({
-                message: "Email does not exist!"
+                message: "Friend email does not exist!"
             });
         }
-    })
-
-    models.Friend.create(friend).then(result => {
-        res.status(201).json({
-            message: "Friend created successfully!",
-            post: result
-        });
     }).catch(error => {
         res.status(500).json({
             message: "Something went wrong!",
@@ -60,16 +57,26 @@ function save(req, res){
     });
 }
 
-// This function return a Game post founded in database by a given id
+function index(req, res){
+    models.Friend.findAll().then(result => {
+        res.status(200).json(result);
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    });
+}
+
 function show(req, res){
     const id = req.params.id;
 
-    models.Game.findByPk(id).then(result => {
+    models.Friend.findByPk(id).then(result => {
         if(result){
             res.status(200).json(result);
         }else{
             res.status(404).json({
-                message: "Game not found!"
+                message: "Friend not found!"
             }) 
         }
     }).catch(error => {
@@ -81,14 +88,35 @@ function show(req, res){
 }
 
 function showByUserID(req, res){
-    const url = req.params.url;
+    const userID = req.params.id;
 
-    models.Game.findOne({where: {Url: url}}).then(result => {
+    models.Friend.findAll({where: {UserID: userID}}).then(result => {
         if(result){
-            res.status(200).json(result);
-        }else{
+            var listFriends = [];
+            result.forEach(friend => {
+                models.User.findOne({where: {id: friend.dataValues.FriendID}}).then(user => {
+                    const resultFriend = {
+                        id: friend.dataValues.id,
+                        UserID: friend.dataValues.UserID,
+                        FriendID: friend.dataValues.FriendID,
+                        FriendEmail: user.dataValues.Email,
+                        createdAt: friend.dataValues.createdAt,
+                        updatedAt: friend.dataValues.updatedAt
+                    }
+                    
+                    listFriends.push(resultFriend);
+                    
+                    if (listFriends.length == result.length){
+                        res.status(200).json({
+                            message: "Get list friends successfully!",
+                            post: listFriends
+                        });
+                    }
+                });
+            });
+        }else {
             res.status(404).json({
-                message: "Game not found!"
+                message: "User have no friend!"
             }) 
         }
     }).catch(error => {
@@ -99,62 +127,10 @@ function showByUserID(req, res){
     });
 }
 
-// This function get all Game post in database
-function index(req, res){
-    models.Game.findAll().then(result => {
-        res.status(200).json(result);
-    }).catch(error => {
-        res.status(500).json({
-            message: "Something went wrong!",
-            error: error
-        });
-    });
-}
-
-// This function update a Game post in database by a given id
-function update(req, res){
-    const id = req.params.id;
-    const updateGame = {
-        DevID: req.body.DevID,
-        Url: req.body.Url,
-        DemoUrl: req.body.DemoUrl,
-        Title: req.body.Title,
-        Avatar: req.body.Avatar,
-        Category: req.body.Category,
-        GamePlayImage: req.body.GamePlayImage,
-        Description: req.body.Description,
-        Played: req.body.Played,
-        Rate: req.body.Rate
-    }
-
-    const validationResponse = v.validate(updateGame, schema);
-    if(validationResponse !== true){
-        return res.status(400).json({
-            message: "Validation failed!",
-            errors: validationResponse
-        });
-    }
-
-    models.Game.update(updateGame, {where: {id:id}}).then(result => {
-        res.status(200).json({
-            message: "Game updated successfully!",
-            post: updateGame
-        });
-    }).catch(error => {
-        res.status(200).json({
-            message: "Something went wrong!",
-            error: error
-        });
-    })
-}
-
-// This function delete a Game post in database by a given id
 function destroy(req, res){
-    const id = req.params.id;
-
-    models.Game.destroy({where:{id:id}}).then(result => {
+    models.Friend.destroy({where:{UserID: req.body.UserID, FriendID: req.body.FriendID}}).then(result => {
         res.status(200).json({
-            message: "Game deleted successfully!"
+            message: "Friend deleted successfully!"
         });
     }).catch(error => {
         res.status(200).json({
@@ -169,6 +145,5 @@ module.exports = {
     index: index,
     show: show,
     showByUserID:showByUserID,
-    update: update,
     destroy: destroy
 }

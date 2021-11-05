@@ -42,7 +42,7 @@ function indexByGameID(req, res){
 
     models.Comment.findAll({where: {GameID:id}}).then(result => {
         if (result) {
-            var listComment = [];
+            var listComments = [];
             result.forEach(comment => {
                 models.User.findOne({where: {id:comment.dataValues.UserID}}).then(user => {
                     const resultComment = {
@@ -56,12 +56,12 @@ function indexByGameID(req, res){
                         UserAvatar: user.dataValues.Avatar
                     }
                     
-                    listComment.push(resultComment);
+                    listComments.push(resultComment);
                     
-                    if (listComment.length == result.length){
+                    if (listComments.length == result.length){
                         res.status(200).json({
                             message: "Get list comments successfully!",
-                            post: listComment
+                            post: listComments
                         });
                     }
                 });
