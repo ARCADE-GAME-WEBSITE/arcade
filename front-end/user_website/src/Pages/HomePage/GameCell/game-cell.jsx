@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Button } from 'semantic-ui-react'
 import {Link, } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function GameCell({game}){
