@@ -11,8 +11,7 @@ const schema = {
     Role: {type: "number", optional:true},
     Gender: {type:"number", optional:true},
     DayOfBirth: {type:"string", optional: true},
-    Avatar: {type:"string", optional: true},
-    Friends: {type:"string", optional: true}
+    Avatar: {type:"string", optional: true}
 }
 
 const v = new Validator();
@@ -43,8 +42,7 @@ function signUp(req, res){
                         Full_name: req.body.Full_name,
                         Gender: req.body.Gender,
                         DayOfBirth: "0000-00-00",
-                        Avatar: default_ava,
-                        Friends: ""
+                        Avatar: default_ava
                     }
 
                     const validationResponse = v.validate(user, schema);
@@ -165,8 +163,7 @@ function update(req, res){
         Full_name: req.body.Full_name,
         Role: req.body.Role,
         Gender: req.body.Gender,
-        DayOfBirth: req.body.DayOfBirth,
-        Friends: req.body.Friends
+        DayOfBirth: req.body.DayOfBirth
     }
 
     const validationResponse = v.validate(updateUser, schema);

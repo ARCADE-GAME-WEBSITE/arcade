@@ -29,9 +29,6 @@ module.exports = {
       Avatar: {
         type: Sequelize.STRING
       },
-      Friends: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

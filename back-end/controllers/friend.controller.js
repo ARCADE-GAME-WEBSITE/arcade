@@ -2,33 +2,17 @@ const models = require('../models')
 const Validator = require('fastest-validator')
 
 const schema = {
-    DevID: {type:"number", optional: true},
-    Url: {type:"string", optional: true},
-    DemoUrl: {type:"string", optional: true},
-    Title: {type:"string", optional: true},
-    Avatar: {type:"string", optional: true},
-    Category: {type:"string", optional: true},
-    GamePlayImage: {type:"string", optional: true},
-    Description: {type:"string", optional: true},
-    Played: {type:"number", optional: true},
-    Rate: {type:"number", optional: true}
+    UserID: {type:"number", optional: true},
+    FriendEmail: {type:"string", optional: true}
 }
 
 const v = new Validator();
 
 // This function create a new Game post and save it to database
 function save(req, res){
-    const game = {
-        DevID: req.userData.id, 
-        Url: req.body.Url,
-        DemoUrl: req.body.DemoUrl,
-        Title: req.body.Title,
-        Avatar: req.body.Avatar,
-        Category: req.body.Category,
-        GamePlayImage: req.body.GamePlayImage,
-        Description: req.body.Description,
-        Played: req.body.Played,
-        Rate: req.body.Rate
+    const friend = {
+        UserID: req.userData.id, 
+        FriendEmail: req.body.FriendEmail,
     }
 
     const validationResponse = v.validate(game, schema);
@@ -39,9 +23,33 @@ function save(req, res){
         });
     }
 
-    models.Game.create(game).then(result => {
+    models.User.findOne({where: {Email: req.body.FriendEmail}}).then(result => {
+        if (result) {
+            models.Friend.findOne({where: {UserID: req.userData.id, FriendID: result.id}}).then(result1 => {
+                if (result1){
+                    res.status(401).json({
+                        message: "Already friend!"
+                    });
+                }
+                else {
+                    const newFriend = {
+                        UserID: req.userData.id, 
+                        FriendID: result.id,
+                    }
+                    models.Friend.create(friend)
+                }
+            })
+        }
+        else {
+            res.status(401).json({
+                message: "Email does not exist!"
+            });
+        }
+    })
+
+    models.Friend.create(friend).then(result => {
         res.status(201).json({
-            message: "Game created successfully!",
+            message: "Friend created successfully!",
             post: result
         });
     }).catch(error => {
@@ -72,7 +80,7 @@ function show(req, res){
     });
 }
 
-function showByUrl(req, res){
+function showByUserID(req, res){
     const url = req.params.url;
 
     models.Game.findOne({where: {Url: url}}).then(result => {
@@ -160,7 +168,7 @@ module.exports = {
     save: save,
     index: index,
     show: show,
-    showByUrl:showByUrl,
+    showByUserID:showByUserID,
     update: update,
     destroy: destroy
 }
