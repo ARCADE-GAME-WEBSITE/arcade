@@ -73,6 +73,25 @@ function show(req, res){
     });
 }
 
+function showByUrl(req, res){
+    const url = req.params.url;
+
+    models.Game.findOne({where: {Url: url}}).then(result => {
+        if(result){
+            res.status(200).json(result);
+        }else{
+            res.status(404).json({
+                message: "Game not found!"
+            }) 
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        })
+    });
+}
+
 // This function get all Game post in database
 function index(req, res){
     models.Game.findAll().then(result => {
@@ -140,8 +159,9 @@ function destroy(req, res){
 
 module.exports = {
     save: save,
-    show: show,
     index: index,
+    show: show,
+    showByUrl:showByUrl,
     update: update,
     destroy: destroy
 }
