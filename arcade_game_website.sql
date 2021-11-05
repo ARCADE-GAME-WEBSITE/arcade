@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 05, 2021 lúc 02:21 PM
+-- Thời gian đã tạo: Th10 05, 2021 lúc 02:52 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -105,7 +105,6 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `UserID`, `GameID`, `Content`, `createdAt`, `updatedAt`) VALUES
 (7, 1, 1, 'Hello world toooo!', '2021-11-02 18:14:02', '2021-11-02 18:14:02'),
 (8, 1, 1, 'Hello world!', '2021-11-02 18:14:08', '2021-11-02 18:14:08'),
-(10, 7, 1, 'Hello world!', '2021-11-02 18:14:33', '2021-11-02 18:14:33'),
 (11, 1, 1, 'Hello world!!!', '2021-11-02 18:14:42', '2021-11-02 18:14:42'),
 (12, 1, 1, 'Hello world!!!', '2021-11-02 18:14:58', '2021-11-02 18:14:58');
 
