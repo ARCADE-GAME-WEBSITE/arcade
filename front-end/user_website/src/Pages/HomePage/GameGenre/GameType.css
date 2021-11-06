@@ -4,14 +4,13 @@ h3{
     margin: 0 15% 0 15%;
   }
   .CategoryCell {
-    background-color: rgb(199, 144, 225);
-    margin: 0 15% 0 25%;
+    font-size: 10%;
+    margin: 0 15% 0 30%;
     border-radius: 10px;
     padding: auto;
-    width: 110%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; 
-    padding: 10%;
   }
   
