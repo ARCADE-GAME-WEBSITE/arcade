@@ -9,6 +9,10 @@ import friendImg2 from '../../../Assets/Images/User/avatar3.jpg'
 import friendImg3 from '../../../Assets/Images/User/avatar4.jpg'
 
 function FriendList({user}) {
+    const openAddFriendForm = ()=> {
+        document.getElementById('friend-list__add').style.display = 'none';
+        document.getElementById('friend-list__add-email').style.display = 'flex';
+    }
     return (user) ? (
         <div>
             <div class="friend-list">      
@@ -53,10 +57,14 @@ function FriendList({user}) {
                     </div>
                 </div>
                 <div class="friend-list__footer">
-                    <button class="friend-list__add">
+                    <button class="friend-list__add" id="friend-list__add" onClick={openAddFriendForm}>
                         <i class="fas fa-plus friend-list__add-icon"></i>
                         <div class="friend-list__friend-name">Add Friend</div>
                     </button>
+                    <div className="friend-list__add-email" id="friend-list__add-email">
+                        <input type="text" class="form-control" name="" id="" placeholder="Friend Email"/>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
                 </div>
             </div>
         </div>

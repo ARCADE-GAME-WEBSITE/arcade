@@ -108,3 +108,10 @@
   font-size: 1.8rem;
   color: #000;
 }
+.friend-list__add-email{
+  display: none;
+  margin: 8px;
+}
+.friend-list__add-email .btn-primary{
+  margin-left: 8px;
+}

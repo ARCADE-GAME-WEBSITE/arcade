@@ -19,8 +19,11 @@ function GameDetail({user}) {
     const gameUrl = getUrlGame.slice(getUrlGame.lastIndexOf("/")+ 1 )
 
     const [gameDemoUrl,setGameDemoUrl] = useState('')
-    const [gameId,setGameId] = useState('')
+    const [gameId,setGameId] = useState()
     const [gameSrc, setGameSrc] = useState('')
+    const [gameDes, setGameDes] = useState('')
+    const [gameCreatedAt, setGameCreatedAt] = useState('')
+    const [gameTitle, setGameTitle] = useState('')
     const gameLink = axios.defaults.baseURL + 'uploads/games/'
 
         useEffect(() => {
@@ -30,13 +33,16 @@ function GameDetail({user}) {
                 setGameDemoUrl(res.data.DemoUrl)
                 setGameId(res.data.id)
                 setGameSrc(res.data.Url)
+                setGameDes(res.data.Description)
+                setGameCreatedAt(res.data.createdAt)
+                setGameTitle(res.data.Title)
             })
             .catch((err) => {
                 console.log(err);
             })
         },[gameUrl])
 
-
+        console.log(gameId);
     return (
         <div className="grid wide-1">
             <div className="row">
@@ -47,11 +53,11 @@ function GameDetail({user}) {
                 <GameControl/>
             </div>
             <div className="row">
-                <GameInfo/>
+                <GameInfo gameTitle={gameTitle}/>
             </div>
 
             <div className="row">
-                <GameAbout/>
+                <GameAbout gameDes={gameDes} gameCreatedAt={gameCreatedAt}/>
                 <GameDemo gameDemoUrl={gameDemoUrl}/>
             </div>
             
