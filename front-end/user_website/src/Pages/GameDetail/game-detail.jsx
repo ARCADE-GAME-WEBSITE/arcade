@@ -24,6 +24,7 @@ function GameDetail({user}) {
     const [gameDes, setGameDes] = useState('')
     const [gameCreatedAt, setGameCreatedAt] = useState('')
     const [gameTitle, setGameTitle] = useState('')
+    const [gameImg, setGameImg] = useState('')
     const gameLink = axios.defaults.baseURL + 'uploads/games/'
 
         useEffect(() => {
@@ -36,18 +37,19 @@ function GameDetail({user}) {
                 setGameDes(res.data.Description)
                 setGameCreatedAt(res.data.createdAt)
                 setGameTitle(res.data.Title)
+                setGameImg(res.data.GamePlayImage.split(' '))
             })
             .catch((err) => {
                 console.log(err);
             })
         },[gameUrl])
 
-        console.log(gameId);
+        console.log(gameImg);
     return (
         <div className="grid wide-1">
             <div className="row">
                 <FriendList user={user}/>
-                <GameScreen gameLink={gameLink} gameSrc={gameSrc}/>
+                <GameScreen gameLink={gameLink} gameSrc={gameSrc} gameId={gameId} gameImg={gameImg}/>
             </div>
             <div className="row">
                 <GameControl/>

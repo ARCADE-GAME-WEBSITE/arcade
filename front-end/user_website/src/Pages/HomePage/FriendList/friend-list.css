@@ -23,7 +23,9 @@
   align-items: center;
   padding: 5px 5px;
 }
-
+.friend-list__title{
+  height: 500px;
+}
 .friend-list__title-img,
 .friend-list__friend-img {
   height: 35px;
@@ -68,6 +70,7 @@
 }
 
 .friend-info {
+  height:100px;
   width: 100%;
   display: flex;
 }
@@ -114,4 +117,7 @@
 }
 .friend-list__add-email .btn-primary{
   margin-left: 8px;
+  color: #000;
+  background-color: rgb(140, 203, 255);
+  border-radius: 15px;
 }

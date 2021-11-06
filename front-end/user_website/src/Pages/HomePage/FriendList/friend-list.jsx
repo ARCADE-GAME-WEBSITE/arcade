@@ -1,69 +1,116 @@
-import React from "react";
+import React, {useState,useRef,useEffect,useLayoutEffect} from "react";
 import './friend-list.css'
-
+import axios from 'axios'
+import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import friendList from '../../../Assets/Images/App/friend-list.png'
 import facebook from '../../../Assets/Images/Icons/facebook.png'
-import friendImg from '../../../Assets/Images/User/avatar1.jpg'
-import friendImg1 from '../../../Assets/Images/User/avatar2.jpg'
-import friendImg2 from '../../../Assets/Images/User/avatar3.jpg'
-import friendImg3 from '../../../Assets/Images/User/avatar4.jpg'
+
 
 function FriendList({user}) {
     const openAddFriendForm = ()=> {
         document.getElementById('friend-list__add').style.display = 'none';
-        document.getElementById('friend-list__add-email').style.display = 'flex';
+        document.getElementById('friend-list__add-form').style.display = 'flex';
     }
+    
+    const inputEmail = document.getElementById('friend-list__add-email')
+    const [listFriend, setListFriend] = useState([])
+
+    const renderListFriend = useRef()
+    const getFriend = () => {
+        axios.get('/friend/get-by-user-id/' + user.id )
+            .then(res => {
+                const arrListFriend = res.data.post.map((x)=>{
+                    return x.id
+                })
+                const listFriendById = []
+                arrListFriend.map((x)=>{
+                    axios.get('user/' + x, config)
+                    .then(res =>{
+                        listFriendById.push(res.data)
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                })
+                setListFriend(listFriendById)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+    useEffect(() => {
+        if(user !=null){
+            getFriend()
+        }
+    },[])
+    useEffect(() => {
+        renderListFriend.current = listFriend
+    },listFriend)
+
+    console.log(renderListFriend.current);
+
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
+    
+
+    const AddFriendbyEmail = () => {
+        if(inputEmail.value !=null)
+        {
+            if(user.email != inputEmail.input)
+            {
+                axios.post('/friend', {
+                    UserID : user.id,
+                    FriendEmail : inputEmail.value
+                    }, config)
+                    .then(response => {
+                        getFriend()
+                    })
+                    .catch(err => {
+                        alert('Friend exists or cant find')
+                })
+            }
+            else alert('Can not add your self')
+        }
+
+    }
+
+
     return (user) ? (
         <div>
-            <div class="friend-list">      
-                <div class="friend-list__heading">
-                    <div class="friend-list__friend active">
-                        <img src={friendList} class="friend-list__friend-img" alt="" />
-                        <div class="friend-list__friend-name">FRIENDS</div>
+            <div className="friend-list">      
+                <div className="friend-list__heading">
+                    <div className="friend-list__friend active">
+                        <img src={friendList} className="friend-list__friend-img" alt="" />
+                        <div className="friend-list__friend-name">FRIENDS</div>
                     </div>
-                    <div class="friend-list__contact">
-                        <img src={facebook} class="friend-list__friend-img" alt="" />
-                        <div class="friend-list__friend-name">CONNECT</div>
-                    </div>
-                </div>
-                <div class="friend-list__title">
-                    <div class="friend-info">
-                        <div class="friend-info__item">
-                            <img class="friend-list__title-img" src={friendImg} alt="" />
-                            <div class="friend-list__title-name">Player 1 </div>
-                            <button class="friend-list__title-add">Invite</button>
-                        </div>
-                    </div>
-                    <div class="friend-info">
-                        <div class="friend-info__item">
-                            <img class="friend-list__title-img" src={friendImg1} alt="" />
-                            <div class="friend-list__title-name">Player 2 </div>
-                            <button class="friend-list__title-add">Invite</button>
-                        </div>
-                    </div>
-                    <div class="friend-info">
-                        <div class="friend-info__item">
-                            <img class="friend-list__title-img" src={friendImg2} alt="" />
-                            <div class="friend-list__title-name">Player 3 </div>
-                            <button class="friend-list__title-add">Invite</button>
-                        </div>
-                    </div>
-                    <div class="friend-info">
-                        <div class="friend-info__item">
-                            <img class="friend-list__title-img" src={friendImg3} alt="" />
-                            <div class="friend-list__title-name">Player 4 </div>
-                            <button class="friend-list__title-add">Invite</button>
-                        </div>
+                    <div className="friend-list__contact">
+                        <img src={facebook} className="friend-list__friend-img" alt="" />
+                        <div className="friend-list__friend-name">CONNECT</div>
                     </div>
                 </div>
-                <div class="friend-list__footer">
-                    <button class="friend-list__add" id="friend-list__add" onClick={openAddFriendForm}>
-                        <i class="fas fa-plus friend-list__add-icon"></i>
-                        <div class="friend-list__friend-name">Add Friend</div>
+    
+                <ul className="list-group list-group-flush">
+                    {   
+                        // renderListFriend.current.map((friend) => {return(
+                        //     <li className="list-group-item friend-info" key={friend.id}>
+                        //         <div className="friend-info__item">
+                        //             <img className="friend-list__title-img" src={friend.Avatar} alt="" />
+                        //             <div className="friend-list__title-name">{friend.Full_name}</div>
+                        //             <button className="friend-list__title-add">Invite</button>
+                        //         </div>
+                        //     </li>
+                        //     )})
+                    }
+                </ul>
+                <div className="friend-list__footer">
+                    <button className="friend-list__add" id="friend-list__add" onClick={openAddFriendForm}>
+                        <i className="fas fa-plus friend-list__add-icon"></i>
+                        <div className="friend-list__friend-name">Add Friend</div>
                     </button>
-                    <div className="friend-list__add-email" id="friend-list__add-email">
-                        <input type="text" class="form-control" name="" id="" placeholder="Friend Email"/>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                    <div className="friend-list__add-email" id="friend-list__add-form">
+                        <input type="text" className="form-control" name='' id="friend-list__add-email" placeholder="Friend Email"/>
+                        <button type="submit" className="btn btn-primary" onClick={AddFriendbyEmail}>Add</button>
                     </div>
                 </div>
             </div>
