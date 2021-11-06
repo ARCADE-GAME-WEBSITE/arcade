@@ -31,16 +31,21 @@ function save(req, res){
                     });
                 }
                 else {
-                    const newFriend = {
+                    var newFriend = {
                         UserID: req.body.UserID, 
                         FriendID: result.dataValues.id,
                     }
-                    models.Friend.create(newFriend).then(result2 => {
-                        res.status(201).json({
-                            message: "Friend added successfully!",
-                            post: result2.dataValues
+                    models.Friend.create(newFriend).then (result1 => {
+                        newFriend = {
+                            UserID: result.dataValues.id, 
+                            FriendID: req.body.UserID,
+                        }
+                        models.Friend.create(newFriend).then(result2 => {
+                            res.status(201).json({
+                                message: "Friend added successfully!"
+                            });
                         });
-                    })
+                    });
                 }
             })
         }
@@ -128,10 +133,12 @@ function showByUserID(req, res){
 }
 
 function destroy(req, res){
-    models.Friend.destroy({where:{UserID: req.body.UserID, FriendID: req.body.FriendID}}).then(result => {
-        res.status(200).json({
-            message: "Friend deleted successfully!"
-        });
+    models.Friend.destroy({where:{UserID: req.body.UserID, FriendID: req.body.FriendID}}).then(result1 => {
+        models.Friend.destroy({where:{UserID: req.body.FriendID, FriendID: req.body.UserID}}).then(result2 => {
+            res.status(200).json({
+                message: "Friend deleted successfully!"
+            });
+        })
     }).catch(error => {
         res.status(200).json({
             message: "Something went wrong!",
