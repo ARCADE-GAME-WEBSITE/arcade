@@ -18,7 +18,7 @@ function FamousGame({listGame}) {
     return (
         <div>
             <h3>FAMOUS GAME</h3>
-            <InfiniteCarousel 
+            {/* <InfiniteCarousel 
                 breakpoints={[
                 {
                     breakpoint: 500,
@@ -43,8 +43,10 @@ function FamousGame({listGame}) {
                 slidesToShow={4}
                 scrollOnDevice={true}
             >
+                </InfiniteCarousel> */}
+            <a className="GameCell">
                 {allGames}
-            </InfiniteCarousel>
+            </a>
         </div>
     );
 };

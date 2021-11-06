@@ -66,7 +66,7 @@ function GameCategories({listCategory}){
     return (
         <div>
             <h3>Game Type</h3>
-            <InfiniteCarousel 
+            {/* <InfiniteCarousel 
                     breakpoints={[
                     {
                         breakpoint: 500,
@@ -91,8 +91,10 @@ function GameCategories({listCategory}){
                     slidesToShow={4}
                     scrollOnDevice={true}
                 >
+                    </InfiniteCarousel>    */}
+                <a className = "CategoryCell">
                     {allCategories}
-            </InfiniteCarousel>   
+                </a>
         </div>
     );
 };
