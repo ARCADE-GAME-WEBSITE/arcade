@@ -105,6 +105,7 @@ function showByUserID(req, res){
                         UserID: friend.dataValues.UserID,
                         FriendID: friend.dataValues.FriendID,
                         FriendEmail: user.dataValues.Email,
+                        FriendAvatar: user.dataValues.Avatar,
                         createdAt: friend.dataValues.createdAt,
                         updatedAt: friend.dataValues.updatedAt
                     }
