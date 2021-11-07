@@ -64,6 +64,7 @@ function GameDetail({user}) {
             </div>
             
             <div className="row">
+                {console.log(gameId)}
                 <GameComment user={user} gameId={gameId}/>
                 <GameTag/>
                 <GameDiff/>

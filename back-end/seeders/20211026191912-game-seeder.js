@@ -42,12 +42,12 @@ module.exports = {
       {
         DevID: 1,
         Url: "Pong.html",
-        DemoUrl: "https://www.youtube.com/embed/fiShX2pTz9A",
+        DemoUrl: "https://www.youtube.com/embed/nqoiNLa-dNI",
         Title: "Pong",
         Avatar: "4.png",
         Category: "Ball 2-players",
         GamePlayImage: "img1.png img2.png img3.png img4.png",
-        Description: "",
+        Description: "Pong is a two-dimensional sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth.",
         Played: 0,
         Rate: 0
       },

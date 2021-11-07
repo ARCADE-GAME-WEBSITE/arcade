@@ -22,7 +22,10 @@ function GameComment({user,gameId}) {
         getComment()
     },[gameId])
     
+    console.log(user)
+    console.log(gameId)
     GAMEID.current = gameId
+    console.log(GAMEID.current)
 
     const postComment = () => {
 
@@ -43,6 +46,7 @@ function GameComment({user,gameId}) {
     }
             
     function getComment() {
+        console.log(GAMEID.current)
         axios.get('comment/get-by-game-id/' + GAMEID.current)
                     .then((res) => {
                         console.log(GAMEID.current);
@@ -77,12 +81,11 @@ function GameComment({user,gameId}) {
                         });
 
     }
-    getComment()
 
     const functionCmtDelete = (id) => {
         axios.delete('/comment' + id)
             .then((response) =>{
-
+                console.log(response)
             })
             .catch((err) =>{
                 console.log(err);

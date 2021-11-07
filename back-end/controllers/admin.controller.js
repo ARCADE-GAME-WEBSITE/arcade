@@ -109,7 +109,7 @@ function login(req, res){
 
 
 function getCurrentAdmin(req, res){
-    const id = req.userData.userId;
+    const id = req.userData.adminId;
 
     models.Admin.findByPk(id).then(result => {
         if(result){

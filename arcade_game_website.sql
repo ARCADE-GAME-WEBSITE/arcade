@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 05, 2021 lúc 02:52 PM
+-- Thời gian đã tạo: Th10 07, 2021 lúc 05:13 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -44,11 +44,11 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `Email`, `Password`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `createdAt`, `updatedAt`) VALUES
-(1, 'tuankietnk2001@gmail.com', 'admin01', 'Nguyễn Đặng Tuấn Kiệt', 1, '2001-04-09', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'oppahd96@gmail.com', 'admin02', 'Hồ Minh Hiếu', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'bduyphuong12@gmail.com', 'admin03', 'Bùi Duy Phương', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'nghia567123@gmail.com', 'admin04', 'Lê Trung Nghĩa', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, '19521953@gm.uit.edu.vn', 'admin05', 'Mã Hải Nhật', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'tuankietnk2001@gmail.com', '$2a$10$RMdCi6u/kBoz1YoYuT3JXeL.5VkrH.syMRud8xLW1FmrVmKUgkmFm', 'Nguyễn Đặng Tuấn Kiệt', 1, '2001-04-09', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'oppahd96@gmail.com', '$2a$10$n4JbLZpeR9ZHdwX6XZMItus5eOpT9wVkgr1z9cbtFMUJyC/XqVGMm', 'Hồ Minh Hiếu', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'bduyphuong12@gmail.com', '$2a$10$Bx6yP.jeub3UXIIrzVOyvOThD2NDc13ktleqWFjrx6NIOkypU8i5m', 'Bùi Duy Phương', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'nghia567123@gmail.com', '$2a$10$wCsZpR/3GjYoYtc4PdIOhO/Caumg/OnCagjmiWjtRJOIFrcAqsLVG', 'Lê Trung Nghĩa', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, '19521953@gm.uit.edu.vn', '$2a$10$4cfN/tekJXvAsmzK1U1ncOA0IUTXRq1rl85mhpc2OG5ZIhELqYijW', 'Mã Hải Nhật', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,9 @@ INSERT INTO `comments` (`id`, `UserID`, `GameID`, `Content`, `createdAt`, `updat
 (7, 1, 1, 'Hello world toooo!', '2021-11-02 18:14:02', '2021-11-02 18:14:02'),
 (8, 1, 1, 'Hello world!', '2021-11-02 18:14:08', '2021-11-02 18:14:08'),
 (11, 1, 1, 'Hello world!!!', '2021-11-02 18:14:42', '2021-11-02 18:14:42'),
-(12, 1, 1, 'Hello world!!!', '2021-11-02 18:14:58', '2021-11-02 18:14:58');
+(12, 1, 1, 'Hello world!!!', '2021-11-02 18:14:58', '2021-11-02 18:14:58'),
+(13, 1, 1, 'Hi', '2021-11-07 15:42:51', '2021-11-07 15:42:51'),
+(14, 1, 4, 'Hello Pong game', '2021-11-07 15:50:15', '2021-11-07 15:50:15');
 
 -- --------------------------------------------------------
 
@@ -145,7 +147,10 @@ CREATE TABLE `friends` (
 --
 
 INSERT INTO `friends` (`id`, `UserID`, `FriendID`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 2, '2021-11-05 09:43:27', '2021-11-05 09:43:27');
+(4, 1, 2, '2021-11-06 07:23:35', '2021-11-06 07:23:35'),
+(5, 2, 1, '2021-11-06 07:23:35', '2021-11-06 07:23:35'),
+(6, 1, 3, '2021-11-07 15:44:17', '2021-11-07 15:44:17'),
+(7, 3, 1, '2021-11-07 15:44:17', '2021-11-07 15:44:17');
 
 -- --------------------------------------------------------
 
@@ -177,7 +182,7 @@ INSERT INTO `games` (`id`, `DevID`, `Url`, `DemoUrl`, `Title`, `Avatar`, `Catego
 (1, 1, '2048.html', 'https://www.youtube.com/embed/kQhkkqjGkFA', '2048', '1.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', '2048 is a popular single-player game for Web and mobile. It\'s a type of “sliding block puzzle” — think Threes!, on which 2048 is based, or the old-timey game klotski — that\'s played on an almost Sudoku-like grid. ... The object of the game is to combine the numbers displayed on the tiles until you reach 2048.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 1, 'FlappyBird.html', 'https://www.youtube.com/embed/fQoJZuBwrkU', 'FlappyBird', '2.png', 'Obstacle', 'img1.png img2.png img3.png img4.png', 'Flappy Bird is an arcade-style game in which the player controls the bird Faby, which moves persistently to the right. The player is tasked with navigating Faby through pairs of pipes that have equally sized gaps placed at random heights.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 1, 'Memory.html', 'https://www.youtube.com/embed/Um1EXbwmYYs', 'Memory', '3.png', 'Puzzle', 'img1.png img2.png img3.png img4.png', 'The memory game, or concentration, as it is sometimes called, is a popular card game played by children and adults around the world. Good memory is one of the qualities required in order to succeed in it. ... When it is assumed that the players have perfect memory, the memory game can be seen as a game of strategy.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 1, 'Pong.html', 'https://www.youtube.com/embed/fiShX2pTz9A', 'Pong', '4.png', 'Ball 2-players', 'img1.png img2.png img3.png img4.png', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 1, 'Pong.html', 'https://www.youtube.com/embed/nqoiNLa-dNI', 'Pong', '4.png', 'Ball 2-players', 'img1.png img2.png img3.png img4.png', 'Pong is a two-dimensional sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (5, 1, 'RedRect.html', 'https://www.youtube.com/embed/vGVoF_CbKmk', 'RedRect', '5.png', 'Obstacle', 'img1.png img2.png img3.png img4.png', 'Move your rectangular block to dodge other blocks moving to and collect similar blocks to increase personal score. Use the quickness of your hands to earn the highest score', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (6, 1, 'Snake.html', 'https://www.youtube.com/embed/=DekS8Pgb1qc', 'Snake', '6.png', 'Snake', 'img1.png img2.png img3.png img4.png', 'Snake is a video game that originated during the late 1970s in arcades becoming something of a classic. ... The player controls a long, thin creature, resembling a snake, which roams around on a bordered plane, picking up food (or some other item), trying to avoid hitting its own tail or the edges of the playing area.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 1, 'Sudoku.html', 'https://www.youtube.com/embed/8zRXDsGydeQ', 'Sudoku', '7.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'In its simplest and most common configuration, sudoku consists of a 9 × 9 grid with numbers appearing in some of the squares. The object of the puzzle is to fill the remaining squares, using all the numbers 1–9 exactly once in each row, column, and the nine 3 × 3 subgrids.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -263,7 +268,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `Email`, `Password`, `Role`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `createdAt`, `updatedAt`) VALUES
 (1, 'tuankietnk2001@gmail.com', '$2a$10$ChncUp.mM26bsURXPEvOW.j520b3bHSIFL2oPVGKiXclxfzguGLfi', 0, 'Tuấn Kiệt', 1, '0000-00-00 00:00:00', 'male.jpg', '2021-11-05 09:30:35', '2021-11-05 09:30:35'),
-(2, 'test@gmail.com', '$2a$10$8PugyBc.WnkfyLuQSovspuPAQfT0lyXAqra8nRcH12DI/VPxCHFQi', 0, 'test', 1, '0000-00-00 00:00:00', 'male.jpg', '2021-11-05 09:30:51', '2021-11-05 09:30:51');
+(2, 'test@gmail.com', '$2a$10$8PugyBc.WnkfyLuQSovspuPAQfT0lyXAqra8nRcH12DI/VPxCHFQi', 0, 'test', 1, '0000-00-00 00:00:00', 'male.jpg', '2021-11-05 09:30:51', '2021-11-05 09:30:51'),
+(3, 'test2@gmail.com', '$2a$10$un0Ju2USe.50L6FT8MI/7OT7yEg3UBbq4YWrDeehYaBHoENjH/BNO', 0, 'Tuấn Kiệt', 0, '0000-00-00 00:00:00', 'female.jpg', '2021-11-07 15:44:04', '2021-11-07 15:44:04');
 
 -- --------------------------------------------------------
 
@@ -365,7 +371,7 @@ ALTER TABLE `user_records`
 -- AUTO_INCREMENT cho bảng `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -377,7 +383,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `error_feedbacks`
@@ -389,7 +395,7 @@ ALTER TABLE `error_feedbacks`
 -- AUTO_INCREMENT cho bảng `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `games`
@@ -407,7 +413,7 @@ ALTER TABLE `upload_game_requests`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `user_records`
