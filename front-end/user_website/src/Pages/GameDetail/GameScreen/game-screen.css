@@ -59,6 +59,7 @@
   height:800px;
   border:1px solid black;
   display: none;
+  padding-top: 46px;
 }
 .playGame__screen{
   width:100%;

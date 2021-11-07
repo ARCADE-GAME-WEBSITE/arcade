@@ -92,15 +92,15 @@ function FriendList({user}) {
     
                 <ul className="list-group list-group-flush">
                     {   
-                        // renderListFriend.current.map((friend) => {return(
-                        //     <li className="list-group-item friend-info" key={friend.id}>
-                        //         <div className="friend-info__item">
-                        //             <img className="friend-list__title-img" src={friend.Avatar} alt="" />
-                        //             <div className="friend-list__title-name">{friend.Full_name}</div>
-                        //             <button className="friend-list__title-add">Invite</button>
-                        //         </div>
-                        //     </li>
-                        //     )})
+                        renderListFriend.current.map((friend) => {return(
+                            <li className="list-group-item friend-info" key={friend.id}>
+                                <div className="friend-info__item">
+                                    <img className="friend-list__title-img" src={friend.Avatar} alt="" />
+                                    <div className="friend-list__title-name">{friend.Full_name}</div>
+                                    <button className="friend-list__title-add">Invite</button>
+                                </div>
+                            </li>
+                            )})
                     }
                 </ul>
                 <div className="friend-list__footer">
