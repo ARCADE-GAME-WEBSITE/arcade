@@ -1,7 +1,7 @@
 import React, {useState,useRef,useEffect,useLayoutEffect} from "react";
-import './friend-list.css'
 import axios from 'axios'
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './friend-list.css'
 import friendList from '../../../Assets/Images/App/friend-list.png'
 import facebook from '../../../Assets/Images/Icons/facebook.png'
 
@@ -14,40 +14,36 @@ function FriendList({user}) {
     
     const inputEmail = document.getElementById('friend-list__add-email')
     const [listFriend, setListFriend] = useState([])
-
     const renderListFriend = useRef()
+
+    useEffect(() => {
+        if(user!=null)
+        getFriend()
+    },[user])
+    // useEffect(() =>{
+
+    // },[listFriend])
+    console.log(listFriend);
+    console.log(user);
     const getFriend = () => {
         axios.get('/friend/get-by-user-id/' + user.id )
             .then(res => {
-                const arrListFriend = res.data.post.map((x)=>{
-                    return x.id
-                })
-                const listFriendById = []
-                arrListFriend.map((x)=>{
-                    axios.get('user/' + x, config)
-                    .then(res =>{
-                        listFriendById.push(res.data)
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-                })
-                setListFriend(listFriendById)
+                console.log(res.data.post);
+                setListFriend(res.data.post)
+
             })
             .catch(err => {
                 console.log(err);
             })
     }
-    useEffect(() => {
-        if(user !=null){
-            getFriend()
-        }
-    },[])
-    useEffect(() => {
-        renderListFriend.current = listFriend
-    },listFriend)
+    
 
-    console.log(renderListFriend.current);
+    // renderListFriend.current=[]
+    // useEffect(() => {
+    //     renderListFriend.current = listFriend
+    // },listFriend)
+
+
 
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -57,7 +53,7 @@ function FriendList({user}) {
     const AddFriendbyEmail = () => {
         if(inputEmail.value !=null)
         {
-            if(user.email != inputEmail.input)
+            if(user.email != inputEmail.value)
             {
                 axios.post('/friend', {
                     UserID : user.id,
@@ -90,19 +86,21 @@ function FriendList({user}) {
                     </div>
                 </div>
     
-                <ul className="list-group list-group-flush">
+                <div className="list-group list-group-flush">
                     {   
-                        renderListFriend.current.map((friend) => {return(
-                            <li className="list-group-item friend-info" key={friend.id}>
+                        listFriend ? listFriend.map((friend) => (
+                            <div className="friend-info" key={friend.id}>
                                 <div className="friend-info__item">
-                                    <img className="friend-list__title-img" src={friend.Avatar} alt="" />
-                                    <div className="friend-list__title-name">{friend.Full_name}</div>
+                                    <img className="friend-list__title-img" src={axios.defaults.baseURL + 'uploads/images/users/' + friend.FriendAvatar} alt="" />
+                                    <div className="friend-list__title-name">{friend.FriendEmail}</div>
                                     <button className="friend-list__title-add">Invite</button>
                                 </div>
-                            </li>
-                            )})
+                            </div>
+                            ))
+                            :null
+           
                     }
-                </ul>
+                </div>
                 <div className="friend-list__footer">
                     <button className="friend-list__add" id="friend-list__add" onClick={openAddFriendForm}>
                         <i className="fas fa-plus friend-list__add-icon"></i>

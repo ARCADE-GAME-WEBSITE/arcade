@@ -27,7 +27,6 @@ function GameComment({user,gameId}) {
             Content: inputCmt.value,
             }, config)
             .then(function (response) {
-                console.log(response)
                     return axios.get('comment/get-by-game-id/' + GAMEID.current)
                         .then((res) => {
                             console.log(res.data)
@@ -63,6 +62,12 @@ function GameComment({user,gameId}) {
 
     const cmtDelete = () => {
         axios.delete('/comment')
+            .then((response) =>{
+
+            })
+            .catch((err) =>{
+                console.log(err);
+            })
     }
     
     console.log(cmt);
