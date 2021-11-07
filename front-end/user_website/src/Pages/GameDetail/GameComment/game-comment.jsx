@@ -12,32 +12,54 @@ function GameComment({user,gameId}) {
     };
     
     let avatarUrl = useRef()
-    let cmtCurrent = useRef()
-    let userNameCurrent = useRef()
-    const [cmt,setCmt] = useState([cmtCurrent.current])
-    const [userName,setUserName] = useState([userNameCurrent.current])
+    const [cmt,setCmt] = useState([])
+    const [userName,setUserName] = useState([])
     const [timeSend,setTimeSend] = useState('')
-    console.log(timeSend);
+    const [cmtDelete, setCmtDelete] = useState([])
+
     const GAMEID= useRef()
+    useEffect(() => {
+        getComment()
+    },[gameId])
+    
     GAMEID.current = gameId
-    function getComment(){
-        axios.post('/comment', {
-            GameID:GAMEID.current,
+
+    const postComment = () => {
+
+        axios.post('comment', {
             UserID: user.id,
+            GameID: GAMEID.current,
             Content: inputCmt.value,
             }, config)
-            .then(function (response) {
-                    return axios.get('comment/get-by-game-id/' + GAMEID.current)
-                        .then((res) => {
-                            console.log(res.data)
+            .then(response =>{
+                console.log(response);
+                getComment()
+            })
+            
+            .catch((err) => {
+                console.log(err);
+            })
+            inputCmt.value = null
+    }
+            
+    function getComment() {
+        axios.get('comment/get-by-game-id/' + GAMEID.current)
+                    .then((res) => {
+                        console.log(GAMEID.current);
+                        console.log(res.data.post)
                             const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)
                             console.log(cmtArr);
                             const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
-                            cmtCurrent.current = cmtArr[2].Content
+
                             const saveArrName = [cmtArr[0].UserName,cmtArr[1].UserName,cmtArr[2].UserName]
-                            userNameCurrent.current = cmtArr[2].UserName
+
+                            const saveArrDelete = [cmtArr[0].id,cmtArr[1].id,cmtArr[2].id]
+
+                            
                             setCmt(saveArrContent)
                             setUserName(saveArrName)
+                            setCmtDelete(saveArrDelete)
+
                             avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
                             
                             for (var i = 0; i <=2;i++){
@@ -50,18 +72,15 @@ function GameComment({user,gameId}) {
                             setTimeSend(saveArrTimeSend)
                             console.log(saveArrTimeSend);
                     })
-                .catch((err) => {
-                    console.log(err);
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-                });
-        inputCmt.value = null
-    }
+                    .catch(function (error) {
+                        console.log(error);
+                        });
 
-    const cmtDelete = () => {
-        axios.delete('/comment')
+    }
+    getComment()
+
+    const functionCmtDelete = (id) => {
+        axios.delete('/comment' + id)
             .then((response) =>{
 
             })
@@ -70,10 +89,11 @@ function GameComment({user,gameId}) {
             })
     }
     
-    console.log(cmt);
-    console.log(userName);
-    console.log(timeSend);
-    console.log(avatarUrl.current)
+    // console.log(cmt);
+    // console.log(userName);
+    // console.log(timeSend);
+    // console.log(cmtDelete);
+    // console.log(avatarUrl.current)
 
     useEffect(() =>{
         if(user){
@@ -103,7 +123,7 @@ function GameComment({user,gameId}) {
                 <div className="game-comment__account-login" id="test2">
                     <img className="comment__img" src={avatarUrl.current} alt="" />
                     <input type="text" placeholder="Comment text" className="game-comment__input" id="game-comment__account-btn"/>
-                    <input type="submit" value="Send" className="game-comment__account-send" onClick={getComment}/>
+                    <input type="submit" value="Send" className="game-comment__account-send" onClick={postComment}/>
                 </div>
                 <div className="game-comment__content">
                     <div className="game-comment__content1">
@@ -124,7 +144,7 @@ function GameComment({user,gameId}) {
                         <div className="comment__update">
                             <i class="comment__update-icon fas fa-pen-alt"></i>
                         </div>
-                        <div className="comment__delete" onClick={cmtDelete}>
+                        <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDelete[2])}>
                             <i class="comment__delete-icon far fa-trash-alt"></i>
                         </div>
                     </div>
@@ -147,7 +167,7 @@ function GameComment({user,gameId}) {
                             <div className="comment__update">
                                 <i class="comment__update-icon fas fa-pen-alt"></i>
                             </div>
-                            <div className="comment__delete">
+                            <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDelete[1])}>
                                 <i class="comment__delete-icon far fa-trash-alt"></i>
                             </div>
                         </div>
@@ -169,7 +189,7 @@ function GameComment({user,gameId}) {
                             <div className="comment__update">
                                 <i class="comment__update-icon fas fa-pen-alt"></i>
                             </div>
-                            <div className="comment__delete">
+                            <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDelete[0])}>
                                 <i class="comment__delete-icon far fa-trash-alt"></i>
                             </div>
                         </div>
