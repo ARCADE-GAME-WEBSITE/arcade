@@ -214,17 +214,17 @@ function GameComment({user,gameId}) {
     },[user])
 
     console.log(cmt);
-    useEffect(() => {
-        for(let i=0; i<=2; i++){
-            if(user){
-                if(user.id != userId[i]){
-                    i=i+1
-                    document.getElementById(`comment__bottom__right${i}`).style.display = 'none'
-                    i=i-1
-                }
-            }
-        }
-    },[cmt])
+    // useEffect(() => {
+    //     for(let i=0; i<=2; i++){
+    //         if(user){
+    //             if(user.id != userId[i]){
+    //                 i=i+1
+    //                 document.getElementById(`comment__bottom__right${i}`).style.display = 'none'
+    //                 i=i-1
+    //             }
+    //         }
+    //     }
+    // },[cmt])
 
 
     return (
