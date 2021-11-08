@@ -1,3 +1,8 @@
+.visibleHidden{
+  visibility: hidden;
+}
+
+
 .game-comment {
   height: 300px;
   background-color: rgb(199, 228, 255);
@@ -10,11 +15,11 @@
   align-items: center;
   justify-content: center;
   margin: 5px;
-  padding: 5px;
+  padding: 2px;
   border: 2px solid rgba(160, 160, 160, 0.5);
 }
 .game-comment__account-header {
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
   margin: 5px;
@@ -61,24 +66,53 @@
   font-size: 1.1rem;
   margin: 5px;
 }
-.game-comment__content3,
-.game-comment__content2,
+
 .game-comment__content1 {
   display: flex;
-  height: 50px;
+  height: 54px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 3px;
   margin: 2px;
   align-items: center;
 }
 
-.game-comment__content3,
-.game-comment__content2 {
-  width: 48%;
-  float: left;
-}
 .comment__cmt {
   font-size: 0.8rem;
+  max-width: 440px;
+  text-overflow: ellipsis;
+  overflow:hidden;
+}
+@keyframes commentCome{
+  from{
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.comment__input{
+  display: none;
+  width: 100%;
+  animation: comment ease-in 1s;
+}
+@keyframes comment{
+  from{
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.comment__input-box {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 5px;
+  padding: 2px 20px 2px 5px;
 }
 .comment__img {
   display: block;
@@ -90,47 +124,87 @@
   margin: 2px 0 2px 5px;
   flex: 1;
 }
+.comment__bottom,
 .comment__top{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.comment__bottom{
+  margin-bottom: 3px;
+}
+.comment__top{
+  height: 100%;
+}
+.comment__bottom__right{
+  display: flex;
+  align-items: center;
+  animation: comment ease-in 1s;
+  visibility: none;
+}
+.comment__bottom__right-hide{
+  display: none;
+  align-items: center;
+  animation: comment ease-in 1s;
 }
 .comment__user {
   color: red;
   font-size: 1rem;
   font-weight: 700;
   margin-right: 20px;
+  padding-top: 1px;
 }
 .comment__time{
   display: inline-flex;
   font-size: 0.6rem;
-}
-.comment__update{
   margin-right: 5px;
-  width: 25px;
-  height: 25px;
+}
+.comment__update-hide,
+.comment__update{
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   border-radius: 10px;
 }
+.comment__delete-hide,
 .comment__delete{
-  margin-right: 12px;
-  width: 25px;
-  height: 25;
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   color: red;
   border-radius: 10px;
 }
+
+.comment__delete-hide:hover,
+.comment__update-hide:hover,
 .comment__update:hover,
 .comment__delete:hover{
   background-color: #ccc;
 }
+.comment__delete-icon-hide,
+.comment__update-icon-hide,
 .comment__update-icon,
 .comment__delete-icon{
   margin: 25% 25%;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+
+.comment__delete-icon-hide
+.comment__update-icon-hide{
+  margin: 25% 25%;
   font-size: 0.8em;
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .login-out {
-  height: 45px;
+  height: 35px;
   width: 120px;
   background: #fff;
   margin: 0 0 0 16px;

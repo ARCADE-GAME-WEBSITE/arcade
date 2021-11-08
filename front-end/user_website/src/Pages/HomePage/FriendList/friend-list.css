@@ -39,7 +39,7 @@
   margin: 8px 5px 8px 0;
 }
 .friend-list__title-name{
-  width: 150px;
+  width: 180px;
   text-overflow: ellipsis;
   overflow:hidden;
 }
@@ -123,5 +123,3 @@
 }
 
 
-
-/* bootstrap */

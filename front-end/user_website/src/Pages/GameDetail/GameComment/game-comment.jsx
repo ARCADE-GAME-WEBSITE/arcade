@@ -1,4 +1,4 @@
-import React, { useEffect , useState , useRef }from 'react'
+import React, { useEffect , useState , useRef,useLayoutEffect }from 'react'
 
 import './game-comment.css'
 import axios from 'axios'
@@ -15,7 +15,9 @@ function GameComment({user,gameId}) {
     const [cmt,setCmt] = useState([])
     const [userName,setUserName] = useState([])
     const [timeSend,setTimeSend] = useState('')
-    const [cmtDelete, setCmtDelete] = useState([])
+    const [cmtDeleteUpdate, setCmtDeleteUpdate] = useState([])
+    const [cmtUserAvatar, setUserAvatar] = useState([])
+    const [userId,setUserId] = useState('')
 
     const GAMEID= useRef()
     useEffect(() => {
@@ -28,41 +30,50 @@ function GameComment({user,gameId}) {
     console.log(GAMEID.current)
 
     const postComment = () => {
+        console.log(inputCmt.value);
+        if(inputCmt.value !==''){
+            axios.post('comment/', {
+                UserID: user.id,
+                GameID: GAMEID.current,
+                Content: inputCmt.value,
+                }, config)
+                .then(response =>{
+                    getComment()
+                })
+                
+                .catch((err) => {
+                    console.log(err);
+                })
+                inputCmt.value = null
+        }
+        else alert('Please write on the box')
 
-        axios.post('comment', {
-            UserID: user.id,
-            GameID: GAMEID.current,
-            Content: inputCmt.value,
-            }, config)
-            .then(response =>{
-                console.log(response);
-                getComment()
-            })
-            
-            .catch((err) => {
-                console.log(err);
-            })
-            inputCmt.value = null
     }
-            
+        
+    //GetComment
     function getComment() {
         console.log(GAMEID.current)
         axios.get('comment/get-by-game-id/' + GAMEID.current)
                     .then((res) => {
                         console.log(GAMEID.current);
-                        console.log(res.data.post)
                             const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)
                             console.log(cmtArr);
                             const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
 
                             const saveArrName = [cmtArr[0].UserName,cmtArr[1].UserName,cmtArr[2].UserName]
 
-                            const saveArrDelete = [cmtArr[0].id,cmtArr[1].id,cmtArr[2].id]
+                            const saveArrDeleteUpdate = [cmtArr[0].id,cmtArr[1].id,cmtArr[2].id]
 
+                            const saveArrUserId = [cmtArr[2].UserID,cmtArr[1].UserID,cmtArr[0].UserID]
+
+                            const saveArrUserAvatar = [cmtArr[0].UserAvatar,cmtArr[1].UserAvatar,cmtArr[2].UserAvatar]
                             
                             setCmt(saveArrContent)
+                            
                             setUserName(saveArrName)
-                            setCmtDelete(saveArrDelete)
+                            setCmtDeleteUpdate(saveArrDeleteUpdate)
+                            setUserId(saveArrUserId)
+                            setUserAvatar(saveArrUserAvatar)
 
                             avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
                             
@@ -82,21 +93,118 @@ function GameComment({user,gameId}) {
 
     }
 
+    //delete
     const functionCmtDelete = (id) => {
-        axios.delete('/comment' + id)
+        axios.delete('comment/' + id, config)
             .then((response) =>{
                 console.log(response)
+                getComment()
             })
             .catch((err) =>{
                 console.log(err);
             })
     }
     
-    // console.log(cmt);
-    // console.log(userName);
-    // console.log(timeSend);
-    // console.log(cmtDelete);
-    // console.log(avatarUrl.current)
+    //Update1
+    const handleUpdate1 = () =>{
+
+        document.getElementById('comment__bottom__right1').style.display = 'none'
+        document.getElementById('comment__bottom__right-hide1').style.display = 'flex'
+        document.getElementById('comment__cmt1').style.display = 'none'
+        document.getElementById('comment__input1').style.display = 'flex'
+    }
+    
+    const cancelUpdate1 = () =>{
+        document.getElementById('comment__bottom__right1').style.display = 'flex'
+        document.getElementById('comment__bottom__right-hide1').style.display = 'none'
+        document.getElementById('comment__cmt1').style.display = 'flex'
+        document.getElementById('comment__cmt1').style.animation = 'commentCome ease-in 1s'
+        document.getElementById('comment__input1').style.display = 'none'
+    }
+
+    const acceptUpdate1 =(id) =>{
+        const valueUpdate1 = document.getElementById('comment__input-box1').value
+        axios.patch('comment/' + id,{
+                Content:valueUpdate1
+            }, config)
+            .then(() =>{
+                cancelUpdate1()
+                getComment()
+                valueUpdate1.value=null
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+        
+    }
+
+    //update2
+    const handleUpdate2 = () =>{
+
+        document.getElementById('comment__bottom__right2').style.display = 'none'
+        document.getElementById('comment__bottom__right-hide2').style.display = 'flex'
+        document.getElementById('comment__cmt2').style.display = 'none'
+        document.getElementById('comment__input2').style.display = 'flex'
+    }
+    
+    const cancelUpdate2 = () =>{
+        document.getElementById('comment__bottom__right2').style.display = 'flex'
+        document.getElementById('comment__bottom__right-hide2').style.display = 'none'
+        document.getElementById('comment__cmt2').style.display = 'flex'
+        document.getElementById('comment__cmt2').style.animation = 'commentCome ease-in 1s'
+        document.getElementById('comment__input2').style.display = 'none'
+    }
+
+    const acceptUpdate2 =(id) =>{
+        const valueUpdate2 = document.getElementById('comment__input-box2').value
+        axios.patch('comment/' + id,{
+                Content:valueUpdate2
+            }, config)
+            .then(() =>{
+                cancelUpdate2()
+                getComment()
+                valueUpdate2.value=null
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+        
+    }
+
+    //update3
+    const handleUpdate3 = () =>{
+
+        document.getElementById('comment__bottom__right3').style.display = 'none'
+        document.getElementById('comment__bottom__right-hide3').style.display = 'flex'
+        document.getElementById('comment__cmt3').style.display = 'none'
+        document.getElementById('comment__input3').style.display = 'flex'
+    }
+    
+    const cancelUpdate3 = () =>{
+        document.getElementById('comment__bottom__right3').style.display = 'flex'
+        document.getElementById('comment__bottom__right-hide3').style.display = 'none'
+        document.getElementById('comment__cmt3').style.display = 'flex'
+        document.getElementById('comment__cmt3').style.animation = 'commentCome ease-in 1s'
+        document.getElementById('comment__input3').style.display = 'none'
+    }
+
+    const acceptUpdate3 =(id) =>{
+        const valueUpdate3 = document.getElementById('comment__input-box3').value
+        axios.patch('comment/' + id,{
+                Content:valueUpdate3
+            }, config)
+            .then(() =>{
+                cancelUpdate3()
+                getComment()
+                valueUpdate3.value=null
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+        
+    }
+
+    console.log(userId);
 
     useEffect(() =>{
         if(user){
@@ -104,6 +212,20 @@ function GameComment({user,gameId}) {
             document.getElementById('test2').style.display = 'flex'
         }
     },[user])
+
+    console.log(cmt);
+    useEffect(() => {
+        for(let i=0; i<=2; i++){
+            if(user){
+                if(user.id != userId[i]){
+                    i=i+1
+                    document.getElementById(`comment__bottom__right${i}`).style.display = 'none'
+                    i=i-1
+                }
+            }
+        }
+    },[cmt])
+
 
     return (
             <div className="game-comment game-desc">
@@ -125,12 +247,12 @@ function GameComment({user,gameId}) {
                 </div>
                 <div className="game-comment__account-login" id="test2">
                     <img className="comment__img" src={avatarUrl.current} alt="" />
-                    <input type="text" placeholder="Comment text" className="game-comment__input" id="game-comment__account-btn"/>
+                    <input type="text" placeholder="Comment text" className="game-comment__input" maxlength="100" id="game-comment__account-btn"/>
                     <input type="submit" value="Send" className="game-comment__account-send" onClick={postComment}/>
                 </div>
                 <div className="game-comment__content">
                     <div className="game-comment__content1">
-                        <img className="comment__img" src={avatarUrl.current} alt="" />
+                        <img className="comment__img" src={axios.defaults.baseURL + 'uploads/images/users/'+cmtUserAvatar[2]} alt="" />
                         <div className="game-comment__desc">
                             <div className="comment__top">
                                 <div className="comment__user">
@@ -140,60 +262,103 @@ function GameComment({user,gameId}) {
                                     <time>{timeSend[2]}</time>
                                 </div>
                             </div>
-                            <div className="comment__cmt">
-                                {cmt[2]}
+                            <div className="comment__bottom">
+                                <div className="comment__cmt" id="comment__cmt1">
+                                        {cmt[2]}
+                                </div>
+                                <div className="comment__input" id="comment__input1">
+                                    <input type="text" name="input" id="comment__input-box1" className="comment__input-box"  placeholder="Comment Update" />
+                                </div>
+                                <div className="comment__bottom__right" id="comment__bottom__right1">
+                                    <div className="comment__update" onClick={handleUpdate1}>
+                                        <i class="comment__update-icon fas fa-pen-alt"></i>
+                                    </div>
+                                    <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDeleteUpdate[2])}>
+                                        <i class="comment__delete-icon far fa-trash-alt"></i>
+                                    </div>
+                                </div>
+                                <div className="comment__bottom__right-hide" id="comment__bottom__right-hide1">
+                                    <div className="comment__update-hide" onClick={cancelUpdate1}>
+                                        <i class="comment__update-icon-hide far fa-times-circle"></i>
+                                    </div>
+                                    <div className="comment__delete-hide" onClick={() => acceptUpdate1(cmtDeleteUpdate[2])}>
+                                        <i class="comment__delete-icon-hide far fa-check-circle"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="comment__update">
-                            <i class="comment__update-icon fas fa-pen-alt"></i>
-                        </div>
-                        <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDelete[2])}>
-                            <i class="comment__delete-icon far fa-trash-alt"></i>
                         </div>
                     </div>
-                    <div className="game-comment--css">
-                        <div className="game-comment__content2">
-                            <img className="comment__img" src={avatarUrl.current} alt="" />
-                            <div className="game-comment__desc">
-                                <div className="comment__top">
-                                    <div className="comment__user">
-                                        {userName[1]}
-                                    </div>
-                                    <div className="comment__time">
-                                        <time>{timeSend[1]}</time>
-                                    </div>
+                    <div className="game-comment__content1">
+                        <img className="comment__img" src={axios.defaults.baseURL + 'uploads/images/users/'+cmtUserAvatar[1]} alt="" />
+                        <div className="game-comment__desc">
+                            <div className="comment__top">
+                                <div className="comment__user">
+                                    {userName[1]}
                                 </div>
-                                <div className="comment__cmt">
-                                    {cmt[1]}
+                                <div className="comment__time">
+                                    <time>{timeSend[1]}</time>
                                 </div>
                             </div>
-                            <div className="comment__update">
-                                <i class="comment__update-icon fas fa-pen-alt"></i>
-                            </div>
-                            <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDelete[1])}>
-                                <i class="comment__delete-icon far fa-trash-alt"></i>
+                            <div className="comment__bottom">
+                                <div className="comment__cmt" id="comment__cmt2">
+                                        {cmt[1]}
+                                </div>
+                                <div className="comment__input" id="comment__input2">
+                                    <input type="text" name="input" id="comment__input-box2" className="comment__input-box" placeholder="Comment Update" />
+                                </div>
+                                <div className="comment__bottom__right" id="comment__bottom__right2">
+                                    <div className="comment__update" onClick={handleUpdate2}>
+                                        <i class="comment__update-icon fas fa-pen-alt"></i>
+                                    </div>
+                                    <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDeleteUpdate[1])}>
+                                        <i class="comment__delete-icon far fa-trash-alt"></i>
+                                    </div>
+                                </div>
+                                <div className="comment__bottom__right-hide" id="comment__bottom__right-hide2">
+                                    <div className="comment__update-hide" onClick={cancelUpdate2}>
+                                        <i class="comment__update-icon-hide far fa-times-circle"></i>
+                                    </div>
+                                    <div className="comment__delete-hide" onClick={() => acceptUpdate2(cmtDeleteUpdate[1])}>
+                                        <i class="comment__delete-icon-hide far fa-check-circle"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="game-comment__content3">
-                            <img className="comment__img" src={avatarUrl.current} alt="" />
-                            <div className="game-comment__desc">
-                                <div className="comment__top">
-                                    <div className="comment__user">
-                                        {userName[0]}
-                                    </div>
-                                    <div className="comment__time">
-                                        <time>{timeSend[0]}</time>
-                                    </div>
+                    </div>
+                    <div className="game-comment__content1">
+                        <img className="comment__img" src={axios.defaults.baseURL + 'uploads/images/users/'+cmtUserAvatar[0]} alt="" />
+                        <div className="game-comment__desc">
+                            <div className="comment__top">
+                                <div className="comment__user">
+                                    {userName[0]}
                                 </div>
-                                <div className="comment__cmt">
-                                    {cmt[0]}
+                                <div className="comment__time">
+                                    <time>{timeSend[0]}</time>
                                 </div>
                             </div>
-                            <div className="comment__update">
-                                <i class="comment__update-icon fas fa-pen-alt"></i>
-                            </div>
-                            <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDelete[0])}>
-                                <i class="comment__delete-icon far fa-trash-alt"></i>
+                            <div className="comment__bottom">
+                                <div className="comment__cmt" id="comment__cmt3">
+                                        {cmt[0]}
+                                </div>
+                                <div className="comment__input" id="comment__input3">
+                                    <input type="text" name="input" id="comment__input-box3" className="comment__input-box" placeholder="Comment Update" />
+                                </div>
+                                <div className="comment__bottom__right" id="comment__bottom__right3">
+                                    <div className="comment__update" onClick={handleUpdate3}>
+                                        <i class="comment__update-icon fas fa-pen-alt"></i>
+                                    </div>
+                                    <div className="comment__delete" onClick={() =>functionCmtDelete(cmtDeleteUpdate[0])}>
+                                        <i class="comment__delete-icon far fa-trash-alt"></i>
+                                    </div>
+                                </div>
+                                <div className="comment__bottom__right-hide" id="comment__bottom__right-hide3">
+                                    <div className="comment__update-hide" onClick={cancelUpdate1}>
+                                        <i class="comment__update-icon-hide far fa-times-circle"></i>
+                                    </div>
+                                    <div className="comment__delete-hide" onClick={() => acceptUpdate3(cmtDeleteUpdate[0])}>
+                                        <i class="comment__delete-icon-hide far fa-check-circle"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

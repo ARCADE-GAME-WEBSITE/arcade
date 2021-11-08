@@ -14,15 +14,13 @@ function FriendList({user}) {
     
     const inputEmail = document.getElementById('friend-list__add-email')
     const [listFriend, setListFriend] = useState([])
-    const renderListFriend = useRef()
+
 
     useEffect(() => {
         if(user!=null)
         getFriend()
     },[user])
-    // useEffect(() =>{
 
-    // },[listFriend])
     console.log(listFriend);
     console.log(user);
     const getFriend = () => {
@@ -37,13 +35,6 @@ function FriendList({user}) {
             })
     }
     
-
-    // renderListFriend.current=[]
-    // useEffect(() => {
-    //     renderListFriend.current = listFriend
-    // },listFriend)
-
-
 
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
