@@ -159,38 +159,32 @@ function show(req, res){
 
 function update(req, res){
     const id = req.params.id;
-
-    bcryptjs.genSalt(10, function(err, salt){
-        bcryptjs.hash(req.body.Password, salt, function(err, hash){
-            const updateAdmin = {
-                Email: req.body.Email,
-                Password: hash,
-                Full_name: req.body.Full_name,
-                Gender: req.body.Gender,
-                DayOfBirth: req.body.DayOfBirth
-            }
-
-            const validationResponse = v.validate(updateAdmin, schema);
-            if(validationResponse !== true){
-                return res.status(400).json({
-                    message: "Validation failed!",
-                    errors: validationResponse
-                });
-            }
-
-            models.Admin.update(updateAdmin, {where: {id:id}}).then(result => {
-                res.status(200).json({
-                    message: "Admin account updated successfully!",
-                    post: updateAdmin
-                });
-            }).catch(error => {
-                res.status(200).json({
-                    message: "Something went wrong!",
-                    error: error
-                });
-            })
+    const updateAdmin = {
+        Email: req.body.Email,
+        Full_name: req.body.Full_name,
+        Gender: req.body.Gender,
+        DayOfBirth: req.body.DayOfBirth
+    }
+    
+    const validationResponse = v.validate(updateAdmin, schema);
+    if(validationResponse !== true){
+        return res.status(400).json({
+            message: "Validation failed!",
+            errors: validationResponse
         });
-    });
+    }
+
+    models.Admin.update(updateAdmin, {where: {id:id}}).then(result => {
+        res.status(200).json({
+            message: "Admin account updated successfully!",
+            post: updateAdmin
+        });
+    }).catch(error => {
+        res.status(200).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    })
 }
 
 function destroy(req, res){
@@ -275,6 +269,52 @@ function sendEmail(email, newPassword){
     })
 }
 
+function changePassword(req, res){
+    const id = req.params.id;
+
+    models.Admin.findOne({where:{id: id}}).then(admin => {
+        if(admin === null){
+            res.status(401).json({
+                message: "Admin not found!"
+            });
+        }
+        else {
+            bcryptjs.compare(req.body.Old_password, admin.Password, function(err, result){
+                if(result){
+                    bcryptjs.genSalt(10, function(err, salt){
+                        bcryptjs.hash(req.body.New_password, salt, function(err, hash){
+                            const updateAdmin = {
+                                Password: hash
+                            }
+        
+                            models.Admin.update(updateAdmin, {where: {id: admin.id}}).then(result1 => {
+                                res.status(200).json({
+                                    message: "Change password successfully!"
+                                });
+                            }).catch(error => {
+                                res.status(200).json({
+                                    message: "Something went wrong!",
+                                    error: error
+                                });
+                            });
+                        });
+                    });
+                }
+                else {
+                    res.status(401).json({
+                        message: "Wrong old password!"
+                    });
+                }
+            });
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    });
+}
+
 module.exports = {
     create: create,
     login: login,
@@ -283,5 +323,6 @@ module.exports = {
     show: show,
     update: update,
     destroy: destroy,
-    forgot: forgot
+    forgot: forgot,
+    changePassword: changePassword
 }

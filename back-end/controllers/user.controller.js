@@ -336,7 +336,7 @@ function changePassword(req, res){
         
                             models.User.update(updateUser, {where: {id: user.id}}).then(result1 => {
                                 res.status(200).json({
-                                    message: "Password changed successfully!"
+                                    message: "Change password successfully!"
                                 });
                             }).catch(error => {
                                 res.status(200).json({

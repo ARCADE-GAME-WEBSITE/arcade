@@ -12,5 +12,6 @@ router.get('/:id', checkAuthMiddleware.checkAuth, adminController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, adminController.update);
 router.delete('/:id', checkAuthMiddleware.checkAuth, adminController.destroy);
 router.post("/forgot-password", adminController.forgot);
+router.post("/change-password/:id", checkAuthMiddleware.checkAuth, adminController.changePassword);
 
 module.exports = router;
