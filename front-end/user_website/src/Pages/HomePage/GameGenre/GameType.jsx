@@ -9,58 +9,13 @@ import InfiniteCarousel from 'react-leaf-carousel';
 /* <!--Game Link --> */
 
 function GameCategories({listCategory}){
-    
-    
-    // const config = {
-    //     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    //     };
-    //   const [CategoriesID,setCategoriesID] = useState([])
-    //   const [CategoriesName,setCategoriesName] = useState([])
-    //   const [createdAt,setCreatedAt] = useState([])
-    //   let avatarGameUrl = useRef()
-
-    //   const getCategories = () => {
-       
-    //     axios.get('/category', {
-    //         categoriesID:listCategory.id,
-    //         CategoryName: listCategory.CategoryName,
-    //         createdAt: listCategory.createdAt,
-    //         }, config)
-    //         .then(function (response) {
-    //             console.log(response)
-                
-    //                 return axios.get('/category/id/')
-    //                 .then((res) => {
-    //                 console.log(res.data)
-    //                 const categoriesArr = res.data.slice(res.data.length - 3,res.data.length)
-    //                 const saveArrcategoriesID = [categoriesArr[0].categoriesID,categoriesArr[1].categoriesID,categoriesArr[2].categoriesID]
-    //                 const saveArrCategoryName = [categoriesArr[0].CategoryName,categoriesArr[1].CategoryName,categoriesArr[2].CategoryName]
-    //                 const saveArrcreatedAt = [categoriesArr[0].createdAt,categoriesArr[1].createdAt,categoriesArr[2].createdAt]
-    //                 setCategoriesID(saveArrcategoriesID)
-    //                 setCategoriesName(saveArrCategoryName)
-    //                 setCreatedAt(saveArrcreatedAt)
-    //                 avatarGameUrl.current = axios.defaults.baseURL + 'uploads/images/games/' + listCategory.Avatar;
-                    
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err);
-    //             })
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //             });
-    // }
-    
-    // console.log(CategoriesName);
-    // console.log(createdAt);
-    // console.log(avatarGameUrl.current)
-
+ 
     const allCategories = listCategory.map(categories => {
         return (
             <CategoriesCell categories={categories}/>
         );
     })
-
+    
 
 
     return (
@@ -92,9 +47,11 @@ function GameCategories({listCategory}){
                     scrollOnDevice={true}
                 >
                     </InfiniteCarousel>    */}
+              
                 <a className = "CategoryCell">
                     {allCategories}
                 </a>
+
         </div>
     );
 };

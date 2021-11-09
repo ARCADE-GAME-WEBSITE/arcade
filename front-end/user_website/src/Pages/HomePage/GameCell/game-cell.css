@@ -6,7 +6,7 @@
 }
 .famous-game-link{
   height: 250px;
-  width: 23%;
+  width: 100%;
   border-radius: 5px;
   overflow: hidden;
   margin: 10px 5px 0;
@@ -15,6 +15,7 @@
   position: relative;
   top: 0;
   transition: top linear 0.2s;
+  padding: 2px;
 }
 .famous-game-link:hover{
   top: -5px;

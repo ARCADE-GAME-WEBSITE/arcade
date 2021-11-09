@@ -4,13 +4,13 @@ h3{
     margin: 0 15% 0 15%;
   }
   .CategoryCell {
-    font-size: 10%;
+    font-size: 1%;
     margin: 0 15% 0 30%;
-    border-radius: 10px;
     padding: auto;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; 
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    
   }
   

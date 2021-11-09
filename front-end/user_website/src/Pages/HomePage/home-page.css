@@ -30,3 +30,18 @@
 .App-main {
   height: 40%;
 }
+.Background-homepage{
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg,#178ce8,#bfe2ff 85%,transparent 85%)
+  linear-gradient(to top,
+  #0a190b 0%,
+  #255226 4%,
+  #8bc34a 14%,
+  #1e6f20b3 15%,
+  transparent 15%);
+  overflow:hidden;
+  perspective-origin:50% 50%;
+  perspective: 1500px; */
+}

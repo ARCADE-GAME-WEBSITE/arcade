@@ -17,7 +17,7 @@ function FamousGame({listGame}) {
 
     return (
         <div>
-            <h3>FAMOUS GAME</h3>
+            <h3>GAME</h3>
             {/* <InfiniteCarousel 
                 breakpoints={[
                 {

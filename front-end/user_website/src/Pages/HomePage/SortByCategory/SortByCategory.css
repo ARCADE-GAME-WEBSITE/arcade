@@ -3,7 +3,7 @@ h3{
   font-size: 2rem;
   margin: 0 15% 0 15%;
 }
-.new-game{
+.SortByCategory{
   height: 600px;
   background-color: rgb(199, 228, 255);
   margin: 10px 0;
@@ -11,13 +11,13 @@ h3{
   padding: 35px;
   width: 1200px;
 }
-.new-game--css{
+.SortByCategory--css{
   display: flex; 
   justify-content: space-between; 
   margin: 5px, 0;
  
 }
-.new-game-link{
+.SortByCategory-link{
   height: 250px;
   width: 23%;
   border-radius: 5px;
@@ -29,24 +29,24 @@ h3{
   top: 0;
   transition: top linear 0.2s;
 }
-.new-game-link:hover{
+.SortByCategory-link:hover{
   top: -5px;
   opacity: 0.8;
 }
 
-.new-game__img{
+.SortByCategory__img{
   height: 150px;
   width: 100%;  
 }
 
-.new-game__name{
+.SortByCategory__name{
   font-size: 1.35rem;
   font-weight: 700;
   height: 50px;
   padding: 5px 0 0 5px;
 }
 
-.new-game__dev{
+.SortByCategory__dev{
   font-size: 1.4rem;
   font-weight: 400;
   height: 15%;
