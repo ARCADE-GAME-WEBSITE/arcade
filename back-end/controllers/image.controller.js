@@ -1,6 +1,22 @@
+const models = require('../models');
+const path = require('path');
 
 function uploadSingle(req, res){
     if(req.file.filename){
+        if (!req.params.id){
+            const id = req.userData.userId;
+            const updateUser = {
+                Avatar: id + path.extname(req.file.originalname)
+            }
+
+            models.User.update(updateUser, {where: {id:id}}).catch(error => {
+                res.status(200).json({
+                    message: "Something went wrong!",
+                    error: error
+                });
+            });
+        }
+        
         res.status(201).json({
             message: "Image upload successfully!",
             url: req.file.filename
@@ -28,8 +44,25 @@ function uploadMultiple(req, res){
         else {
             const files = req.files;
             var url = [];
+            const id = req.params.id
+            var imgUrls = ""
+            
             files.forEach(file => {
                 url.push(file.filename);
+                imgUrls += file.filename + " "
+            });
+
+            imgUrls = imgUrls.slice(0, -1);
+
+            var updateGame = {
+                GamePlayImage: imgUrls
+            }
+
+            models.Game.update(updateGame, {where: {id: id}}).catch(error => {
+                res.status(200).json({
+                    message: "Something went wrong!",
+                    error: error
+                });
             });
 
             res.status(201).json({
