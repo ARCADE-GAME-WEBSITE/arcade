@@ -34,7 +34,7 @@ function GameScreen({gameLink,gameSrc,gameId,gameImg}) {
                 </ul>
             </div> 
             <div className="playGame" id="openGameScreen">
-                    <iframe className="playGame__screen" src={gameLink + gameSrc}></iframe>
+                <iframe className="playGame__screen" src={gameLink + "/" + gameId + "/" + gameSrc}></iframe>
             </div>
         </div>
             

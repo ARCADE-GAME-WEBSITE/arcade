@@ -16,7 +16,7 @@ import FriendList from '../HomePage/FriendList/friend-list'
 
 function GameDetail({user}) {
     const getUrlGame= window.location.href
-    const gameUrl = getUrlGame.slice(getUrlGame.lastIndexOf("/")+ 1 )
+    const gameUrl = getUrlGame.slice(getUrlGame.lastIndexOf("/") + 1)
 
     const [gameDemoUrl,setGameDemoUrl] = useState('')
     const [gameId,setGameId] = useState()
@@ -25,26 +25,24 @@ function GameDetail({user}) {
     const [gameCreatedAt, setGameCreatedAt] = useState('')
     const [gameTitle, setGameTitle] = useState('')
     const [gameImg, setGameImg] = useState('')
-    const gameLink = axios.defaults.baseURL + 'uploads/games/'
+    const gameLink = axios.defaults.baseURL + 'uploads/games'
 
-        useEffect(() => {
-            axios.get('/game/get-by-url/'+gameUrl)
-            .then((res)=>{
-                console.log(res.data);
-                setGameDemoUrl(res.data.DemoUrl)
-                setGameId(res.data.id)
-                setGameSrc(res.data.Url)
-                setGameDes(res.data.Description)
-                setGameCreatedAt(res.data.createdAt)
-                setGameTitle(res.data.Title)
-                setGameImg(res.data.GamePlayImage.split(' '))
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-        },[gameUrl])
+    useEffect(() => {
+        axios.get('/game/get-by-url/'+gameUrl)
+        .then((res)=>{
+            setGameDemoUrl(res.data.DemoUrl)
+            setGameId(res.data.id)
+            setGameSrc(res.data.Url)
+            setGameDes(res.data.Description)
+            setGameCreatedAt(res.data.createdAt)
+            setGameTitle(res.data.Title)
+            setGameImg(res.data.GamePlayImage.split(' '))
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    },[gameUrl])
 
-        console.log(gameImg);
     return (
         <div className="grid wide-1">
             <div className="row">

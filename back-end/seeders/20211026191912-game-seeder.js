@@ -110,6 +110,18 @@ module.exports = {
         Description: "Tic-tac-toe is a game in which two players take turns in drawing either an ' O' or an ' X' in one square of a grid consisting of nine squares. The winner is the first player to get three of the same symbols in a row.",
         Played: 0,
         Rate: 0
+      },
+      {
+        DevID: 1,
+        Url: "Pacman.html",
+        DemoUrl: "https://www.youtube.com/embed/npOpr7juN1Y",
+        Title: "Pacman",
+        Avatar: "10.png",
+        Category: "Arcade Obstacle",
+        GamePlayImage: "img1.png img2.png img3.png img4.png",
+        Description: "Pac-Man (パックマン) is an arcade game developed by Namco and first released in Japan on May 22, 1980. Gained popularity and popularity as soon as it was released. Released to this day, Pac-Man is considered a classic game and became an icon of 80s pop culture.",
+        Played: 0,
+        Rate: 0
       }
     ]);
   },
