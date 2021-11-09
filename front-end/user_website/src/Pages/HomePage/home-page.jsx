@@ -5,17 +5,15 @@ import FriendList from "./FriendList/friend-list";
 import FamousGame from "./FamousGame/famous-game";
 import NewGame from "./NewGame/new-game";
 import GameType from "./GameGenre/GameType";
-import GameCategories from "./GameGenre/GameType";
 
-
-function HomePage({user,categories}) {
+function HomePage({user, categories}) {
 
   const [listGame,setListGame] = useState([]) ;
 
   useEffect(() => {
     axios.get('game/').then(result => {
       setListGame(result.data)
-    }) .catch(err => {
+    }).catch(err => {
       console.log(err)
     })
   }, [])  
@@ -25,7 +23,7 @@ function HomePage({user,categories}) {
   useEffect (() =>{
     axios.get('category/').then(result => {
       setCategory(result.data)
-    }) .catch(err => {
+    }).catch(err => {
       console.log(err)
     })
   }, [])
