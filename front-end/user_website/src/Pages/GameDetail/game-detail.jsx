@@ -1,4 +1,4 @@
-import React, {useState,useRef,useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import './game-detail.css'
 import axios from 'axios'
 
@@ -15,50 +15,39 @@ import FriendList from '../HomePage/FriendList/friend-list'
 
 
 function GameDetail({user}) {
-    const getUrlGame= window.location.href
-    const gameUrl = getUrlGame.slice(getUrlGame.lastIndexOf("/") + 1)
-
-    const [gameDemoUrl,setGameDemoUrl] = useState('')
-    const [gameId,setGameId] = useState()
-    const [gameSrc, setGameSrc] = useState('')
-    const [gameDes, setGameDes] = useState('')
-    const [gameCreatedAt, setGameCreatedAt] = useState('')
-    const [gameTitle, setGameTitle] = useState('')
-    const [gameImg, setGameImg] = useState('')
+    const getUrlGame= window.location.href.split("/")
+    const gameId = getUrlGame[getUrlGame.length - 2]
+    const gameUrl = getUrlGame[getUrlGame.length - 2] + "/" + getUrlGame[getUrlGame.length - 1]
+    
+    const [currentGame, setCurrentGame] = useState(null)
     const gameLink = axios.defaults.baseURL + 'uploads/games'
 
     useEffect(() => {
-        axios.get('/game/get-by-url/'+gameUrl)
+        axios.get('/game/' + gameId)
         .then((res)=>{
-            setGameDemoUrl(res.data.DemoUrl)
-            setGameId(res.data.id)
-            setGameSrc(res.data.Url)
-            setGameDes(res.data.Description)
-            setGameCreatedAt(res.data.createdAt)
-            setGameTitle(res.data.Title)
-            setGameImg(res.data.GamePlayImage.split(' '))
+            setCurrentGame(res.data)
         })
         .catch((err) => {
             console.log(err);
         })
-    },[gameUrl])
+    },[])
 
-    return (
+    return (currentGame) ? (
         <div className="grid wide-1">
             <div className="row">
                 <FriendList user={user}/>
-                <GameScreen gameLink={gameLink} gameSrc={gameSrc} gameId={gameId} gameImg={gameImg}/>
+                <GameScreen gameLink={gameLink} currentGame={currentGame}/>
             </div>
             <div className="row">
                 <GameControl/>
             </div>
             <div className="row">
-                <GameInfo gameTitle={gameTitle}/>
+                <GameInfo gameTitle={currentGame.Title}/>
             </div>
 
             <div className="row">
-                <GameAbout gameDes={gameDes} gameCreatedAt={gameCreatedAt}/>
-                <GameDemo gameDemoUrl={gameDemoUrl}/>
+                <GameAbout gameDes={currentGame.Description} gameCreatedAt={currentGame.createdAt}/>
+                <GameDemo gameDemoUrl={currentGame.DemoUrl}/>
             </div>
             
             <div className="row">
@@ -70,7 +59,7 @@ function GameDetail({user}) {
             </div>
             
         </div>
-    );
+    ): null;
 }
 
 export default GameDetail

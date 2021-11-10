@@ -44,6 +44,9 @@ module.exports = {
       },
       {
         CategoryName: 'Snake'
+      },
+      {
+        CategoryName: 'Building'
       }
     ]);
   },

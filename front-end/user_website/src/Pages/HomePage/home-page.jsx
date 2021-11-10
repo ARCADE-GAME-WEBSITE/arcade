@@ -27,11 +27,6 @@ function HomePage({user, categories}) {
       console.log(err)
     })
   }, [])
-  
-  
-
-
-
 
   return (
       <div className="Background-homepage" >

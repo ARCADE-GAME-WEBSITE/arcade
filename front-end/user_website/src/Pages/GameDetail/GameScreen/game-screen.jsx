@@ -8,7 +8,11 @@ const playGame = () =>{
     document.getElementById('openGameScreen').style.display = 'block'
 }
 
-function GameScreen({gameLink,gameSrc,gameId,gameImg}) {
+function GameScreen({gameLink, currentGame}) {
+    const gameId = currentGame.id;
+    const gameUrl = currentGame.Url;
+    const gameImg = currentGame.GamePlayImage.split(' ')
+    
     return (
         <div className="game-screen-outside" id="game-screen-outside">
             <div className="game-screen" id="gameScreenBtnPlay">
@@ -34,7 +38,7 @@ function GameScreen({gameLink,gameSrc,gameId,gameImg}) {
                 </ul>
             </div> 
             <div className="playGame" id="openGameScreen">
-                <iframe className="playGame__screen" src={gameLink + "/" + gameId + "/" + gameSrc}></iframe>
+                <iframe className="playGame__screen" src={gameLink + "/" + gameId + "/" + gameUrl}></iframe>
             </div>
         </div>
             

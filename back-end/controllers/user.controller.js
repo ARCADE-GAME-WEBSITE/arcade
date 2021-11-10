@@ -202,52 +202,6 @@ function destroy(req, res){
     });
 }
 
-function getListFriends(req, res){
-    const id = req.params.id;
-
-    models.User.findByPk(id).then(result => {
-        if(result){
-            const listFriend = result.Friends.split(' ');
-
-            if (listFriend.length != 0) {
-                var listUser = [];
-                var user_not_found = 0;
-                listFriend.forEach((email) => {
-                    models.User.findOne({where: {Email:email}}).then(result1 => {
-                        if(result1){
-                            listUser.push(result1.dataValues);
-                        }else{
-                            user_not_found += 1;
-                        }
-
-                        if (listUser.length == listFriend.length - user_not_found){
-                            res.status(200).json({
-                                message: "Get list friends successfully!",
-                                post: listUser
-                            });
-                        }
-                    })
-                });
-            }
-            else {
-                res.status(404).json({
-                    message: "User have no friend!"
-                }) 
-            }
-        }
-        else {
-            res.status(404).json({
-                message: "User not found!"
-            }) 
-        }
-    }).catch(error => {
-        res.status(500).json({
-            message: "Something went wrong!",
-            error: error
-        })
-    });
-}
-
 function forgot(req, res){
     models.User.findOne({where: {Email:req.body.Email}}).then(result => {
         if(result){
@@ -370,7 +324,6 @@ module.exports = {
     show: show,
     update: update,
     destroy: destroy,
-    getListFriends: getListFriends,
     forgot: forgot,
     changePassword: changePassword
 }

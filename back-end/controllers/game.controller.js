@@ -70,25 +70,6 @@ function show(req, res){
     });
 }
 
-function showByUrl(req, res){
-    const url = req.params.url;
-
-    models.Game.findOne({where: {Url: url}}).then(result => {
-        if(result){
-            res.status(200).json(result);
-        }else{
-            res.status(404).json({
-                message: "Game not found!"
-            }) 
-        }
-    }).catch(error => {
-        res.status(500).json({
-            message: "Something went wrong!",
-            error: error
-        })
-    });
-}
-
 function index(req, res){
     models.Game.findAll().then(result => {
         res.status(200).json(result);
@@ -155,7 +136,6 @@ module.exports = {
     save: save,
     index: index,
     show: show,
-    showByUrl:showByUrl,
     update: update,
     destroy: destroy
 }
