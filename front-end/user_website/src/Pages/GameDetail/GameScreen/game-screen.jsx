@@ -3,15 +3,17 @@ import axios from 'axios'
 
 import './game-screen.css'
 
-const playGame = () =>{
+const playGame = () => {
     document.getElementById('gameScreenBtnPlay').style.display = 'none'
     document.getElementById('openGameScreen').style.display = 'block'
+    document.getElementById('gameIFrame').src += '';
 }
 
 function GameScreen({gameLink, currentGame}) {
     const gameId = currentGame.id;
-    const gameUrl = currentGame.Url;
-    const gameImg = currentGame.GamePlayImage.split(' ')
+    const gameUrl = gameLink + "/" + gameId + "/" + currentGame.Url;
+    console.log(gameUrl)
+    const gameImg = currentGame.GamePlayImage.split(' ');
     
     return (
         <div className="game-screen-outside" id="game-screen-outside">
@@ -38,11 +40,9 @@ function GameScreen({gameLink, currentGame}) {
                 </ul>
             </div> 
             <div className="playGame" id="openGameScreen">
-                <iframe className="playGame__screen" src={gameLink + "/" + gameId + "/" + gameUrl}></iframe>
+                <iframe id="gameIFrame" className="playGame__screen" src={gameUrl}></iframe>
             </div>
         </div>
-            
-        
     )
 }
 

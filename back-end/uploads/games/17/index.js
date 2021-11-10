@@ -3,7 +3,7 @@ const path = require('path')
 const opn = require('opn')
 
 const server = express()
-const host = 'http://localhost:8082'
+const host = 'http://localhost:8000'
 server.use('/assets', express.static(path.resolve(__dirname, './assets')))
 server.use('/dist', express.static(path.resolve(__dirname, './dist')))
 
