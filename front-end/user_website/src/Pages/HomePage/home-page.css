@@ -4,6 +4,7 @@
   padding: 0;
 }
 
+
 .grid.wide {
   max-width: 1000px;
   margin: 0 auto;
@@ -44,4 +45,7 @@
   overflow:hidden;
   perspective-origin:50% 50%;
   perspective: 1500px; */
+}
+.home-page--css{
+  width: 100%;
 }

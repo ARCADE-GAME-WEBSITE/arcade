@@ -89,7 +89,6 @@ function FriendList({user}) {
                             </div>
                             ))
                             :null
-           
                     }
                 </div>
                 <div className="friend-list__footer">
