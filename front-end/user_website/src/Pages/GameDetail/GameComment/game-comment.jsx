@@ -204,8 +204,6 @@ function GameComment({user,gameId}) {
         
     }
 
-    console.log(userId);
-
     useEffect(() =>{
         if(user){
             document.getElementById('test1').style.display = 'none'
@@ -213,18 +211,20 @@ function GameComment({user,gameId}) {
         }
     },[user])
 
-    console.log(cmt);
-    // useEffect(() => {
-    //     for(let i=0; i<=2; i++){
-    //         if(user){
-    //             if(user.id != userId[i]){
-    //                 i=i+1
-    //                 document.getElementById(`comment__bottom__right${i}`).style.display = 'none'
-    //                 i=i-1
-    //             }
-    //         }
-    //     }
-    // },[cmt])
+
+    useEffect(() => {
+
+        for(let i=0; i<=2; i++){
+            if(user){
+                if(user.id != userId[i]){
+                    document.getElementById(`comment__bottom__right${i+1}`).style.display = 'none'
+                }
+                else {
+                    document.getElementById(`comment__bottom__right${i+1}`).style.display = 'flex'
+                }
+            }
+        }
+    },[cmt,userId])
 
 
     return (
