@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 07, 2021 lúc 05:13 PM
+-- Thời gian đã tạo: Th10 10, 2021 lúc 10:21 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -81,7 +81,8 @@ INSERT INTO `categories` (`id`, `CategoryName`, `createdAt`, `updatedAt`) VALUES
 (11, 'Block', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (12, 'Ball', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (13, 'Bounce', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(14, 'Snake', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(14, 'Snake', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(15, 'Building', '2021-11-10 09:38:53', '2021-11-10 09:38:53');
 
 -- --------------------------------------------------------
 
@@ -179,15 +180,23 @@ CREATE TABLE `games` (
 --
 
 INSERT INTO `games` (`id`, `DevID`, `Url`, `DemoUrl`, `Title`, `Avatar`, `Category`, `GamePlayImage`, `Description`, `Played`, `Rate`, `createdAt`, `updatedAt`) VALUES
-(1, 1, '2048.html', 'https://www.youtube.com/embed/kQhkkqjGkFA', '2048', '1.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', '2048 is a popular single-player game for Web and mobile. It\'s a type of “sliding block puzzle” — think Threes!, on which 2048 is based, or the old-timey game klotski — that\'s played on an almost Sudoku-like grid. ... The object of the game is to combine the numbers displayed on the tiles until you reach 2048.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(1, 1, '2048.html', 'https://www.youtube.com/embed/kQhkkqjGkFA', '2048', '1.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', '2048 is a popular single-player game for Web and mobile. It\'s a type of “sliding block puzzle” — think Threes!, on which 2048 is based, or the old-timey game klotski — that\'s played on an almost Sudoku-like grid. The object of the game is to combine the numbers displayed on the tiles until you reach 2048.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 1, 'FlappyBird.html', 'https://www.youtube.com/embed/fQoJZuBwrkU', 'FlappyBird', '2.png', 'Obstacle', 'img1.png img2.png img3.png img4.png', 'Flappy Bird is an arcade-style game in which the player controls the bird Faby, which moves persistently to the right. The player is tasked with navigating Faby through pairs of pipes that have equally sized gaps placed at random heights.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 1, 'Memory.html', 'https://www.youtube.com/embed/Um1EXbwmYYs', 'Memory', '3.png', 'Puzzle', 'img1.png img2.png img3.png img4.png', 'The memory game, or concentration, as it is sometimes called, is a popular card game played by children and adults around the world. Good memory is one of the qualities required in order to succeed in it. ... When it is assumed that the players have perfect memory, the memory game can be seen as a game of strategy.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, 1, 'Pong.html', 'https://www.youtube.com/embed/nqoiNLa-dNI', 'Pong', '4.png', 'Ball 2-players', 'img1.png img2.png img3.png img4.png', 'Pong is a two-dimensional sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (5, 1, 'RedRect.html', 'https://www.youtube.com/embed/vGVoF_CbKmk', 'RedRect', '5.png', 'Obstacle', 'img1.png img2.png img3.png img4.png', 'Move your rectangular block to dodge other blocks moving to and collect similar blocks to increase personal score. Use the quickness of your hands to earn the highest score', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 1, 'Snake.html', 'https://www.youtube.com/embed/=DekS8Pgb1qc', 'Snake', '6.png', 'Snake', 'img1.png img2.png img3.png img4.png', 'Snake is a video game that originated during the late 1970s in arcades becoming something of a classic. ... The player controls a long, thin creature, resembling a snake, which roams around on a bordered plane, picking up food (or some other item), trying to avoid hitting its own tail or the edges of the playing area.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 'Snake.html', 'https://www.youtube.com/embed/=DekS8Pgb1qc', 'Snake', '6.png', 'Snake', 'img1.png img2.png img3.png img4.png', 'Snake is a video game that originated during the late 1970s in arcades becoming something of a classic. ... The player controls a long, thin creature, resembling a snake, which roams around on a bordered plane, picking up food (or some other item), trying to avoid hitting its own tail or the edges of the playing area. Especially, in this game, you can compete with an AI player!', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 1, 'Sudoku.html', 'https://www.youtube.com/embed/8zRXDsGydeQ', 'Sudoku', '7.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'In its simplest and most common configuration, sudoku consists of a 9 × 9 grid with numbers appearing in some of the squares. The object of the puzzle is to fill the remaining squares, using all the numbers 1–9 exactly once in each row, column, and the nine 3 × 3 subgrids.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 1, 'Tetris.html', 'https://www.youtube.com/embed/AP9FAF0gGZs', 'Tetris', '8.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'Tetris, video game created by Russian designer Alexey Pajitnov in 1985 that allows players to rotate falling blocks strategically to clear levels. ... The goal of the game is to prevent the blocks from stacking up to the top of the screen for as long as possible.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 1, 'TicTacToe.html', 'https://www.youtube.com/embed/5n2aQ3UQu9Y', 'TicTacToe', '9.png', '2-players', 'img1.png img2.png img3.png img4.png', 'Tic-tac-toe is a game in which two players take turns in drawing either an \' O\' or an \' X\' in one square of a grid consisting of nine squares. The winner is the first player to get three of the same symbols in a row.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(8, 1, 'Tetris.html', 'https://www.youtube.com/embed/AP9FAF0gGZs', 'Tetris', '8.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'Tetris, video game created by Russian designer Alexey Pajitnov in 1985 that allows players to rotate falling blocks strategically to clear levels. ... The goal of the game is to prevent the blocks from stacking up to the top of the screen for as long as possible.', 0, 0, '0000-00-00 00:00:00', '2021-11-09 13:04:52'),
+(9, 1, 'TicTacToe.html', 'https://www.youtube.com/embed/5n2aQ3UQu9Y', 'TicTacToe', '9.png', '2-players', 'img1.png img2.png img3.png img4.png', 'Tic-tac-toe is a game in which two players take turns in drawing either an \' O\' or an \' X\' in one square of a grid consisting of nine squares. The winner is the first player to get three of the same symbols in a row.', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 1, 'Pacman.html', 'https://www.youtube.com/embed/npOpr7juN1Y', 'Pacman', '10.png', 'Arcade Obstacle', 'img1.png img2.png img3.png img4.png', 'Pac-Man (パックマン) is an arcade game developed by Namco and first released in Japan on May 22, 1980. Gained popularity and popularity as soon as it was released. Released to this day, Pac-Man is considered a classic game and became an icon of 80s pop culture.', 0, 0, '2021-11-09 15:53:26', '2021-11-09 15:02:00'),
+(11, 1, 'Ohh1.html', 'https://www.youtube.com/embed/r86OISLwXNI', 'Ohh1', '11.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'With a strange name, the player cannot guess the content of 0h H1 until actually enters the game\'s desktop. So let\'s keep the game content a hidden number and step into discovering the table of 0h H1 immediately.\\nIn the game the player\'s mission is to fill the table with the squares according to a certain rule. The game\'s playback desk will have colored boxes and players must continue to fill in the game\'s rules.', 0, 0, '2021-11-10 07:37:59', '2021-11-10 07:37:59'),
+(12, 1, '3D-Chess.html', 'https://www.youtube.com/embed/cfXQybuelz0', '3D Chess', '12.png', 'Chess 2-players', 'img1.png img2.png img3.png img4.png', 'Chess is a board game played between two players. The current form of the game emerged in Southern Europe during the second half of the 15th century after evolving from similar, much older games of Indian and Persian origin. Today, chess is one of the world\'s most popular games, played by millions of people worldwide.', 0, 0, '2021-11-10 07:56:07', '2021-11-10 07:56:07'),
+(13, 1, '2048.html', 'https://www.youtube.com/embed/kQhkkqjGkFA', '2048', '13.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', '2048 is a popular single-player game for Web and mobile. It\'s a type of “sliding block puzzle” — think Threes!, on which 2048 is based, or the old-timey game klotski — that\'s played on an almost Sudoku-like grid. The object of the game is to combine the numbers displayed on the tiles until you reach 2048.', 0, 0, '2021-11-10 08:28:46', '2021-11-10 08:28:46'),
+(14, 1, 'MineSweeper.html', 'https://www.youtube.com/embed/GrZCWx0fnfc?start=7', 'Mine Sweeper', '14.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'Playing minesweeper is our passion. That\'s why we strive to make it the greatest game in the world! Select a difficulty level to challenge yourself, and enjoy the game!', 0, 0, '2021-11-10 08:51:06', '2021-11-10 08:51:06'),
+(15, 1, 'Racer.html', 'https://www.youtube.com/embed/eKRTZTayIyA?start=199', '3D Racer', '15.png', 'Racing Obstacle', 'img1.png img2.png img3.png img4.png', 'Javascript Pseudo 3D Racer is similar in concept to the OutRun video game. As the name suggests it is developed using HTML5 and JavaScript. The game evolves incrementally in 4 versions and you can even check its step by step progress through the Github repository.', 0, 0, '2021-11-10 09:05:56', '2021-11-10 09:05:56'),
+(16, 1, 'RadiusRaid.html', 'https://www.youtube.com/embed/TdHI_qJYTwE?start=75', 'Radius Raid', '16.png', 'Arcade Shooting', 'img1.png img2.png img3.png img4.png', 'Radius Raid is a space themed shoot \'em up where you must blast away unrelenting enemies before they destroy you. The game features 13 enemy types, 5 powerups, parallax backgrounds, retro sound effects, and locally stored stats.', 0, 0, '2021-11-10 09:20:47', '2021-11-10 09:20:47'),
+(17, 1, 'TowerBuilt.html', 'https://www.youtube.com/embed/HsrmkqH61B8?start=22', 'Tower Built', '17.png', 'Block Building', 'img5.png img6.png img7.png img8.png', 'Stack blocks and build the tallest tower!', 0, 0, '2021-11-10 09:34:46', '2021-11-10 09:07:13');
 
 -- --------------------------------------------------------
 
@@ -269,7 +278,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `Email`, `Password`, `Role`, `Full_name`, `Gender`, `DayOfBirth`, `Avatar`, `createdAt`, `updatedAt`) VALUES
 (1, 'tuankietnk2001@gmail.com', '$2a$10$ChncUp.mM26bsURXPEvOW.j520b3bHSIFL2oPVGKiXclxfzguGLfi', 0, 'Tuấn Kiệt', 1, '0000-00-00 00:00:00', 'male.jpg', '2021-11-05 09:30:35', '2021-11-05 09:30:35'),
 (2, 'test@gmail.com', '$2a$10$8PugyBc.WnkfyLuQSovspuPAQfT0lyXAqra8nRcH12DI/VPxCHFQi', 0, 'test', 1, '0000-00-00 00:00:00', 'male.jpg', '2021-11-05 09:30:51', '2021-11-05 09:30:51'),
-(3, 'test2@gmail.com', '$2a$10$un0Ju2USe.50L6FT8MI/7OT7yEg3UBbq4YWrDeehYaBHoENjH/BNO', 0, 'Tuấn Kiệt', 0, '0000-00-00 00:00:00', 'female.jpg', '2021-11-07 15:44:04', '2021-11-07 15:44:04');
+(3, 'test2@gmail.com', '$2a$10$un0Ju2USe.50L6FT8MI/7OT7yEg3UBbq4YWrDeehYaBHoENjH/BNO', 0, 'Tuấn Kiệt', 0, '0000-00-00 00:00:00', 'female.jpg', '2021-11-07 15:44:04', '2021-11-09 12:52:31');
 
 -- --------------------------------------------------------
 
@@ -377,7 +386,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `comments`
@@ -401,7 +410,7 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT cho bảng `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `upload_game_requests`
