@@ -17,6 +17,49 @@ import bell_icon from '../../../Assets/Images/Icons/bell.png'
 import axios from "axios";
 
 function NavBar({setShowLogin, setShowSignUp, user, setUser}) { 
+
+    //search 
+    const searchItemInput = document.getElementById('navbar-search-input')
+    const elementProduct = document.querySelectorAll('.all-games')
+        function searchItem(){
+            let valueItem = searchItemInput.value.toLowerCase();
+            Array.from(elementProduct).forEach(function(element){
+                let nameItem = element.querySelector('.famous-game__name').textContent;
+                if (nameItem.toLowerCase().indexOf(valueItem) !== -1)
+                {
+                    element.style.display = 'block';
+                }
+                else
+                {
+                    element.style.display = 'none';
+                }
+            })
+            checkEmpty(elementProduct);
+        }
+        function checkEmpty(element){
+            let count = 0;
+            for(let i = 0; i < element.length; i++){
+                if (element[i].style.display == 'block')
+                count++;
+            }
+    
+            if (count == 0){
+                document.querySelector('#no__product').textContent = 'Can\'t find'; 
+            }
+            else{
+                document.querySelector('#no__product').textContent = ''; 
+            }
+        }
+        function unSearch(e){
+            if (e.target.value == ''){
+                Array.from(elementProduct).forEach(function(element){
+                    element.style.display = 'block';
+                })
+            }
+        }
+
+
+
     const [collapseOpen] = React.useState(false);
 
     let buttons;
@@ -171,9 +214,9 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                     <img src={logo} className="navbar-logo" alt="logo" />
                 </Link>
                 <div className="navbar-search">
-                    <input type="text" class="navbar-search-input" placeholder="Search game..." />
-                    <button class="navbar-search-btn">
-                        <i class="fas fa-search navbar-search-btn-icon" alt="search" />
+                    <input type="text" class="navbar-search-input" id='navbar-search-input' onChange={(e) => unSearch(e)} placeholder="Search game..." />
+                    <button class="navbar-search-btn" onClick={() =>searchItem()} >
+                        <i class="fas fa-search navbar-search-btn-icon" id='navbar-search-btn-icon' alt="search" />
                     </button>
                 </div>
             </div>
