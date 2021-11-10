@@ -37,21 +37,21 @@ function HomePage({user, categories}) {
         <div className="App-main">
           <div className='container'>
                 <div className='row'>
-                  <div className='col-sm-12 col-md-6 col-lg-10 mx-auto'>
+                  <div className='col-sm-12 col-md-6 col-lg-9 mx-auto'>
                     <GameType listCategory = {listCategory} />
                   </div>
                 </div>
               </div>
             <div className='container'>
               <div className='row'>
-                <div className='col-sm-12 col-md-6 col-lg-10 mx-auto'>
+                <div className='col-sm-12 col-md-6 col-lg-9 mx-auto'>
                   <FamousGame listGame = {listGame}/> 
                 </div>
               </div>
             </div>
-            <div className='grid wide'>
+            <div className='container'>
                 <div className='row'>
-                    <div className='col-sm-9 col-md-6 col-lg-10 mx-auto'>
+                    <div className='col-sm-9 col-md-6 col-lg-9 mx-auto'>
                       <SortByCategory listGame = {listGame} listCategory = {listCategory} />
                     </div>
                 </div>
