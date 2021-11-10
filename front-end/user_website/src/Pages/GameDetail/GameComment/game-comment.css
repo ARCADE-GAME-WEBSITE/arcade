@@ -140,7 +140,6 @@
   display: flex;
   align-items: center;
   animation: comment ease-in 1s;
-  visibility: none;
 }
 .comment__bottom__right-hide{
   display: none;
