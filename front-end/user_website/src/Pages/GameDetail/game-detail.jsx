@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import './game-detail.css'
 import axios from 'axios'
-
 import GameScreen from './GameScreen/game-screen'
 import GameControl from './GameControl/game-control'
 import GameInfo from './GameInfo/game-info'

@@ -5,6 +5,7 @@ import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
 import './Assets/css/nucleo-icons.css'
 
+import bgImg from './Assets/Images/App/app-background.png'
 import DialogBox from './Components/Popup/DialogBox/dialog-box'
 import NavBar from './Components/PageLayout/Header/nav-bar';
 import HomePage from './Pages/HomePage/home-page';
@@ -18,6 +19,10 @@ import AboutUs from './Components/PageLayout/Footer/about-us';
 import axios from 'axios';
 
 function App() {
+  
+
+
+
   const [dialogState, setDialogState] = useState({
     title: "",
     message: "",
@@ -63,7 +68,7 @@ function App() {
   // console.log(game);
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style= {{backgroundImage: `url(${bgImg})`,backgroundSize: '1024px 300px'}}>
         <NavBar 
           setShowLogin={setShowLogin} 
           setShowSignUp={setShowSignUp} 
