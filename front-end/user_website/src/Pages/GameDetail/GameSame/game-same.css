@@ -1,9 +1,9 @@
 .game-same {
   height: 542px;
   background-color: rgb(199, 228, 255);
-  margin: 10px 0 0 663px;
+  margin: 10px 0 0 630px;
   border-radius: 10px;
-  width: 35.6%;
+  width: 37.6%;
 }
 .game-same--css {
   display: flex;
