@@ -47,6 +47,9 @@ module.exports = {
       },
       {
         CategoryName: 'Building'
+      },
+      {
+        CategoryName: 'Reflex'
       }
     ]);
   },

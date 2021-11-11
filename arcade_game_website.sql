@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 10, 2021 lúc 10:21 AM
+-- Thời gian đã tạo: Th10 11, 2021 lúc 06:11 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.11
 
@@ -82,7 +82,8 @@ INSERT INTO `categories` (`id`, `CategoryName`, `createdAt`, `updatedAt`) VALUES
 (12, 'Ball', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (13, 'Bounce', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (14, 'Snake', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'Building', '2021-11-10 09:38:53', '2021-11-10 09:38:53');
+(15, 'Building', '2021-11-10 09:38:53', '2021-11-10 09:38:53'),
+(16, 'Reflex', '2021-11-11 17:20:47', '2021-11-11 17:20:47');
 
 -- --------------------------------------------------------
 
@@ -194,9 +195,12 @@ INSERT INTO `games` (`id`, `DevID`, `Url`, `DemoUrl`, `Title`, `Avatar`, `Catego
 (12, 1, '3D-Chess.html', 'https://www.youtube.com/embed/cfXQybuelz0', '3D Chess', '12.png', 'Chess 2-players', 'img1.png img2.png img3.png img4.png', 'Chess is a board game played between two players. The current form of the game emerged in Southern Europe during the second half of the 15th century after evolving from similar, much older games of Indian and Persian origin. Today, chess is one of the world\'s most popular games, played by millions of people worldwide.', 0, 0, '2021-11-10 07:56:07', '2021-11-10 07:56:07'),
 (13, 1, '2048.html', 'https://www.youtube.com/embed/kQhkkqjGkFA', '2048', '13.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', '2048 is a popular single-player game for Web and mobile. It\'s a type of “sliding block puzzle” — think Threes!, on which 2048 is based, or the old-timey game klotski — that\'s played on an almost Sudoku-like grid. The object of the game is to combine the numbers displayed on the tiles until you reach 2048.', 0, 0, '2021-11-10 08:28:46', '2021-11-10 08:28:46'),
 (14, 1, 'MineSweeper.html', 'https://www.youtube.com/embed/GrZCWx0fnfc?start=7', 'Mine Sweeper', '14.png', 'Puzzle Block', 'img1.png img2.png img3.png img4.png', 'Playing minesweeper is our passion. That\'s why we strive to make it the greatest game in the world! Select a difficulty level to challenge yourself, and enjoy the game!', 0, 0, '2021-11-10 08:51:06', '2021-11-10 08:51:06'),
-(15, 1, 'Racer.html', 'https://www.youtube.com/embed/eKRTZTayIyA?start=199', '3D Racer', '15.png', 'Racing Obstacle', 'img1.png img2.png img3.png img4.png', 'Javascript Pseudo 3D Racer is similar in concept to the OutRun video game. As the name suggests it is developed using HTML5 and JavaScript. The game evolves incrementally in 4 versions and you can even check its step by step progress through the Github repository.', 0, 0, '2021-11-10 09:05:56', '2021-11-10 09:05:56'),
-(16, 1, 'RadiusRaid.html', 'https://www.youtube.com/embed/TdHI_qJYTwE?start=75', 'Radius Raid', '16.png', 'Arcade Shooting', 'img1.png img2.png img3.png img4.png', 'Radius Raid is a space themed shoot \'em up where you must blast away unrelenting enemies before they destroy you. The game features 13 enemy types, 5 powerups, parallax backgrounds, retro sound effects, and locally stored stats.', 0, 0, '2021-11-10 09:20:47', '2021-11-10 09:20:47'),
-(17, 1, 'TowerBuilt.html', 'https://www.youtube.com/embed/HsrmkqH61B8?start=22', 'Tower Built', '17.png', 'Block Building', 'img5.png img6.png img7.png img8.png', 'Stack blocks and build the tallest tower!', 0, 0, '2021-11-10 09:34:46', '2021-11-10 09:07:13');
+(15, 1, 'Racer.html', 'https://www.youtube.com/embed/eKRTZTayIyA?start=199', '3D Racer', '15.png', 'Racing Obstacle Reflex', 'img1.png img2.png img3.png img4.png', 'Javascript Pseudo 3D Racer is similar in concept to the OutRun video game. As the name suggests it is developed using HTML5 and JavaScript. The game evolves incrementally in 4 versions and you can even check its step by step progress through the Github repository.', 0, 0, '2021-11-10 09:05:56', '2021-11-10 09:05:56'),
+(16, 1, 'RadiusRaid.html', 'https://www.youtube.com/embed/TdHI_qJYTwE?start=75', 'Radius Raid', '16.png', 'Arcade Shooting Reflex', 'img1.png img2.png img3.png img4.png', 'Radius Raid is a space themed shoot \'em up where you must blast away unrelenting enemies before they destroy you. The game features 13 enemy types, 5 powerups, parallax backgrounds, retro sound effects, and locally stored stats.', 0, 0, '2021-11-10 09:20:47', '2021-11-10 09:20:47'),
+(17, 1, 'TowerBuilt.html', 'https://www.youtube.com/embed/HsrmkqH61B8?start=22', 'Tower Built', '17.png', 'Reflex Block Building', 'img1.png img2.png img3.png img4.png', 'Stack blocks and build the tallest tower!', 0, 0, '2021-11-10 09:34:46', '2021-11-10 09:07:13'),
+(18, 1, 'Hextris.html', 'https://www.youtube.com/embed/QoGonHQgCq8', 'Hextris', '18.png', 'Reflex Puzzle', 'img1.png img2.png img3.png img4.png', 'Hextris is a simple reincarnation of Tetris in hexagon form. Meaning that colored lines will fall from six sides towards a central hexagon, and you need to rotate the hexagon to get the colors to match. When you eventually can’t keep up, and the hexagon fills with colored lines, the game is over.', 0, 0, '2021-11-11 17:10:18', '2021-11-11 17:10:18'),
+(19, 1, 'TypeMaster.html', 'https://www.youtube.com/embed/cJjN-3wEiC0', 'Type Master', '19.png', 'Reflex Obstacle', 'img1.png img2.png img3.png img4.png', 'Typer Master is a game that challenge your typing skill and your reflex! Type any character that you see on the screen before it hits you. Just one mistake and boom... Game over! Be careful with those that caps lock! Good luck!', 0, 0, '2021-11-11 17:37:57', '2021-11-11 17:37:57'),
+(20, 1, 'Breakout.html', 'https://www.youtube.com/embed/AMUv8KvVt08?start=13', 'Breakout', '20.png', 'Shooting Block', 'img1.png img2.png img3.png img4.png', 'You start with 3 lives and can progress through levels by destroying all bricks in each one. The number of bricks and the game’s difficulty will increase as you progress. The game ends whenever you ran out of lives. But you can get extra lives by destroying the blue bricks and catching the heart that falls from it!', 0, 0, '2021-11-11 18:03:39', '2021-11-11 18:03:39');
 
 -- --------------------------------------------------------
 
@@ -386,7 +390,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `comments`
@@ -410,7 +414,7 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT cho bảng `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `upload_game_requests`
@@ -422,7 +426,7 @@ ALTER TABLE `upload_game_requests`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `user_records`
