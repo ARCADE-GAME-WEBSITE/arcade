@@ -201,6 +201,7 @@
         </div>
       </div>
     </div>
+    
     <div id="control">
       <h2>Control</h2>
       <button onclick="left()">left</button>
@@ -343,7 +344,7 @@
             if (arr[j].innerHTML !== "") {
               k = j;
               while (
-                k < 12 &&
+                k < 12 && 
                 (parseInt(arr[k + 4].innerHTML) ===
                   parseInt(arr[k].innerHTML) ||
                   arr[k + 4].innerHTML === "")
@@ -438,13 +439,33 @@
       /*Неигровая Логика*/
 
       //конец игры
+      
       function end() {
+         var hightScoreCurrent = Number(document.getElementById("score").innerHTML);
         alert(
           "Your Score Is:" +
-            document.getElementById("score").innerHTML +
+          hightScoreCurrent +
             " Game Over"
         );
+        var infoPost = {
+          id: '',
+          UserID: '',
+          GameID : 1,
+          HighScore: hightScoreCurrent
+        }
+        fetch('/user-record/', { credentials: "same-origin" },{
+          method: "POST",
+          headers: {
+            'Authorization': 'Basic YWRtaW46c3VwZXJzZWNyZXQ=',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(infoPost)
+        })
+          .then (response=> response.json())
+          .then (json => console.log(json))
+          .catch (error => console.log(error))
         reset();
+        return console.log(hightScoreCurrent)
       }
 
       //добавить новый элемент в свободной позиции
@@ -630,6 +651,7 @@
         }
         if (!x) {
           end();
+
         }
       }
 

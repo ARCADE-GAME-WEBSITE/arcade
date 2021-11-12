@@ -123,7 +123,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                             </NavLink>
                             <DropdownItem divider tag="li" />
                             <NavLink tag="li">
-                                <Link to={'/home'} onClick = {handleLogout}>
+                                <Link to={'/'} onClick = {handleLogout}>
                                     <DropdownItem 
                                         className="nav-item"
                                     >Log out</DropdownItem>
@@ -210,7 +210,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     return (
         <nav className="navbar navbar-expand navbar-light fixed-top">
             <div className="nav-left-side">
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <img src={logo} className="navbar-logo" alt="logo" />
                 </Link>
                 <div className="navbar-search">

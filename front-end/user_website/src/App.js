@@ -77,10 +77,9 @@ function App() {
         />
         
         <Switch>
-          <Route path="/home" component={() => <HomePage user={user}/>} />
+          <Route exact path="/" component={() => <HomePage user={user}/>} />
           <Route path='/game-detail' component={() => <GameDetail user={user}/>} />
           <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword}/>} />
-          <Redirect from="/" to="/home" />
         </Switch>
 
         <div className="App-footer">
