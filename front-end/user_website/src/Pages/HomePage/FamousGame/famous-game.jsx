@@ -17,9 +17,9 @@ function FamousGame({listGame}) {
     return (
         <div>
             <h3>GAME</h3>
-                <a className="GameCell">
+                <div className="GameCell">
                     {allGames}
-                </a>
+                </div>
                 <h1 id="no__product"></h1>
         </div>
     );

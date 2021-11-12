@@ -8,11 +8,13 @@ function GameCell({game}){
     const gameAvaUrl = axios.defaults.baseURL + 'uploads/images/games/avatar/' + game.Avatar;
 
     return (
-        <a className="famous-game-link all-games" href={'/game-detail/' + game.id + "/" + game.Url}>
-            <img className="famous-game__img" src={gameAvaUrl} alt="Cannot get image" />
-            <div className="famous-game__name">{game.Title}</div>
-            <div className="famous-game__dev">Arcade games</div>
+    <div className="game-cell">
+        <a className="game-cell-link all-games" href={'/game-detail/' + game.id + "/" + game.Url}>
+            <img className="game-cell__img" src={gameAvaUrl} alt="Cannot get image" />
+            <div className="game-cell__name">{game.Title}</div>
+            <div className="game-cell__dev">Arcade games</div>
         </a>
+    </div>
     );
 }
 

@@ -1,10 +1,13 @@
+.game-cell-link:hover{
+  border-style: solid;
 
-.famous-game--css{
+}
+.game-cell--css{
   display: flex; 
   justify-content: space-between; 
   margin: 5px, 0;
 }
-.famous-game-link{
+.game-cell-link{
   height: 250px;
   width: 100%;
   border-radius: 5px;
@@ -17,26 +20,30 @@
   transition: top linear 0.2s;
   padding: 2px;
 }
-.famous-game-link:hover{
+.game-cell-link:hover{
   top: -5px;
   opacity: 0.8;
+  text-decoration: none;
+  border-style: solid;
+
 }
 
-.famous-game__img{
+.game-cell__img{
   height: 150px;
   width: 100%;  
 }
 
-.famous-game__name{
+.game-cell__name{
   font-size: 1.35rem;
   font-weight: 700;
   height: 50px;
   padding: 5px 0 0 5px;
 }
 
-.famous-game__Category{
+.game-cell__Category{
   font-size: 1rem;
   font-weight: 400;
   height: 100%;
   padding: 5px 0 0 5px;
+
 }
