@@ -52,7 +52,7 @@ function HomePage({user, categories}) {
             <div className='container'>
                 <div className='row'>
                     <div className='col-sm-9 col-md-6 col-lg-9 mx-auto'>
-                      <SortByCategory listGame = {listGame} listCategory = {listCategory} />
+                      {/* <SortByCategory listGame = {listGame} listCategory = {listCategory} /> */}
                     </div>
                 </div>
             </div>
