@@ -37,25 +37,19 @@
   font-size: 1.35rem;
   font-weight: 700;
   height: 50px;
-  padding: 5px 0 0 5px;
+  padding: 25px 0 0 5px;
+  width: 120%;
 }
 
-.game-cell__Category{
-  font-size: 1rem;
-  font-weight: 400;
-  height: 100%;
-  padding: 5px 0 0 5px;
-
-}
 .game-cell__rate{
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 700;
   height: 50px;
-  padding: 5px 0 0 5px;
+  padding: 20px 0 0 5px;
   margin-top: 10px;
 }
 .game-cell__played{
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 700;
   height: 50px;
   padding: 0 0 0 5px;
