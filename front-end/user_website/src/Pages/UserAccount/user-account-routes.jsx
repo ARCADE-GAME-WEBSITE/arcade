@@ -1,7 +1,7 @@
 import PlayedGames from "./PlayedGames/played-games";
 import Records from "./PersonalRecord/personal-record";
 import UserProfile from "./UserProfile/user-profile";
-import ListFriend from "./FriendList/friend-list";
+import ListFriend from "./FriendList/list-friend";
 
 var routes = [
   {

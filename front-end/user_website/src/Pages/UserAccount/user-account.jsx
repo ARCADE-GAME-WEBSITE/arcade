@@ -5,7 +5,7 @@ import routes from "./user-account-routes";
 
 import { BackgroundColorContext } from "./BackgroundColorContext";
 import UserProfile from "./UserProfile/user-profile";
-import ListFriend from "./FriendList/friend-list";
+import ListFriend from "./FriendList/list-friend";
 import Records from "./PersonalRecord/personal-record";
 import PlayedGames from "./PlayedGames/played-games";
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './add-friend.css'
-import './friend-list'
+import './list-friend'
 
 class AddFriend extends Component{
     onCloseForm = () =>{

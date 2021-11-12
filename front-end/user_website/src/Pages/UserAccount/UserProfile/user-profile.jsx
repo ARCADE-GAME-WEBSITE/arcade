@@ -20,18 +20,29 @@ function UserProfile({user, setShowChangePassword}){
     const obj = {
       Full_name : name,
       Gender : Number(user.Gender),
-      DayOfBirth : date.toString(),
+      DayOfBirth : date,
       Role : Number(user.Role),
       Email : user.Email,
       Friends:user.Friends
     };
+    
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
     axios.patch('/user/'+ user.id , obj,config)
         .then(res => console.log(res.data));
-}
+        alert("Update successful!");
+    }
+    const showDate = () =>{
+      var dayOfBirth;
+      if(user.DayOfBirth != null){
+        for(let i = 0; i < 10; i++)
+          dayOfBirth += user.DayOfBirth[i];
+      }
+      document.getElementById('birthday').textContent = dayOfBirth;
+    }
 
+    console.log(user.DayOfBirth);
     return(user)? (
       <>
         <div className="content">
@@ -69,7 +80,7 @@ function UserProfile({user, setShowChangePassword}){
                     <h5>Date of birth:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="date" name="bday" className="o" value={user.DayOfBirth}  onChange={(event)=>{ setDate(event.target.value); }} />
+                    <input type="date" name="bday" className="o" id="birthday" onChange={(event)=>{ setDate(event.target.value); }} />
                   </div>
                   </div>
                   <hr />
