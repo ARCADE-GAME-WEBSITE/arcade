@@ -47,3 +47,16 @@
   padding: 5px 0 0 5px;
 
 }
+.game-cell__rate{
+  font-size: 1rem;
+  font-weight: 700;
+  height: 50px;
+  padding: 5px 0 0 5px;
+  margin-top: 10px;
+}
+.game-cell__played{
+  font-size: 1rem;
+  font-weight: 700;
+  height: 50px;
+  padding: 0 0 0 5px;
+}

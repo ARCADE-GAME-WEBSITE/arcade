@@ -12,7 +12,8 @@ function GameCell({game}){
         <a className="game-cell-link all-games" href={'/game-detail/' + game.id + "/" + game.Url}>
             <img className="game-cell__img" src={gameAvaUrl} alt="Cannot get image" />
             <div className="game-cell__name">{game.Title}</div>
-            <div className="game-cell__dev">Arcade games</div>
+            <div className="game-cell__rate">Rate:{game.Rate}</div>
+            <div className="game-cell__played">Played:{game.Played}</div>
         </a>
     </div>
     );
