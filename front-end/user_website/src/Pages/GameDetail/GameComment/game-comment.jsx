@@ -27,14 +27,14 @@ function GameComment({user,gameId}) {
     console.log(user)
     console.log(gameId)
     GAMEID.current = gameId
-    console.log(GAMEID.current)
+    console.log(typeof GAMEID.current)
 
     const postComment = () => {
         console.log(inputCmt.value);
         if(inputCmt.value !==''){
             axios.post('comment/', {
                 UserID: user.id,
-                GameID: GAMEID.current,
+                GameID: Number(GAMEID.current),
                 Content: inputCmt.value,
                 }, config)
                 .then(response =>{

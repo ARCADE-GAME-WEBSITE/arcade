@@ -13,18 +13,20 @@ function FriendList({user}) {
     }
     
     const inputEmail = document.getElementById('friend-list__add-email')
+
     const [listFriend, setListFriend] = useState([])
     const getFriend = () => {
         axios.get('/friend/get-by-user-id/' + user.id )
             .then(res => {
                 console.log(res.data.post);
-                setListFriend(res.data.post)
-
+                setListFriend(res.data.post);
+                console.log('in then function',listFriend);
             })
             .catch(err => {
                 console.log(err);
-            })
+            })       
     }
+    console.log('outside api call',listFriend);
 
     useEffect(() => {
         if (user!=null){
@@ -52,6 +54,7 @@ function FriendList({user}) {
                     .catch(err => {
                         alert('Friend exists or cant find')
                 })
+                inputEmail.value = null
             }
             else alert('Can not add your self')
         }
@@ -75,7 +78,7 @@ function FriendList({user}) {
     
                 <div className="list-group list-group-flush">
                     {   
-                        listFriend ? listFriend.map((friend) => (
+                        listFriend?.map((friend) => (
                             <div className="friend-info" key={friend.id}>
                                 <div className="friend-info__item">
                                     <img className="friend-list__title-img" src={axios.defaults.baseURL + 'uploads/images/users/' + friend.FriendAvatar} alt="" />
@@ -84,7 +87,7 @@ function FriendList({user}) {
                                 </div>
                             </div>
                             ))
-                            :null
+                            
                     }
                 </div>
                 <div className="friend-list__footer">

@@ -23,6 +23,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     const elementProduct = document.querySelectorAll('.all-games')
         function searchItem(){
             let valueItem = searchItemInput.value.toLowerCase();
+            console.log(valueItem);
             Array.from(elementProduct).forEach(function(element){
                 let nameItem = element.querySelector('.famous-game__name').textContent;
                 if (nameItem.toLowerCase().indexOf(valueItem) !== -1)

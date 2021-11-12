@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-
 import './game-screen.css'
 
 const playGame = () => {
@@ -37,9 +36,9 @@ function GameScreen({gameLink, currentGame}) {
                         <a className="btn-setting-link">SETTING</a>
                     </li>
                 </ul>
-            </div> 
+            </div>
             <div className="playGame" id="openGameScreen">
-                <iframe id="gameIFrame" className="playGame__screen" src={gameUrl}></iframe>
+                <iframe id="gameIFrame" className="playGame__screen" src={gameUrl} ></iframe>
             </div>
         </div>
     )
