@@ -71,7 +71,7 @@ module.exports = {
         Avatar: "6.png",
         Category: "Snake",
         GamePlayImage: "img1.png img2.png img3.png img4.png",
-        Description: "Snake is a video game that originated during the late 1970s in arcades becoming something of a classic. ... The player controls a long, thin creature, resembling a snake, which roams around on a bordered plane, picking up food (or some other item), trying to avoid hitting its own tail or the edges of the playing area. Especially, in this game, you can compete with an AI player!",
+        Description: "Snake is a video game that originated during the late 1970s in arcades becoming something of a classic. The player controls a long, thin creature, resembling a snake, which roams around on a bordered plane, picking up food (or some other item), trying to avoid hitting its own tail or the edges of the playing area. Especially, in this game, you can compete with an AI player!",
         Played: 0,
         Rate: 0
       },
@@ -254,7 +254,44 @@ module.exports = {
         Description: "You start with 3 lives and can progress through levels by destroying all bricks in each one. The number of bricks and the game’s difficulty will increase as you progress. The game ends whenever you ran out of lives. But you can get extra lives by destroying the blue bricks and catching the heart that falls from it!",
         Played: 0,
         Rate: 0
-      }
+      },
+      {
+        DevID: 1,
+        Url: "Menja.html",
+        DemoUrl: "https://www.youtube.com/embed/eMtbtS5SSBc",
+        Title: "Menja",
+        Avatar: "21.png",
+        Category: "Reflex Block",
+        GamePlayImage: "img1.png img2.png img3.png img4.png",
+        Description: "A game about smashing cubes!",
+        Played: 0,
+        Rate: 0
+      },
+      {
+        DevID: 1,
+        Url: "ColorBlast.html",
+        DemoUrl: "https://www.youtube.com/embed/eMtbtS5SSBc",
+        Title: "Color Blast",
+        Avatar: "22.png",
+        Category: "Shooting Reflex Block",
+        GamePlayImage: "img1.png img2.png img3.png img4.png",
+        Description: "Select a group of sizes to blast them away. Try and clear as many boards that you can to overcome the high score!",
+        Played: 0,
+        Rate: 0
+      },
+      ,
+      {
+        DevID: 1,
+        Url: "Snake.html",
+        DemoUrl: "https://www.youtube.com/embed/_VLmMgMnkZ4?start=54",
+        Title: "Snake",
+        Avatar: "23.png",
+        Category: "Snake",
+        GamePlayImage: "img1.png img2.png img3.png img4.png",
+        Description: "Snake is a video game that originated during the late 1970s in arcades becoming something of a classic. The player controls a long, thin creature, resembling a snake, which roams around on a bordered plane, picking up food (or some other item), trying to avoid hitting its own tail or the edges of the playing area. Especially, in this game, you can compete with an AI player!",
+        Played: 0,
+        Rate: 0
+      },
     ]);
   },
 

@@ -1,4 +1,4 @@
-import React, {useState,useRef,useEffect,useLayoutEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './friend-list.css'
@@ -14,15 +14,6 @@ function FriendList({user}) {
     
     const inputEmail = document.getElementById('friend-list__add-email')
     const [listFriend, setListFriend] = useState([])
-
-
-    useEffect(() => {
-        if(user!=null)
-        getFriend()
-    },[user])
-
-    console.log(listFriend);
-    console.log(user);
     const getFriend = () => {
         axios.get('/friend/get-by-user-id/' + user.id )
             .then(res => {
@@ -34,8 +25,13 @@ function FriendList({user}) {
                 console.log(err);
             })
     }
-    
 
+    useEffect(() => {
+        if (user!=null){
+            getFriend()
+        }
+    },[user])
+    
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
@@ -44,7 +40,7 @@ function FriendList({user}) {
     const AddFriendbyEmail = () => {
         if(inputEmail.value !=null)
         {
-            if(user.email != inputEmail.value)
+            if(user.email !== inputEmail.value)
             {
                 axios.post('/friend', {
                     UserID : user.id,

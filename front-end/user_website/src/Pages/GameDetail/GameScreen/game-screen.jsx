@@ -12,7 +12,6 @@ const playGame = () => {
 function GameScreen({gameLink, currentGame}) {
     const gameId = currentGame.id;
     const gameUrl = gameLink + "/" + gameId + "/" + currentGame.Url;
-    console.log(gameUrl)
     const gameImg = currentGame.GamePlayImage.split(' ');
     
     return (

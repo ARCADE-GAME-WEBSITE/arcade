@@ -3,7 +3,6 @@ import React from 'react'
 // import React, { useEffect , useState , useRef }from 'react'
 import "./GameType.css";
 import CategoriesCell from '../CategoriesCell/CategoriesCell';
-import InfiniteCarousel from 'react-leaf-carousel';
 /* <!--Game Picture --> */
 
 /* <!--Game Link --> */
