@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -19,31 +19,31 @@ import axios from "axios";
 function NavBar({setShowLogin, setShowSignUp, user, setUser}) { 
 
     //search 
-    const searchItemInput = document.getElementById('navbar-search-input')
-    const elementProduct = document.querySelectorAll('.all-games')
-        function searchItem(){
-            let valueItem = searchItemInput.value.toLowerCase();
-            console.log(valueItem);
-            Array.from(elementProduct).forEach(function(element){
-                let nameItem = element.querySelector('.famous-game__name').textContent;
-                if (nameItem.toLowerCase().indexOf(valueItem) !== -1)
-                {
-                    element.style.display = 'block';
-                }
-                else
-                {
-                    element.style.display = 'none';
-                }
-            })
-            checkEmpty(elementProduct);
-        }
+
+    const [inputSearch, setInputSearch] = useState('')
+    const elementGame = document.querySelectorAll('.all-games')
+    function searchItem(){      
+
+        Array.from(elementGame).forEach(function(element){
+            let nameItem = element.querySelector('.game-cell__name').textContent;
+            if (nameItem.toLowerCase().indexOf(inputSearch) !== -1)
+            {
+                element.style.display = 'block';
+            }
+            else
+            {
+                element.style.display = 'none';
+            }
+        })
+        checkEmpty(elementGame);
+    }
         function checkEmpty(element){
             let count = 0;
             for(let i = 0; i < element.length; i++){
                 if (element[i].style.display == 'block')
                 count++;
             }
-    
+
             if (count == 0){
                 document.querySelector('#no__product').textContent = 'Can\'t find'; 
             }
@@ -51,17 +51,21 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                 document.querySelector('#no__product').textContent = ''; 
             }
         }
-        function unSearch(e){
-            if (e.target.value == ''){
-                Array.from(elementProduct).forEach(function(element){
-                    element.style.display = 'block';
-                })
-            }
+    function unSearch(e){
+        if (e.target.value == ''){
+            Array.from(elementGame).forEach(function(element){
+                element.style.display = 'block';
+            })
         }
+        else
+        {
+            setInputSearch(e.target.value.toLowerCase())
+        }
+    }
 
 
 
-    const [collapseOpen] = React.useState(false);
+    const [collapseOpen] = useState(false);
 
     let buttons;
 

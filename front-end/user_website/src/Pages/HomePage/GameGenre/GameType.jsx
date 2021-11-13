@@ -1,6 +1,6 @@
 import React from 'react'
 // import axios from 'axios'
-// import React, { useEffect , useState , useRef }from 'react'
+import { useState}from 'react'
 import "./GameType.css";
 import CategoriesCell from '../CategoriesCell/CategoriesCell';
 /* <!--Game Picture --> */
@@ -15,15 +15,14 @@ function GameCategories({listCategory}){
         );
     })
     
-
+    
 
     return (
-        <div>
-            <h3>Categories</h3>
-                <div className = "CategoryCell">
+        <div style = {{marginLeft: "80px"}}>
+            <h3>Game Type</h3>
+                <div className = "CategoryCell" id="CategoryCell" >
                     {allCategories}
                 </div>
-
         </div>
     );
 };

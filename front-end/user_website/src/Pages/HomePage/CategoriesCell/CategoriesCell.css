@@ -1,37 +1,76 @@
+
 .game-type{
   background-color: aqua;
-  width: 100%;
-  height: 90%;
-  padding: 1px 0 0 1px;
-  border-radius: 100px;
-  margin: 0 50%;
-  
+  width: 130px;
+  height: 40px;
+  border-radius: 20px;
+  margin: 2px;
+  z-index: 1;
 }
+.game-type--active{
+  position: relative;
+	/* margin: 300px auto 0; */
+  width: 130px;
+  height: 40px;
+	/* background: linear-gradient(0deg, rgb(247, 96, 96), #3fffb6); */
+  background: -webkit-linear-gradient(left, #33ccff 0%, #ff99cc 100%);
+
+}
+.game-type--active:before {
+	content: '';
+	position: absolute;
+	background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+		#0000ff, #00ff00,#ffff00, #ff0000);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+  right: -2px;
+  top: -1.5px;
+	z-index: -1;
+  border-radius: 25px;
+	animation: steam 20s linear infinite;
+}
+.game-type--active:after{
+	content: '';
+	position: absolute;
+	background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+		#0000ff, #00ff00,#ffff00, #ff0000);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	z-index: -1;
+  top: 0;
+	filter: blur(10px);
+	animation: steam 20s linear infinite;
+}
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
 .game-type-link{
-    height: 250px;
-    width: 23%;
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 10px 5px 0;
-    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
     color: #000;
-    position: relative;
-    top: 0;
-    transition: top linear 0.2s;
-  }
-  .game-type-link:hover{
-    top: -5px;
-    opacity: 0.8;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
     text-decoration: none;
+    cursor: pointer;
+    padding-top: 6px;
+  }
+
+  .game-type-link:hover {
+    text-decoration:none
   }
   
-  .game-type__name{
-    font-size: 0.7rem;
-    font-weight: 1000;
-    width: 100%;
-    height: 40px;
-    padding: 8px 0 0 0;
-    text-align: center;
-  }
  
  

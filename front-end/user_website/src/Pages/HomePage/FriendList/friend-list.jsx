@@ -20,13 +20,11 @@ function FriendList({user}) {
             .then(res => {
                 console.log(res.data.post);
                 setListFriend(res.data.post);
-                console.log('in then function',listFriend);
             })
             .catch(err => {
                 console.log(err);
             })       
     }
-    console.log('outside api call',listFriend);
 
     useEffect(() => {
         if (user!=null){
@@ -87,7 +85,6 @@ function FriendList({user}) {
                                 </div>
                             </div>
                             ))
-                            
                     }
                 </div>
                 <div className="friend-list__footer">
