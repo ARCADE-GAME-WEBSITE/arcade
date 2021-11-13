@@ -4,7 +4,7 @@ const checkAuthMiddleware = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.post('/', checkAuthMiddleware.checkAuth, userRecordController.save);
+router.post('/', userRecordController.save);
 router.get('/', userRecordController.index);
 router.get('/get-by-game-id/:id', userRecordController.indexByGameID);
 router.get('/get-by-user-id/:id', userRecordController.indexByUserID);

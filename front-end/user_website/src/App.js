@@ -48,6 +48,7 @@ function App() {
       }).catch(err => {
         console.log(err);
       });
+      console.log(localStorage.getItem('token'));
     }
   }, [localStorage.getItem('token')]);
 

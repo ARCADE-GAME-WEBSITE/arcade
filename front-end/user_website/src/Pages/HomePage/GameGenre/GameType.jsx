@@ -19,7 +19,7 @@ function GameCategories({listCategory}){
 
     return (
         <div>
-            <h3>Game Type</h3>
+            <h3>Categories</h3>
                 <div className = "CategoryCell">
                     {allCategories}
                 </div>

@@ -453,14 +453,18 @@
           GameID : 1,
           HighScore: hightScoreCurrent
         }
-        fetch('/user-record/', { credentials: "same-origin" },{
+        console.log('in');
+        fetch('http://localhost:8000/user-record/',{
           method: "POST",
+          mode: 'cors', 
+          cache: 'no-cache',
+          credentials: "same-origin",
           headers: {
-            'Authorization': 'Basic YWRtaW46c3VwZXJzZWNyZXQ=',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5naGlhQGdtYWlsLmNvbSIsInVzZXJJZCI6NSwiaWF0IjoxNjM2NzI2ODk5fQ.OvvMCgFGgEJsEY51Kj6_6vQmTWMqtbyrHOmh9gFP3Vk',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(infoPost)
-        })
+        } )
           .then (response=> response.json())
           .then (json => console.log(json))
           .catch (error => console.log(error))
