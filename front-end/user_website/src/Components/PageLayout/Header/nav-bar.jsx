@@ -22,6 +22,17 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
 
     const [inputSearch, setInputSearch] = useState('')
     const elementGame = document.querySelectorAll('.all-games')
+    function unSearch(e){
+        if (e.target.value == ''){
+            Array.from(elementGame).forEach(function(element){
+                element.style.display = 'block';
+            })
+        }
+        else
+        {
+            setInputSearch(e.target.value.toLowerCase())
+        }
+    }
     function searchItem(){      
 
         Array.from(elementGame).forEach(function(element){
@@ -51,17 +62,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                 document.querySelector('#no__product').textContent = ''; 
             }
         }
-    function unSearch(e){
-        if (e.target.value == ''){
-            Array.from(elementGame).forEach(function(element){
-                element.style.display = 'block';
-            })
-        }
-        else
-        {
-            setInputSearch(e.target.value.toLowerCase())
-        }
-    }
+    
 
 
 

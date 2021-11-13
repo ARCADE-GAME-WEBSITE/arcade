@@ -38,7 +38,12 @@ function GameScreen({gameLink, currentGame}) {
                 </ul>
             </div>
             <div className="playGame" id="openGameScreen">
-                <iframe id="gameIFrame" className="playGame__screen" src={gameUrl} ></iframe>
+                <iframe 
+                    title={currentGame.Title} 
+                    id="gameIFrame" 
+                    className="playGame__screen" 
+                    src={gameUrl}>
+                </iframe>
             </div>
         </div>
     )

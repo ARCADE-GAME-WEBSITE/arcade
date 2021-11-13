@@ -139,7 +139,6 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setDialogState
                     setShowForm(false)
                 }).catch(
                     err => {
-                        
                         setDialogState({
                             title: "Error!",
                             message: err.message,
@@ -152,7 +151,7 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setDialogState
             setValues(default_values);
             setIsSubmitted(false);
         }
-    }, [errors, FormType, default_values, isSubmitted, setDialogState, setShowForm, validator, values])
+    }, [errors, FormType, default_values, isSubmitted, setDialogState, setShowForm, validator, values, user])
 
     const handleClose = (e) => {
         if (formRef.current === e.target || e.target.className === "close-btn"){

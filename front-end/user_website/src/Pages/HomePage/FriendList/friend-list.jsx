@@ -18,7 +18,6 @@ function FriendList({user}) {
     const getFriend = () => {
         axios.get('/friend/get-by-user-id/' + user.id )
             .then(res => {
-                console.log(res.data.post);
                 setListFriend(res.data.post);
             })
             .catch(err => {

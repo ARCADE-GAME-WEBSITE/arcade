@@ -47,7 +47,7 @@ function ListFriend({user}){
     
     if(addmail.value != null)
     {
-      if(user.Email != addmail.value)
+      if(user.Email !== addmail.value)
       {
           axios.post('/friend', {
               UserID : user.id,
@@ -69,7 +69,7 @@ function ListFriend({user}){
   console.log(tagGender.current);
   function getGender(value){
     if(tagGender.current != null) {
-      if(value == 'false'){
+      if(value === 'false'){
       // document.getElementById('gender').textContent = 'Female'
         tagGender.current.textContent = 'Female'
       }
