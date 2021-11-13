@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './game-detail.css'
 import axios from 'axios'
 import GameScreen from './GameScreen/game-screen'
@@ -12,11 +12,9 @@ import GameSame from './GameSame/game-same'
 import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
-
 function GameDetail({user}) {
     const getUrlGame= window.location.href.split("/")
     const gameId = getUrlGame[getUrlGame.length - 2]
-    const gameUrl = getUrlGame[getUrlGame.length - 2] + "/" + getUrlGame[getUrlGame.length - 1]
     
     const [currentGame, setCurrentGame] = useState(null)
     const gameLink = axios.defaults.baseURL + 'uploads/games'
@@ -29,7 +27,7 @@ function GameDetail({user}) {
         .catch((err) => {
             console.log(err);
         })
-    },[])
+    },[gameId])
 
     return (currentGame) ? (
         <div className="grid wide-1">

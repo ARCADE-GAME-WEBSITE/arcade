@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './Styles/App.css';
 import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
@@ -35,7 +35,6 @@ function App() {
   const [showChangePassword, setShowChangePassword] = useState(false);
 
   const [user, setUser] = useState(null);
-  const [game, setGame] = useState(null);
   const formRef = useRef();
 
   useEffect(() => {
@@ -52,20 +51,6 @@ function App() {
     }
   }, [localStorage.getItem('token')]);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('token') != null){
-  //     const config = {
-  //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-  //     };
-
-  //     axios.get('games/', config).then(result => {
-  //       setGame(result.data);
-  //     }).catch(err => {
-  //       console.log(err);
-  //     });
-  //   }
-  // }, [localStorage.getItem('token')]);
-  // console.log(game);
   return (
     <BrowserRouter>
       <div className="App" style= {{backgroundImage: `url(${bgImg})`,backgroundSize: '1024px 300px'}}>

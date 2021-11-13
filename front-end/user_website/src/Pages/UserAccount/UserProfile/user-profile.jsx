@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import axios from 'axios';
 import './user-profile.css'
 
+import dateFormat from "dateformat";
+
 import {
   Button,
   Card,
@@ -12,37 +14,42 @@ import {
 } from "reactstrap";
 
 function UserProfile({user, setShowChangePassword}){
-  const[name,setName] = useState("");
-  // const[gender,setGender] = useState(true);
-  const[date,setDate] = useState("");
- 
+  const[name,setName] = useState(user.Full_name);
+  const[date,setDate] = useState(dateFormat(user.DayOfBirth, "yyyy-mm-dd"));
+  const[gender, setGender] = useState(user.Gender);
+
   const onSubmit = () => {
+    if (!name.trim()){
+      alert("Please enter your name!")
+      return;
+    }
+
+    let now = dateFormat(new Date(), "yyyy-mm-dd");
+    if (date > now){
+      alert("Invalid day of birth!")
+      return;
+    }
+
     const obj = {
       Full_name : name,
       Gender : Number(user.Gender),
       DayOfBirth : date,
-      Role : Number(user.Role),
-      Email : user.Email,
-      Friends:user.Friends
+      Role : Number(user.Role)
     };
     
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
+
     axios.patch('/user/'+ user.id , obj,config)
-        .then(res => console.log(res.data));
-        alert("Update successful!");
-    }
-    const showDate = () =>{
-      var dayOfBirth;
-      if(user.DayOfBirth != null){
-        for(let i = 0; i < 10; i++)
-          dayOfBirth += user.DayOfBirth[i];
-      }
-      document.getElementById('birthday').textContent = dayOfBirth;
+        .then(res => {
+          alert("Update profile successful!");
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
 
-    console.log(user.DayOfBirth);
     return(user)? (
       <>
         <div className="content">
@@ -59,7 +66,12 @@ function UserProfile({user, setShowChangePassword}){
                   </div>
                   <div className="col-md-3 text-secondary">
                     <form>
-                      <input type="text" name="fullname" className="o" placeholder={user.Full_name} onChange={(event)=>{ setName(event.target.value); }} /> 
+                      <input 
+                        type="text" 
+                        name="fullname" 
+                        className="o" 
+                        value={name} 
+                        onChange={(event) => {setName(event.target.value)}} /> 
                     </form>
                   </div>
                   </div>
@@ -69,9 +81,24 @@ function UserProfile({user, setShowChangePassword}){
                     <h5>Sex:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="radio" name="gender" className="a" id='gender_Male' /> Male
-                  
-                    <input type="radio" name="gender" className="a" id='gender_Female'   /> Female
+                    <label className="radio-label">
+                      <input 
+                      type="radio" 
+                      name="gender" 
+                      className="a" 
+                      id='gender_Male'
+                      checked={gender}
+                      onClick={() => {setGender(true)}}/> Male 
+                    </label>
+                    <label  className="radio-label">
+                      <input 
+                        type="radio" 
+                        name="gender" 
+                        className="a" 
+                        id='gender_Female'
+                        checked={!gender}
+                        onClick={() => {setGender(false)}}/> Female
+                    </label>
                   </div>
                   </div>
                   <hr />
@@ -80,7 +107,14 @@ function UserProfile({user, setShowChangePassword}){
                     <h5>Date of birth:</h5>
                   </div>
                   <div className="col-md-3 text-secondary">
-                    <input type="date" name="bday" className="o" id="birthday" onChange={(event)=>{ setDate(event.target.value); }} />
+                    <input 
+                      type="date" 
+                      name="bday" 
+                      className="o" 
+                      id="birthday"
+                      value={date}
+                      onChange={(event)=>{setDate(event.target.value)}} />
+                      <div>(mm-dd-yyyy)</div>
                   </div>
                   </div>
                   <hr />
@@ -99,9 +133,10 @@ function UserProfile({user, setShowChangePassword}){
                   <div className="col-md-3">
                     <h5>Password:</h5>
                   </div>
-                  <div className="col-md-3 text-secondary"  >
-                    <p>*************************</p>
-                  </div>
+                  <input 
+                    className="col-md-3 text-secondary" 
+                    type="password"
+                    value={user.Password}/>
                 </div>
             
                 <CardFooter>

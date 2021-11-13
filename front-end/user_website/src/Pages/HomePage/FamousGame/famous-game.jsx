@@ -12,15 +12,13 @@ function FamousGame({listGame}) {
         );
     })
 
-    console.log(allGames);
-
     return (
         <div>
             <h3>GAME</h3>
-                <a className="GameCell">
-                    {allGames}
-                </a>
-                <h1 id="no__product"></h1>
+            <label className="GameCell">
+                {allGames}
+            </label>
+            <h1 id="no__product">What is this?</h1>
         </div>
     );
 };

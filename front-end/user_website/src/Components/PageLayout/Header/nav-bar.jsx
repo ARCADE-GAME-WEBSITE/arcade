@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -17,7 +17,6 @@ import bell_icon from '../../../Assets/Images/Icons/bell.png'
 import axios from "axios";
 
 function NavBar({setShowLogin, setShowSignUp, user, setUser}) { 
-
     //search 
     const searchItemInput = document.getElementById('navbar-search-input')
     const elementProduct = document.querySelectorAll('.all-games')
@@ -39,11 +38,10 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
         function checkEmpty(element){
             let count = 0;
             for(let i = 0; i < element.length; i++){
-                if (element[i].style.display == 'block')
-                count++;
+                if (element[i].style.display === 'block') count++;
             }
     
-            if (count == 0){
+            if (count === 0){
                 document.querySelector('#no__product').textContent = 'Can\'t find'; 
             }
             else{
@@ -51,7 +49,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
             }
         }
         function unSearch(e){
-            if (e.target.value == ''){
+            if (e.target.value === ''){
                 Array.from(elementProduct).forEach(function(element){
                     element.style.display = 'block';
                 })

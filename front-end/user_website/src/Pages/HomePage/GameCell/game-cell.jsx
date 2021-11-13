@@ -9,7 +9,7 @@ function GameCell({game}){
 
     return (
         <a className="famous-game-link all-games" href={'/game-detail/' + game.id + "/" + game.Url}>
-            <img className="famous-game__img" src={gameAvaUrl} alt="Cannot get image" />
+            <img className="famous-game__img" src={gameAvaUrl} alt="Cannot get" />
             <div className="famous-game__name">{game.Title}</div>
             <div className="famous-game__dev">Arcade games</div>
         </a>

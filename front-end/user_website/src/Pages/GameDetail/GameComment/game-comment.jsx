@@ -1,4 +1,4 @@
-import React, { useEffect , useState , useRef,useLayoutEffect }from 'react'
+import React, { useEffect , useState , useRef } from 'react'
 
 import './game-comment.css'
 import axios from 'axios'
@@ -213,10 +213,9 @@ function GameComment({user,gameId}) {
 
 
     useEffect(() => {
-
         for(let i=0; i<=2; i++){
             if(user){
-                if(user.id != userId[i]){
+                if(user.id !== userId[i]){
                     document.getElementById(`comment__bottom__right${i+1}`).style.display = 'none'
                 }
                 else {
@@ -224,7 +223,7 @@ function GameComment({user,gameId}) {
                 }
             }
         }
-    },[cmt,userId])
+    },[cmt, user, userId])
 
 
     return (

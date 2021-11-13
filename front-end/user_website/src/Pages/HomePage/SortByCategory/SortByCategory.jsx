@@ -15,7 +15,7 @@ function SortByCategory({listCategory, listGame}){
     return(
         <div>
             <a className="famous-game-link" href={'/game-detail/' + allGames.Url}>
-                <img className="famous-game__img" src={gameAvaUrl} alt="Cannot get image" />
+                <img className="famous-game__img" src={gameAvaUrl} alt="Cannot get" />
                 <div className="famous-game__name">{allGames.Title}</div>
                 <div className="famous-game__dev">Arcade games</div>
             </a>
