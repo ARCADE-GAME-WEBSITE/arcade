@@ -1,8 +1,6 @@
-import React ,{useState} from "react";
+import React from "react";
 import "./CategoriesCell.css"
 import "../GameCell/game-cell"
-import classNames from 'classnames';
-
 
 function CategoriesCell({categories}){
     // const elementGame = document.querySelectorAll('.all-games')
@@ -34,11 +32,11 @@ function CategoriesCell({categories}){
     // })
 
     return (
-            <div className={"game-type"} >
-                <a className="game-type-link">
-                    {categories.CategoryName}
-                </a>
-            </div>
+        <div className={"game-category"} >
+            <a className="game-category-link">
+                {categories.CategoryName}
+            </a>
+        </div>
     );
 }
 

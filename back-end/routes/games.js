@@ -8,6 +8,7 @@ router.post('/', checkAuthMiddleware.checkAuth, gameController.save);
 router.get('/', gameController.index);
 router.get('/:id', gameController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, gameController.update);
+router.post('/increase-played/:id', gameController.increasePlayed);
 router.delete('/:id', checkAuthMiddleware.checkAuth, gameController.destroy);
 
 module.exports = router;

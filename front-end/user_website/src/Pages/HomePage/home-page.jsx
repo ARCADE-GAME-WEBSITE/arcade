@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import FriendList from "./FriendList/friend-list";
 import FamousGame from "./FamousGame/famous-game";
-import SortByCategory from "./SortByCategory/SortByCategory";
-import GameType from "./GameGenre/GameType";
+// import SortByCategory from "./SortByCategory/SortByCategory";
+import GameCategories from "./GameCategories/GameCategories";
 
 import './home-page.css';
 function HomePage({user, categories}) {
 
-  const [listGame,setListGame] = useState([]) ;
+  const [listGame, setListGame] = useState([]) ;
 
   useEffect(() => {
     axios.get('game/').then(result => {
@@ -38,7 +38,7 @@ function HomePage({user, categories}) {
           <div className='container'>
                 <div className='row'>
                   <div className='col-sm-12 col-md-6 col-lg-9 mx-auto'>
-                    <GameType listCategory = {listCategory} />
+                    <GameCategories listCategory = {listCategory} />
                   </div>
                 </div>
               </div>

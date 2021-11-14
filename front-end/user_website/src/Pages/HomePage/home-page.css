@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-
 .grid.wide {
   max-width: 1000px;
   margin: 0 auto;
@@ -32,6 +31,11 @@
   height: 40%;
 }
 
-.home-page--css{
+.home-page--css {
   width: 100%;
+}
+
+.SectionTitle {
+  font-size: 2rem;
+  margin: 20px 0 20px 5%;
 }
