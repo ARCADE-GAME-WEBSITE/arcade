@@ -6,7 +6,7 @@ import FamousGame from "./FamousGame/famous-game";
 import GameCategories from "./GameCategories/GameCategories";
 
 import './home-page.css';
-function HomePage({user, categories}) {
+function HomePage({user}) {
 
   const listGameOld = useRef()
 
@@ -24,7 +24,8 @@ function HomePage({user, categories}) {
 
   useEffect (() =>{
     axios.get('category/').then(result => {
-      setCategory(result.data)
+      const allObject = [{CategoryName: "All"}]
+      setCategory(allObject.concat(result.data))
     }).catch(err => {
       console.log(err)
     })
@@ -39,8 +40,12 @@ function HomePage({user, categories}) {
       }
     })
     e.target.parentElement.classList.add("game-category--active")
-    const filterData = listGameOld.current.filter(item => item.Category.indexOf(btn) !== -1)
-    setListGame(filterData)
+    console.log(btn);
+    if(btn != 'All'){
+      const filterData = listGameOld.current.filter(item => item.Category.indexOf(btn) !== -1)
+      setListGame(filterData)
+    }
+    else setListGame(listGameOld.current)
   }
 
   return (
