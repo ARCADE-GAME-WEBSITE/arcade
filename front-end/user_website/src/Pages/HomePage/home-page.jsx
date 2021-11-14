@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import FriendList from "./FriendList/friend-list";
-import FamousGame from "./FamousGame/famous-game";
+import AllGames from "./AllGames/AllGames";
 // import SortByCategory from "./SortByCategory/SortByCategory";
 import GameCategories from "./GameCategories/GameCategories";
 
@@ -65,16 +65,9 @@ function HomePage({user}) {
             <div className='container'>
               <div className='row'>
                 <div className='col-sm-12 col-md-6 col-lg-9 mx-auto'>
-                  <FamousGame listGame = {listGame}/> 
+                  <AllGames listGame = {listGame}/> 
                 </div>
               </div>
-            </div>
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-sm-9 col-md-6 col-lg-9 mx-auto'>
-                      {/* <SortByCategory listGame = {listGame} listCategory = {listCategory} /> */}
-                    </div>
-                </div>
             </div>
         </div>
       </div>
