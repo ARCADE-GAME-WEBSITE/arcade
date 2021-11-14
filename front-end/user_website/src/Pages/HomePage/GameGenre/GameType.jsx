@@ -7,11 +7,11 @@ import CategoriesCell from '../CategoriesCell/CategoriesCell';
 
 /* <!--Game Link --> */
 
-function GameCategories({listCategory}){
- 
+function GameType({listCategory,filter}){
+
     const allCategories = listCategory.map(categories => {
         return (
-            <CategoriesCell categories={categories}/>
+            <CategoriesCell categories={categories} filter={filter}/>
         );
     })
     
@@ -27,4 +27,4 @@ function GameCategories({listCategory}){
     );
 };
 
-export default GameCategories;
+export default GameType;

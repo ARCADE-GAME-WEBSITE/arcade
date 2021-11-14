@@ -4,12 +4,9 @@ import "../GameCell/game-cell"
 import classNames from 'classnames';
 
 
-function CategoriesCell({categories}){
+function CategoriesCell({categories,filter}){
     // const elementGame = document.querySelectorAll('.all-games')
-    // const [category , setCategory] = useState()
     // const filterBtn = document.querySelectorAll('#CategoryCell .game-type')
-    // setCategory(Array.from(filterBtn))
-    // console.log(category);
 
     // Array.from(filterBtn).forEach(function (element) {
     //     console.log(element);
@@ -34,8 +31,8 @@ function CategoriesCell({categories}){
     // })
 
     return (
-            <div className={"game-type"} >
-                <a className="game-type-link">
+            <div className="game-type">
+                <a className="game-type-link" onClick={(e) => filter(`${categories.CategoryName}`,e)}>
                     {categories.CategoryName}
                 </a>
             </div>
