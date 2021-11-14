@@ -2,10 +2,16 @@ import React from 'react'
 import axios from 'axios'
 import './game-screen.css'
 
-const playGame = () => {
+const playGame = (gameId) => {
     document.getElementById('gameScreenBtnPlay').style.display = 'none'
     document.getElementById('openGameScreen').style.display = 'block'
     document.getElementById('gameIFrame').src += '';
+
+    axios.post('game/increase-played/' + gameId).then(res => {
+        console.log(res);
+    }).catch(err => {
+        console.log(err);
+    })
 }
 
 function GameScreen({gameLink, currentGame}) {
@@ -23,7 +29,7 @@ function GameScreen({gameLink, currentGame}) {
                     <img src={axios.defaults.baseURL + 'uploads/images/games/game-play-image/'+ gameId + '/' + gameImg[3]} className="game-screen__img--css" alt="" />
                 </div>
                 <ul className="game-screen__btn">
-                    <li className="btn-play" onClick={playGame}>
+                    <li className="btn-play" onClick={() => playGame(gameId)}>
                         <a className="btn-play-link">PLAY</a>
                     </li>
                     <li className="btn-toturial">

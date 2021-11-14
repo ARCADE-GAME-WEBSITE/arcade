@@ -13,8 +13,8 @@ function FamousGame({listGame}) {
     })
 
     return (
-        <div>
-            <h3>GAME</h3>
+        <div className="AllGames">
+            <h3 className="SectionTitle">All Games</h3>
             <label className="GameCell">
                 {allGames}
             </label>

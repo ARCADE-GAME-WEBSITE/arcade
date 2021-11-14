@@ -23,7 +23,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     const [inputSearch, setInputSearch] = useState('')
     const elementGame = document.querySelectorAll('.all-games')
     function unSearch(e){
-        if (e.target.value == ''){
+        if (e.target.value === ''){
             Array.from(elementGame).forEach(function(element){
                 element.style.display = 'block';
             })
@@ -51,11 +51,11 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
         function checkEmpty(element){
             let count = 0;
             for(let i = 0; i < element.length; i++){
-                if (element[i].style.display == 'block')
+                if (element[i].style.display === 'block')
                 count++;
             }
 
-            if (count == 0){
+            if (count === 0){
                 document.querySelector('#no__product').textContent = 'Can\'t find'; 
             }
             else{

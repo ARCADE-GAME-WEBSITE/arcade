@@ -114,7 +114,34 @@ function update(req, res){
             message: "Something went wrong!",
             error: error
         });
-    })
+    });
+}
+
+function increasePlayed(req, res){
+    const id = req.params.id;
+    models.Game.findByPk(id).then(result => {
+        console.log(result)
+        if (result){
+            const updatePlayed = {
+                Played: result.Played + 1
+            }
+            models.Game.update(updatePlayed, {where: {id:id}}).then(result1 => {
+                res.status(200).json({
+                    message: "Increase played successfully!"
+                });
+            })
+        }
+        else {
+            res.status(200).json({
+                message: "Game not found!"
+            });
+        }
+    }).catch(error => {
+        res.status(200).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    });
 }
 
 function destroy(req, res){
@@ -137,5 +164,6 @@ module.exports = {
     index: index,
     show: show,
     update: update,
+    increasePlayed: increasePlayed,
     destroy: destroy
 }

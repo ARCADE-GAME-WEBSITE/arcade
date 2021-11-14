@@ -2,8 +2,8 @@ import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import FriendList from "./FriendList/friend-list";
 import FamousGame from "./FamousGame/famous-game";
-import SortByCategory from "./SortByCategory/SortByCategory";
-import GameType from "./GameGenre/GameType";
+// import SortByCategory from "./SortByCategory/SortByCategory";
+import GameCategories from "./GameCategories/GameCategories";
 
 import './home-page.css';
 function HomePage({user, categories}) {
@@ -30,41 +30,15 @@ function HomePage({user, categories}) {
     })
   }, [])
 
-  // const elementGame = document.querySelectorAll('.all-games')
-  const filterBtn = document.querySelectorAll('#CategoryCell .game-type')
-  // console.log(Array.from(filterBtn)[0]);
-    
+  const filterBtn = document.querySelectorAll('#CategoryCell .game-category')
 
-  // const filter = (btn) => {
-  //   console.log(btn);  
-  //   Array.from(filterBtn).forEach(function (element) {
-  //     console.log(element);
-  //           for(let i=0; i<filterBtn.length; i++) {
-  //               filterBtn[i].classList.remove('game-type--active');
-  //           }
-  //           btn.target.parentElement.classList.add('game-type--active');
-        
-            
-            // let name_filter = element.dataset.filter;
-
-    //     Array.from(elementGame).forEach(function(item){
-    //         if (item.dataset.item.indexOf(name_filter) !== -1 || name_filter === 'all')
-    //         item.style.display = 'block';
-    //         else {
-    //             item.style.display = 'none';
-    //         }
-    //     })
-    //     // e.stopPropagation()
-        
-  //   })
-  // }
   const filter = (btn,e) => {
     Array.from(filterBtn).forEach(function () {
       for(let i=0; i<filterBtn.length; i++) {
-        filterBtn[i].classList.remove('game-type--active');
+        filterBtn[i].classList.remove('game-category--active');
       }
     })
-    e.target.parentElement.classList.add("game-type--active")
+    e.target.parentElement.classList.add("game-category--active")
     const filterData = listGameOld.current.filter(item => item.Category.indexOf(btn) !== -1)
     setListGame(filterData)
   }
@@ -79,7 +53,7 @@ function HomePage({user, categories}) {
           <div className='container'>
                 <div className='row'>
                   <div className='col-sm-12 col-md-9 col-lg-9 mx-auto'>
-                    <GameType listCategory = {listCategory} filter={filter}/>
+                    <GameCategories listCategory = {listCategory} filter={filter}/>
                   </div>
                 </div>
               </div>
