@@ -1,5 +1,5 @@
 
-import React, {useState,useEffect, useRef} from "react";
+import React, {useState,useEffect} from "react";
 import './friend-list.css'
 //import AddFriend from './add-friend.jsx'
 import axios from 'axios'
@@ -63,22 +63,7 @@ function ListFriend({user}){
       else alert('Can not add your self')
     }
   }
-
-  
-  const tagGender = useRef(null);
-  console.log(tagGender.current);
-  function getGender(value){
-    if(tagGender.current != null) {
-      if(value === 'false'){
-      // document.getElementById('gender').textContent = 'Female'
-        tagGender.current.textContent = 'Female'
-      }
-      else {
-      // document.getElementById('gender').textContent = 'Male'
-        tagGender.current.textContent = 'Male'
-      }
-    }
-  }
+ 
   
     return  (user) ? (
     <>
@@ -120,8 +105,8 @@ function ListFriend({user}){
                       <td><img className="friend-list__title-img" src={axios.defaults.baseURL + 'uploads/images/users/' + friend.FriendAvatar} alt="" /></td>
                       <td>{friend.FriendEmail}</td>
                       <td>{friend.FriendFullName}</td>
-                      <td id='gender' ref={tagGender} >{getGender(friend.FriendGender)}</td>
-                      <td>{friend.FriendDayOfBirth}</td>
+                      <td>{Number(friend.FriendGender) === 1 ? 'Male' : 'Female'}</td>
+                      <td>{friend.FriendDayOfBirth != null ? friend.FriendDayOfBirth.substring(0, 10): '0000-00-00'}</td>
                     </tr>
                     )) : null
                   }

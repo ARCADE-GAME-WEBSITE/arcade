@@ -114,7 +114,7 @@ function UserProfile({user, setShowChangePassword}){
                       id="birthday"
                       value={date}
                       onChange={(event)=>{setDate(event.target.value)}} />
-                      <div>(mm-dd-yyyy)</div>
+                      <div></div>
                   </div>
                   </div>
                   <hr />
