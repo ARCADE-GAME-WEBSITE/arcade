@@ -1,4 +1,4 @@
-1. Remote MySQL Database config:
+1. Remote MySQL Database config: https://remotemysql.com/phpmyadmin/index.php?db=lOAjt2SHrp
 {
     "host": "37.59.55.185",
     "username": "lOAjt2SHrp",
