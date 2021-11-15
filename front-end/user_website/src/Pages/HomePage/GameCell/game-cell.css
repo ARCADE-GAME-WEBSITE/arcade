@@ -6,6 +6,7 @@
   justify-content: space-between;
   margin: 5px, 0;
   position:absolute;
+
 }
 .game-cell-link {
   height: 250px;
@@ -21,8 +22,7 @@
   padding: 2px;
 }
 .game-cell-link:hover {
-  top: -5px;
-  opacity: 0.8;
+
   text-decoration: none;
   border-style: solid;
   
@@ -54,8 +54,8 @@
 
 .game-cell:hover{
   border: 5px solid transparent;
-  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%,transparent 50%);
   border-image-slice: 1;
   transition:  0.6s linear;
-  width: 110%;
+  width: 100%;
 }
