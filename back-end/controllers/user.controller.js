@@ -24,52 +24,110 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-function signUp(req, res){
-    models.User.findOne({where:{Email:req.body.Email}}).then(result => {
-        if(result){
-            res.status(209).json({
-                message: "Email already exists!"
+async function signUp(req, res){
+    try {
+        const rUser = await models.User.findOne({where:{Email:req.body.Email}});
+        const pUser = await models.Pending_user.findOne({where:{Email:req.body.Email}});
+
+        if(rUser){
+            return res.status(209).json({
+                message: "This email has already signed up!"
             });
         }
-        else {
-            bcryptjs.genSalt(10, function(err, salt){
-                bcryptjs.hash(req.body.Password, salt, function(err, hash){
-                    const default_ava = (req.body.Gender == 1) ? 'male.jpg' : 'female.jpg';
-                    const user = {
-                        Email: req.body.Email,
-                        Password: hash,
-                        Role: 0,
-                        Full_name: req.body.Full_name,
-                        Gender: req.body.Gender,
-                        DayOfBirth: "2001-01-01",
-                        Avatar: default_ava
-                    }
+        
+        if(pUser){
+            return res.status(209).json({
+                message: "You have already registered! Please check your email to complete sign up!"
+            });
+        }
 
-                    const validationResponse = v.validate(user, schema);
-                    if(validationResponse !== true){
-                        return res.status(400).json({
-                            message: "Validation failed!",
-                            errors: validationResponse
-                        });
-                    }
-                
-                    models.User.create(user).then(result1 => {
-                        res.status(201).json({
-                            message: "User created successfully!",
-                        });
-                    }).catch(error => {
-                        res.status(500).json({
-                            message: "Something went wrong!",
-                            error: error
-                        });
+        bcryptjs.genSalt(10, function(err, salt){
+            bcryptjs.hash(req.body.Password, salt, function(err, hash){
+                const pending_user = {
+                    Email: req.body.Email,
+                    Password: hash,
+                    Full_name: req.body.Full_name,
+                    Gender: req.body.Gender
+                }
+
+                const validationResponse = v.validate(pending_user, schema);
+                if(validationResponse !== true){
+                    return res.status(400).json({
+                        message: "Validation failed!",
+                        errors: validationResponse
                     });
+                }
+
+                models.Pending_user.create(pending_user).then(result2 => {
+                    sendConfirmSignUpEmail(result2.Email, result2.id);
+                    res.status(201).json({
+                        message: "Confirm sign up email sended!"
+                    });
+                })
+            });
+        });
+    } catch(error){
+        res.status(500).json({
+            message: "Something went wrong!",
+            error: error
+        });
+    }
+}
+
+function sendConfirmSignUpEmail(email, pending_id){
+    const options = {
+        from: "ArcadeGameWebsite@outlook.com.vn",
+        to: email,
+        subject: "Confirm sign up for email: " + email,
+        text: "Hello " + email + ", you have just sign up to our website - ArcadeGameWebsite.com!"
+            + "\n\nClick here to confirm and complete your sign up: " + "http://localhost:8000/user/confirm-sign-up/" + pending_id  
+            + "\n\nDo not share this email to any one!"
+            + "\n\nIf you not doing this, just ignore this message!"
+            + "\n\nThank you,"
+            + "\n---ArcadeGameWebsite - GoNin Team---"
+    }
+
+    transporter.sendMail(options, function(err, info){
+        if (err){
+            console.log(err);
+            return false;
+        }
+        console.log("Send: " + info.response);
+    })
+}
+
+function confirmSignUp(req, res){
+    const id = req.params.id;
+
+    models.Pending_user.findByPk(id).then(result => {
+        if (result) {
+            const default_ava = (result.Gender == 1) ? 'male.jpg' : 'female.jpg';
+            const newUser = {
+                Email: result.Email,
+                Password: result.Password,
+                Role: 0,
+                Full_name: result.Full_name,
+                Gender: result.Gender,
+                DayOfBirth: "2001-01-01",
+                Avatar: default_ava
+            }
+
+            models.User.create(newUser).then(result1 => {
+                res.status(201).json({
+                    message: "Sign up successful! New user created!",
                 });
+                models.Pending_user.destroy({where:{id:result.id}});
+            });
+        }
+        else{
+            res.status(401).json({
+                message: "Pending user not exists!"
             });
         }
     }).catch(error => {
         res.status(500).json({
             message: "Something went wrong!",
-            error:error
+            error: error
         });
     });
 }
@@ -206,7 +264,6 @@ function destroy(req, res){
 function forgot(req, res){
     models.User.findOne({where: {Email:req.body.Email}}).then(result => {
         if(result){
-            console.log(result);
             const email = result.Email;
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let newPassword = "";
@@ -214,7 +271,7 @@ function forgot(req, res){
                 newPassword += characters.charAt(Math.floor(Math.random() * characters.length));
             }
 
-            sendEmail(email, newPassword);
+            sendResetPasswordEmail(email, newPassword);
 
             bcryptjs.genSalt(10, function(err, salt){
                 bcryptjs.hash(newPassword, salt, function(err, hash){
@@ -248,7 +305,7 @@ function forgot(req, res){
     });
 }
 
-function sendEmail(email, newPassword){
+function sendResetPasswordEmail(email, newPassword){
     const options = {
         from: "ArcadeGameWebsite@outlook.com.vn",
         to: email,
@@ -319,6 +376,7 @@ function changePassword(req, res){
 
 module.exports = {
     signUp: signUp,
+    confirmSignUp: confirmSignUp,
     login: login,
     getCurrentUser:getCurrentUser,
     index: index,
