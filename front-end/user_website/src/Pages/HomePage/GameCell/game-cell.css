@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   margin: 5px, 0;
+  position:absolute;
 }
 .game-cell-link {
   height: 250px;
@@ -24,11 +25,13 @@
   opacity: 0.8;
   text-decoration: none;
   border-style: solid;
+  
 }
 
 .game-cell__img {
-  height: 150px;
-  width: 100%;
+  padding:10% 0 0 5% ;
+  height: 50%;
+  width: 90%;
 }
 
 .game-cell__name {
@@ -47,4 +50,12 @@
   font-size: 0.8rem;
   font-weight: 700;
   padding: 0 0 0 5px;
+}
+
+.game-cell:hover{
+  border: 5px solid transparent;
+  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+  border-image-slice: 1;
+  transition:  0.6s linear;
+  width: 110%;
 }

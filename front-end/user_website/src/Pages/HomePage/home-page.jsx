@@ -1,12 +1,12 @@
 import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import FriendList from "./FriendList/friend-list";
-import FamousGame from "./FamousGame/famous-game";
+import AllGames from "./AllGames/AllGames";
 // import SortByCategory from "./SortByCategory/SortByCategory";
 import GameCategories from "./GameCategories/GameCategories";
 
 import './home-page.css';
-function HomePage({user, categories}) {
+function HomePage({user}) {
 
   const listGameOld = useRef()
 
@@ -24,7 +24,8 @@ function HomePage({user, categories}) {
 
   useEffect (() =>{
     axios.get('category/').then(result => {
-      setCategory(result.data)
+      const allObject = [{CategoryName: "All"}]
+      setCategory(allObject.concat(result.data))
     }).catch(err => {
       console.log(err)
     })
@@ -39,8 +40,12 @@ function HomePage({user, categories}) {
       }
     })
     e.target.parentElement.classList.add("game-category--active")
-    const filterData = listGameOld.current.filter(item => item.Category.indexOf(btn) !== -1)
-    setListGame(filterData)
+    console.log(btn);
+    if(btn != 'All'){
+      const filterData = listGameOld.current.filter(item => item.Category.indexOf(btn) !== -1)
+      setListGame(filterData)
+    }
+    else setListGame(listGameOld.current)
   }
 
   return (
@@ -60,16 +65,9 @@ function HomePage({user, categories}) {
             <div className='container'>
               <div className='row'>
                 <div className='col-sm-12 col-md-6 col-lg-9 mx-auto'>
-                  <FamousGame listGame = {listGame}/> 
+                  <AllGames listGame = {listGame}/> 
                 </div>
               </div>
-            </div>
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-sm-9 col-md-6 col-lg-9 mx-auto'>
-                      {/* <SortByCategory listGame = {listGame} listCategory = {listCategory} /> */}
-                    </div>
-                </div>
             </div>
         </div>
       </div>

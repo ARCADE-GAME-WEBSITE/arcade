@@ -1,6 +1,6 @@
 .sidebar,
 .off-canvas-sidebar {
-  height: calc(94vh - 110px);
+  height: calc(100vh - 110px);
   width: 230px;
   position: absolute;
   top: 0;

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import "./famous-game.css";
+import "./AllGames.css";
 
 import GameCell from '../GameCell/game-cell';
 
 
-function FamousGame({listGame}) {
+function AllGames({listGame}) {
     const allGames = listGame.map(game => {
         return (
             <GameCell game={game}/>
@@ -18,8 +18,7 @@ function FamousGame({listGame}) {
             <label className="GameCell">
                 {allGames}
             </label>
-            <h1 id="no__product">What is this?</h1>
         </div>
     );
 };
-export default FamousGame;
+export default AllGames;
