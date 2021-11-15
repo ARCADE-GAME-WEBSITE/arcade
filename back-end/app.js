@@ -16,8 +16,9 @@ const app = express();
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:3001','http://55ca-42-118-34-113.ngrok.io','http://55ca-42-118-34-113.ngrok.io/home']
+    origin: ['http://localhost:3000', 'http://localhost:3001', 'https://arcadegame-gonin.netlify.app/']
 }))
+
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
