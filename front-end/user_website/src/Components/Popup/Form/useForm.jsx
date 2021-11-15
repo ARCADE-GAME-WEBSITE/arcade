@@ -133,7 +133,7 @@ const useForm = (FormType, formRef, setShowForm, validator, user, setDialogState
                 axios.post("user/change-password/" + user.id, values, config).then(res => {
                     setDialogState({
                         title: "Notify!",
-                        message: "Your password have been changed successfully! Now you can login again with new password!",
+                        message: "An email has just been sended to " + values.Email + ". Please check your email to confirm reset!",
                         show: true
                     })
                     setShowForm(false)

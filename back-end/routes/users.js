@@ -13,6 +13,7 @@ router.get('/:id', checkAuthMiddleware.checkAuth, userController.show);
 router.patch('/:id', checkAuthMiddleware.checkAuth, userController.update);
 router.delete('/:id', checkAuthMiddleware.checkAuth, userController.destroy);
 router.post("/forgot-password", userController.forgot);
+router.get("/reset-password/:email", userController.resetPassword);
 router.post("/change-password/:id", checkAuthMiddleware.checkAuth, userController.changePassword);
 
 module.exports = router;

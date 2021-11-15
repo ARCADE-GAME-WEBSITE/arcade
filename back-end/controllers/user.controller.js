@@ -240,7 +240,7 @@ function update(req, res){
             post: updateUser
         });
     }).catch(error => {
-        res.status(200).json({
+        res.status(400).json({
             message: "Something went wrong!",
             error: error
         });
@@ -255,7 +255,7 @@ function destroy(req, res){
             message: "User deleted successfully!"
         });
     }).catch(error => {
-        res.status(200).json({
+        res.status(400).json({
             message: "Something went wrong!",
             error: error
         });
@@ -265,33 +265,10 @@ function destroy(req, res){
 function forgot(req, res){
     models.User.findOne({where: {Email:req.body.Email}}).then(result => {
         if(result){
-            const email = result.Email;
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let newPassword = "";
-            for ( var i = 0; i < 10; i++ ) {
-                newPassword += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-
-            sendResetPasswordEmail(email, newPassword);
-
-            bcryptjs.genSalt(10, function(err, salt){
-                bcryptjs.hash(newPassword, salt, function(err, hash){
-                    const updateUser = {
-                        Password: hash
-                    }
-
-                    models.User.update(updateUser, {where: {id:result.id}}).then(result1 => {
-                        res.status(200).json({
-                            message: "Password reset successfully!"
-                        });
-                    }).catch(error => {
-                        res.status(200).json({
-                            message: "Something went wrong!",
-                            error: error
-                        });
-                    });
-                });
-            });
+            sendResetPasswordEmail(result.Email);
+            res.status(201).json({
+                message: "Reset password email sended! Please check your email to confirm reset!"
+            }); 
         }
         else{
             res.status(404).json({
@@ -306,16 +283,16 @@ function forgot(req, res){
     });
 }
 
-function sendResetPasswordEmail(email, newPassword){
+function sendResetPasswordEmail(email){
     const options = {
         from: "ArcadeGameWebsite@outlook.com.vn",
         to: email,
         subject: "Reset password for account: " + email,
         text: "Hello " + email + ", you have just reset your password for ArcadeGameWebsite.com!"
-            + "\n\nYour new password is: " + newPassword 
-            + "\n\nDo not share this email or password to any one!"
-            + "\n\nIf you not doing this, please report back to us!"
-            + "\n\nOr else, you can just ignore this message!"
+            + "\n\nClick here to reset your password: " 
+            + "https://arcadegame-gonin-server.herokuapp.com/user/reset-password/" + email 
+            + "\n\nDo not share this link or email to any one!"
+            + "\n\nIf you not doing this, you can just ignore this message!"
             + "\n\nThank you,"
             + "\n---ArcadeGameWebsite - GoNin Team---"
     }
@@ -327,6 +304,36 @@ function sendResetPasswordEmail(email, newPassword){
         }
         console.log("Send: " + info.response);
     })
+}
+
+function resetPassword(req, res){
+    const email = req.params.email;
+    
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let newPassword = "";
+    for ( var i = 0; i < 8; i++ ) {
+        newPassword += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    bcryptjs.genSalt(10, function(err, salt){
+        bcryptjs.hash(newPassword, salt, function(err, hash){
+            const updateUser = {
+                Password: hash
+            }
+
+            models.User.update(updateUser, {where: {Email:email}}).then(result1 => {
+                res.status(200).json({
+                    message: "Password reset successfully! You can login with new password now!",
+                    New_password: newPassword
+                });
+            }).catch(error => {
+                res.status(400).json({
+                    message: "Something went wrong!",
+                    error: error
+                });
+            });
+        });
+    });
 }
 
 function changePassword(req, res){
@@ -385,5 +392,6 @@ module.exports = {
     update: update,
     destroy: destroy,
     forgot: forgot,
+    resetPassword: resetPassword,
     changePassword: changePassword
 }
