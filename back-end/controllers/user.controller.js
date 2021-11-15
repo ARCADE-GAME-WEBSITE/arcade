@@ -41,7 +41,7 @@ function signUp(req, res){
                         Role: 0,
                         Full_name: req.body.Full_name,
                         Gender: req.body.Gender,
-                        DayOfBirth: "0000-00-00",
+                        DayOfBirth: "2001-01-01",
                         Avatar: default_ava
                     }
 
@@ -59,7 +59,8 @@ function signUp(req, res){
                         });
                     }).catch(error => {
                         res.status(500).json({
-                            message: "Something went wrong!"
+                            message: "Something went wrong!",
+                            error: error
                         });
                     });
                 });
