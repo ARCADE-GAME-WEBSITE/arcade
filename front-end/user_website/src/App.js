@@ -19,10 +19,6 @@ import AboutUs from './Components/PageLayout/Footer/about-us';
 import axios from 'axios';
 
 function App() {
-  window.onbeforeunload = () => {
-    localStorage.clear();
-  }
-
   const [dialogState, setDialogState] = useState({
     title: "",
     message: "",
