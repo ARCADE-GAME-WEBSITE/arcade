@@ -1,7 +1,7 @@
-import  { React, Component } from "react";
-
+import  { React,useState,useEffect } from "react";
+import axios from "axios";
 import './played-games.css'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Card,
   CardHeader,
@@ -9,13 +9,35 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 
-class PlayedGames extends Component{
-    render() {
+function PlayedGames() {
+    const [listGame,setListGame] = useState([]);
+    
+    useEffect(() => {
+    axios.get('game/').then(result => {
+      setListGame(result.data)
+      
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])  
+
+    const listGameRender = () => listGame.map(game => {
+        const gameAvaUrl = axios.defaults.baseURL + 'uploads/images/games/avatar/' + game.Avatar;
         return (
-            <>
-                <div className="content">
+        <div className="game-list show-game" data-item={game.Category}>
+            <Link className="game-list-link" to={'/game-detail/' + game.id + "/" + game.Url}>
+                <img className="game-list-img" src={gameAvaUrl} alt="Cannot get" />
+                <div className="game-list-name">{game.Title}</div>
+            </Link>
+        </div>
+        );
+    })
+    return (
+        <>
+            <div className="content">
                 <Row>
                 <Col className="12">
                     <Card>
@@ -23,80 +45,16 @@ class PlayedGames extends Component{
                     <h1 className="title">Game Played</h1>
                     </CardHeader>
                     <CardBody>
-                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div className="thumbnail">
-                        <img src={require('../../../Assets/Images/Game/1.png').default} className="game-img" alt="" />
-                        <div className="caption">
-                            <h4>name</h4>
-                            <p>
-                            <a href="/" className="btn-play">Play</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div className="thumbnail">
-                        <img src={require('../../../Assets/Images/Game/1.png').default} className="game-img" alt="" />
-                        <div className="caption">
-                            <h4>name</h4>
-                            <p>
-                            <a href="/" className="btn-play">Play</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div className="thumbnail">
-                        <img src={require('../../../Assets/Images/Game/1.png').default} className="game-img" alt="" />
-                        <div className="caption">
-                            <h4>name</h4>
-                            <p>
-                            <a href="/" className="btn-play">Play</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div className="thumbnail">
-                        <img src={require('../../../Assets/Images/Game/1.png').default} className="game-img" alt="" />
-                        <div className="caption">
-                            <h4>name</h4>
-                            <p>
-                            <a href="/" className="btn-play">Play</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div className="thumbnail">
-                        <img src={require('../../../Assets/Images/Game/1.png').default} className="game-img" alt="" />
-                        <div className="caption">
-                            <h4>name</h4>
-                            <p>
-                            <a href="/" className="btn-play" >Play</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div className="thumbnail">
-                        <img src={require('../../../Assets/Images/Game/1.png').default} className="game-img" alt="" />
-                        <div className="caption">
-                            <h4>name</h4>
-                            <p>
-                            <a href="/" className="btn-play" >Play</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
+                    {
+                        listGameRender()
+                    }
                     </CardBody>
                     </Card>
                 </Col>
                 </Row>
-                </div>
-            </>
-        );
-    }     
+            </div>
+        </>
+    )
 }
 
 export default PlayedGames;

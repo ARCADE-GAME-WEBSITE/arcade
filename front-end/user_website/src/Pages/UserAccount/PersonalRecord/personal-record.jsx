@@ -32,33 +32,33 @@ function PersonalRecord() {
                     <tbody>
                       <tr>
                         <td>1</td>
-                        <td>Xep Hinh</td>
-                        <td>5/10/2021</td>
-                        <td>1500</td>
+                        <td>2048</td>
+                        <td>14/11/2021</td>
+                        <td>2000</td>
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>Ban sung</td>
-                        <td>5/10/2021</td>
-                        <td>3500</td>
+                        <td>FlappyBird</td>
+                        <td>13/11/2021</td>
+                        <td>25</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>Ban ga</td>
-                        <td>5/10/2021</td>
-                        <td>15000</td>
+                        <td>Pacman</td>
+                        <td>10/11/2021</td>
+                        <td>1500</td>
                       </tr>
                       <tr>
                         <td>4</td>
-                        <td>Thoi trang</td>
-                        <td>5/10/2021</td>
-                        <td>18000</td>
+                        <td>Sudoku</td>
+                        <td>15/11/2021</td>
+                        <td>3200</td>
                       </tr>
                       <tr>
                       <td>5</td>
-                        <td>Dua xe</td>
-                        <td>5/10/2021</td>
-                        <td>18000</td>
+                        <td>Tower Built</td>
+                        <td>16/11/2021</td>
+                        <td>1800</td>
                       </tr>
                     </tbody>
                   </Table>
