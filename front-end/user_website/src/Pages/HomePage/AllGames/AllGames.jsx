@@ -9,7 +9,7 @@ function AllGames({listGame}) {
     const allGames = listGame.map(game => {
         return (
             <GameCell game={game}/>
-        );
+        )
     })
 
     return (
