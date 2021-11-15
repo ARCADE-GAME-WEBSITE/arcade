@@ -61,7 +61,7 @@ async function signUp(req, res){
                 models.Pending_user.create(pending_user).then(result2 => {
                     sendConfirmSignUpEmail(result2.Email, result2.id);
                     res.status(201).json({
-                        message: "Confirm sign up email sended!"
+                        message: "Confirm sign up email sended!\nPlease check your email to complete registration!"
                     });
                 })
             });
