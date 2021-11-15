@@ -3,7 +3,6 @@ import axios from "axios";
 import "./game-cell.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function GameCell({game}){
     const gameAvaUrl = axios.defaults.baseURL + 'uploads/images/games/avatar/' + game.Avatar;
 
