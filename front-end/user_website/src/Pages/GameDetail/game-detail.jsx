@@ -56,7 +56,9 @@ function GameDetail({user}) {
             </div>
             
         </div>
-    ): null;
+    ): (
+        <div style={{'min-height': '1000px'}}/>
+    );
 }
 
 export default GameDetail

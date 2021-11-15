@@ -48,7 +48,7 @@ function HomePage({user}) {
     else setListGame(listGameOld.current)
   }
 
-  return (
+  return (listGame.length !== 0) ? (
       <div className="Background-homepage" >
         <div className="App-left-sidebar">
             <FriendList user={user}/>
@@ -71,8 +71,8 @@ function HomePage({user}) {
             </div>
         </div>
       </div>
-
-    
+  ): (
+    <div style={{'min-height': '1000px'}}/>
   );
 }
 
