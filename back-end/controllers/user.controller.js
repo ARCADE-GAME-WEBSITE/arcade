@@ -61,7 +61,7 @@ async function signUp(req, res){
                 models.Pending_user.create(pending_user).then(result2 => {
                     sendConfirmSignUpEmail(result2.Email, result2.id);
                     res.status(201).json({
-                        message: "Confirm sign up email sended!\nPlease check your email to complete registration!"
+                        message: "Confirm sign up email sended! Please check your email to complete registration!"
                     });
                 })
             });
@@ -80,7 +80,8 @@ function sendConfirmSignUpEmail(email, pending_id){
         to: email,
         subject: "Confirm sign up for email: " + email,
         text: "Hello " + email + ", you have just sign up to our website - ArcadeGameWebsite.com!"
-            + "\n\nClick here to confirm and complete your sign up: " + "http://localhost:8000/user/confirm-sign-up/" + pending_id  
+            + "\n\nClick here to confirm and complete your sign up: " 
+            + "https://arcadegame-gonin-server.herokuapp.com/user/confirm-sign-up/" + pending_id   
             + "\n\nDo not share this email to any one!"
             + "\n\nIf you not doing this, just ignore this message!"
             + "\n\nThank you,"
