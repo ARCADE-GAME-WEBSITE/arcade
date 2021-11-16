@@ -24,6 +24,11 @@
   .like:hover,.unlike:hover, .game-info__report:hover{
     opacity: 0.7;
   }
+  .game__star--gold{
+    color: rgb(50, 115, 255);
+    
+  }
+
   .game-info__report{
     display: flex;
     margin: 10px 10px;
@@ -39,4 +44,20 @@
   }
   .report-flag{
     padding: 8px 5px 0 5px;
+    margin-bottom: 10px;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  span{
+    font-size: 1.8rem;
+  }
+  .on {
+    color: rgb(48, 34, 255);
+  }
+  .off {
+    color: #ccc;
   }

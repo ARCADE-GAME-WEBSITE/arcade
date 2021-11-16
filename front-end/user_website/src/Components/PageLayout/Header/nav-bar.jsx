@@ -46,22 +46,22 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                 element.style.display = 'none';
             }
         })
-        checkEmpty(elementGame);
+        // checkEmpty(elementGame);
     }
-        function checkEmpty(element){
-            let count = 0;
-            for(let i = 0; i < element.length; i++){
-                if (element[i].style.display === 'block')
-                count++;
-            }
+        // function checkEmpty(element){
+        //     let count = 0;
+        //     for(let i = 0; i < element.length; i++){
+        //         if (element[i].style.display === 'block')
+        //         count++;
+        //     }
 
-            if (count === 0){
-                document.querySelector('#no__product').textContent = 'Can\'t find'; 
-            }
-            else{
-                document.querySelector('#no__product').textContent = ''; 
-            }
-        }
+        //     if (count === 0){
+        //         document.querySelector('#no__product').textContent = 'Can\'t find';
+        //     }
+        //     else{
+        //         document.querySelector('#no__product').textContent = ''; 
+        //     }
+        // }
     
 
 
