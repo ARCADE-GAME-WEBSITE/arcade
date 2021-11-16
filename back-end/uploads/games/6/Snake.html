@@ -582,16 +582,8 @@ function newGame(whoPlays) {
     }
     loop();
 }
-newGame("AI");
-canvasCont = document.getElementById("canvasCont");
-if (window.innerHeight < window.innerWidth){
-    canvasCont.style.width = window.innerHeight/window.innerWidth*100 - 5 + "%";
-    canvasCont.style.height = "100%"
-}else {
-    canvasCont.style.width = "100%";
-    canvasCont.style.height = "auto"
-}
-document.getElementsByTagName("body")[0].onresize = function () {
+    newGame("AI");
+    canvasCont = document.getElementById("canvasCont");
     if (window.innerHeight < window.innerWidth){
         canvasCont.style.width = window.innerHeight/window.innerWidth*100 - 5 + "%";
         canvasCont.style.height = "100%"
@@ -599,23 +591,31 @@ document.getElementsByTagName("body")[0].onresize = function () {
         canvasCont.style.width = "100%";
         canvasCont.style.height = "auto"
     }
-};
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-      function preventDefault(e) {
-          e.preventDefault();
+    document.getElementsByTagName("body")[0].onresize = function () {
+        if (window.innerHeight < window.innerWidth){
+            canvasCont.style.width = window.innerHeight/window.innerWidth*100 - 5 + "%";
+            canvasCont.style.height = "100%"
+        }else {
+            canvasCont.style.width = "100%";
+            canvasCont.style.height = "auto"
         }
-      function preventDefaultForScrollKeys(e) {
-          if (keys[e.keyCode]) {
+    };
+        var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+        function preventDefault(e) {
+            e.preventDefault();
+        }
+        function preventDefaultForScrollKeys(e) {
+            if (keys[e.keyCode]) {
             preventDefault(e);
             return false;
-          }
+            }
         }
         function stopScroll(e){
-          // alert('stop')
-      window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-      e.stopPropagation();
-  }
-      document.getElementById("clickStopScroll").addEventListener("click",stopScroll)
+            // alert('stop')
+            window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+            e.stopPropagation();
+        }
+        document.getElementById("clickStopScroll").addEventListener("click",stopScroll)
     </script>
 </body>
 </html>

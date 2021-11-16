@@ -270,7 +270,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="clickStopScroll">
     <div class="wrapper">
       <button
         type="button"
@@ -434,6 +434,25 @@
 
       ga("create", "UA-21332781-19", "auto");
       ga("send", "pageview");
+
+      var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+      function preventDefault(e) {
+        e.preventDefault();
+      }
+      function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
+        }
+      }
+      function stopScroll(e) {
+        // alert('stop')
+        window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+        e.stopPropagation();
+      }
+      document
+        .getElementById("clickStopScroll")
+        .addEventListener("click", stopScroll);
     </script>
     <link
       href="http://fonts.googleapis.com/css?family=Exo+2"

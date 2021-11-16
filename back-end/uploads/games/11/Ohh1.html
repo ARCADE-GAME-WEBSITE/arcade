@@ -33,7 +33,7 @@
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="fonts/fonts.css" type="text/css" rel="stylesheet" />
   </head>
-  <body bgcolor="#222222">
+  <body bgcolor="#222222" id="clickStopScroll">
     <div id="container">
         <div id="title" class="screen show01 hide0 hide1 hidehs" data-action="close-titleScreen">
             <div class="vertical">
@@ -152,6 +152,25 @@
         for (var i=0; i<scripts.length; i++) {
             document.write('<scr'+'ipt src="' + scripts[i] + (Config.barph? ('?barph=' + (new Date() * 1)) : '') + '"></scr'+'ipt>');
         }
+
+        var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+        function preventDefault(e) {
+            e.preventDefault();
+        }
+        function preventDefaultForScrollKeys(e) {
+            if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+            }
+        }
+        function stopScroll(e) {
+            // alert('stop')
+            window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+            e.stopPropagation();
+        }
+        document
+            .getElementById("clickStopScroll")
+            .addEventListener("click", stopScroll);
     </script>
   </body>
 </html>

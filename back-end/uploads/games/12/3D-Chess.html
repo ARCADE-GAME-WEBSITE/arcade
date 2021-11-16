@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css">
     <script src="js/prefixfree.min.js"></script>
   </head>
-  <body>
+  <body id="clickStopScroll">
     <div id="app" class="loading" data-theme="classic" data-frame="off" data-menu="main">
       <div id="logo">
         <div class="symbol"><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -333,5 +333,25 @@
       </div>
     </div>
     <script src="js/scripts.min.js"></script>
+    <script>
+      var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+      function preventDefault(e) {
+        e.preventDefault();
+      }
+      function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
+        }
+      }
+      function stopScroll(e) {
+        // alert('stop')
+        window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+        e.stopPropagation();
+      }
+      document
+        .getElementById("clickStopScroll")
+        .addEventListener("click", stopScroll);
+    </script>
   </body>
 </html>
