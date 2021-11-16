@@ -14,6 +14,12 @@ function FriendList({user}) {
     
     const inputEmail = document.getElementById('friend-list__add-email')
 
+    const [valueInput,setValueInput] = useState('')
+    const getValueInput = (e) =>{
+        setValueInput(e.target.value)
+    }
+
+
     const [listFriend, setListFriend] = useState([])
     const getFriend = () => {
         axios.get('/friend/get-by-user-id/' + user.id )
@@ -37,13 +43,13 @@ function FriendList({user}) {
     
 
     const AddFriendbyEmail = () => {
-        if(inputEmail.value !=null)
+        if(valueInput != '')
         {
-            if(user.email !== inputEmail.value)
+            if(user.email !== valueInput)
             {
                 axios.post('/friend', {
                     UserID : user.id,
-                    FriendEmail : inputEmail.value
+                    FriendEmail : valueInput
                     }, config)
                     .then(response => {
                         getFriend()
@@ -55,6 +61,7 @@ function FriendList({user}) {
             }
             else alert('Can not add your self')
         }
+        else alert('Please enter your email address')
 
     }
 
@@ -92,7 +99,7 @@ function FriendList({user}) {
                         <div className="friend-list__friend-name">Add Friend</div>
                     </button>
                     <div className="friend-list__add-email" id="friend-list__add-form">
-                        <input type="text" className="form-control" name='' id="friend-list__add-email" placeholder="Friend Email"/>
+                        <input type="text" className="form-control" name='' id="friend-list__add-email" onChange={(e) => getValueInput(e)} placeholder="Friend Email"/>
                         <button type="submit" className="btn btn-primary" onClick={AddFriendbyEmail}>Add</button>
                     </div>
                 </div>
