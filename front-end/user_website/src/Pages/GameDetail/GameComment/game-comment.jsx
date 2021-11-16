@@ -18,41 +18,39 @@ function GameComment({user,gameId}) {
     const [cmtDeleteUpdate, setCmtDeleteUpdate] = useState([])
     const [cmtUserAvatar, setUserAvatar] = useState([])
     const [userId,setUserId] = useState('')
-
+    const [valueCmt , setValueCmt] = useState('')
     const GAMEID= useRef()
     useEffect(() => {
         getComment()
     },[gameId])
     
-    console.log(user)
-    console.log(gameId)
     GAMEID.current = gameId
-    console.log(typeof GAMEID.current)
-
+    const handleInputChange = (e) => {
+        setValueCmt(e.target.value)
+    }
     const postComment = () => {
-        console.log(inputCmt.value);
-        if(inputCmt.value !==''){
-            axios.post('comment/', {
-                UserID: user.id,
-                GameID: Number(GAMEID.current),
-                Content: inputCmt.value,
-                }, config)
-                .then(response =>{
-                    getComment()
-                })
-                
-                .catch((err) => {
-                    console.log(err);
-                })
-                inputCmt.value = null
-        }
-        else alert('Please write on the box')
+
+            if(inputCmt.value !==null){
+                axios.post('comment/', {
+                    UserID: user.id,
+                    GameID: Number(GAMEID.current),
+                    Content: valueCmt,
+                    }, config)
+                    .then(response =>{
+                        getComment()
+                    })
+                    
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                    inputCmt.value = null
+            }
+            else alert('Please write on the box')
 
     }
         
     //GetComment
     function getComment() {
-        console.log(GAMEID.current)
         axios.get('comment/get-by-game-id/' + GAMEID.current)
                     .then((res) => {
                         console.log(GAMEID.current);
@@ -246,7 +244,7 @@ function GameComment({user,gameId}) {
                 </div>
                 <div className="game-comment__account-login" id="test2">
                     <img className="comment__img" src={avatarUrl.current} alt="" />
-                    <input type="text" placeholder="Comment text" className="game-comment__input" maxlength="100" id="game-comment__account-btn"/>
+                    <input type="text" placeholder="Comment text" className="game-comment__input" maxlength="100" onChange={(e) => handleInputChange(e)} id="game-comment__account-btn"/>
                     <input type="submit" value="Send" className="game-comment__account-send" onClick={postComment}/>
                 </div>
                 <div className="game-comment__content">
