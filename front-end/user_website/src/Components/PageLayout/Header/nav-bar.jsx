@@ -71,8 +71,8 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     let buttons;
 
     const handleLogout = () => {
-        localStorage.clear();
-        setUser(null)
+        localStorage.removeItem('token');
+        setUser(null);
     }
 
     if (user){
