@@ -54,9 +54,22 @@
   }
   span{
     font-size: 1.8rem;
+    background-color:red;
+    position: relative;
   }
+  span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    margin: auto;
+    border-width: 0 12px 5px;
+    border-style: solid;
+    bottom: -5px;
+    color: red;
+    border-color: transparent currentColor transparent currentColor;
+}
   .on {
-    color: rgb(48, 34, 255);
+    color: hsl(59, 100%, 60%);
   }
   .off {
     color: #ccc;
