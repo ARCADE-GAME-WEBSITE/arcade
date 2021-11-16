@@ -1,5 +1,5 @@
 import React from 'react'
-
+import StarRating from "./star-rating";
 import './game-info.css'
 
 function GameInfo({gameTitle}) {
@@ -14,14 +14,17 @@ function GameInfo({gameTitle}) {
                 </div>
                 <div className="game-info__right">
                     <h4>Did you like this game?</h4>
-                    <div className="game-info__like">
+                    <div class="game__rating">
+                        <StarRating />
+                    </div>
+                    {/* <div className="game-info__like">
                         <button className="like">
                             <i className="far fa-thumbs-up"></i>
                         </button>
                         <button className="unlike">
                             <i className="far fa-thumbs-down"></i>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
     )
