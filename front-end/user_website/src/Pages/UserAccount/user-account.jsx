@@ -11,6 +11,7 @@ import PlayedGames from "./PlayedGames/played-games";
 
 
 function UserAccount({user, setShowChangePassword})  {
+  window.scrollTo(0, 0);
   const mainPanelRef = React.useRef(null);
  
   return (user) ? (
