@@ -2,14 +2,13 @@ import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import FriendList from "./FriendList/friend-list";
 import AllGames from "./AllGames/AllGames";
-// import SortByCategory from "./SortByCategory/SortByCategory";
 import GameCategories from "./GameCategories/GameCategories";
 
 import './home-page.css';
 function HomePage({user}) {
+  window.scrollTo(0, 0);
 
   const listGameOld = useRef()
-
   const [listGame,setListGame] = useState([]) ;
   useEffect(() => {
     axios.get('game/').then(result => {

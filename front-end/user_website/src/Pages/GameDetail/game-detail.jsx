@@ -13,6 +13,8 @@ import GameAbout from './GameAbout/game-about';
 import FriendList from '../HomePage/FriendList/friend-list'
 
 function GameDetail({user}) {
+    window.scrollTo(0, 0);
+    
     const getUrlGame= window.location.href.split("/")
     const gameId = getUrlGame[getUrlGame.length - 2]
     

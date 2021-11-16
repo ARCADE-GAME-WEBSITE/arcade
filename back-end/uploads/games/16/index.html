@@ -39,7 +39,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="clickStopScroll">
     <div id="wrap">
       <div id="wrap-inner">
         <canvas id="cbg1"></canvas>
@@ -70,5 +70,26 @@
     <script src="js/levelpop.js"></script>
     <script src="js/button.js"></script>
     <script src="js/game.js"></script>
+
+    <script>
+      var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+      function preventDefault(e) {
+        e.preventDefault();
+      }
+      function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
+        }
+      }
+      function stopScroll(e) {
+        // alert('stop')
+        window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+        e.stopPropagation();
+      }
+      document
+        .getElementById("clickStopScroll")
+        .addEventListener("click", stopScroll);
+    </script>
   </body>
 </html>

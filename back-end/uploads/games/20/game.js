@@ -3,7 +3,7 @@ const cvs = document.getElementById("breakout");
 const ctx = cvs.getContext("2d");
 
 // ADD BORDER TO CANVAS
-cvs.style.border = "1px solid #0ff";
+cvs.style.border = "3px solid #0ff";
 
 // MAKE LINE THIK WHEN DRAWING TO CANVAS
 ctx.lineWidth = 3;
@@ -17,7 +17,7 @@ let LIFE = 3; // PLAYER HAS 3 LIVES
 let SCORE = 0;
 const SCORE_UNIT = 10;
 let LEVEL = 1;
-const MAX_LEVEL = 3;
+const MAX_LEVEL = 8;
 let GAME_OVER = false;
 let leftArrow = false;
 let rightArrow = false;
@@ -36,7 +36,7 @@ function drawPaddle(){
     ctx.fillStyle = "#2e3548";
     ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
     
-    ctx.strokeStyle = "#ffcd05";
+    ctx.strokeStyle = "#e37900";
     ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 }
 
@@ -70,9 +70,9 @@ const ball = {
     x : cvs.width/2,
     y : paddle.y - BALL_RADIUS,
     radius : BALL_RADIUS,
-    speed : 4,
-    dx : 3 * (Math.random() * 2 - 1),
-    dy : -3
+    speed : 6,
+    dx : 6 * (Math.random() * 2 - 1),
+    dy : -4
 }
 
 // DRAW THE BALL
@@ -118,8 +118,8 @@ function ballWallCollision(){
 function resetBall(){
     ball.x = cvs.width/2;
     ball.y = paddle.y - BALL_RADIUS;
-    ball.dx = 3 * (Math.random() * 2 - 1);
-    ball.dy = -3;
+    ball.dx = 6 * (Math.random() * 2 - 1);
+    ball.dy = -4;
 }
 
 // BALL AND PADDLE COLLISION
@@ -212,7 +212,7 @@ function ballBrickCollision(){
 // show game stats
 function showGameStats(text, textX, textY, img, imgX, imgY){
     // draw text
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = "#000000";
     ctx.font = "25px Germania One";
     ctx.fillText(text, textX, textY);
     
@@ -347,22 +347,3 @@ function showYouLose(){
     gameover.style.display = "block";
     youlose.style.display = "block";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
