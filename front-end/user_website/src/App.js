@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
+
 import './Styles/App.css';
 import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
@@ -60,8 +62,8 @@ function App() {
         
         <Switch>
           <Route exact path="/" component={() => <HomePage user={user}/>} />
-          <Route path='/game-detail' component={() => <GameDetail user={user} key={Date.now()}/>} />
-          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={Date.now()}/>} />
+          <Route path='/game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
+          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />
         </Switch>
 
         <div className="App-footer">
