@@ -61,9 +61,9 @@ function App() {
         />
         
         <Switch>
-          <Route exact path="/*" component={() => <HomePage user={user}/>} />
-          <Route path='/*game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
-          <Route path="/*user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />
+          <Route exact path="/" component={() => <HomePage user={user}/>} />
+          <Route path='/game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
+          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />
         </Switch>
 
         <div className="App-footer">
