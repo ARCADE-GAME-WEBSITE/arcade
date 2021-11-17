@@ -23,13 +23,14 @@
   align-items: center;
   padding: 5px 5px;
 }
-.friend-list__title{
+.friend-list__title {
   height: 500px;
 }
 .friend-list__title-img,
 .friend-list__friend-img {
   height: 35px;
   margin-right: 5px;
+  border-radius: 50%;
 }
 
 .friend-list__title-name,
@@ -38,10 +39,10 @@
   font-weight: 500;
   margin: 8px 5px 8px 0;
 }
-.friend-list__title-name{
+.friend-list__title-name {
   width: 180px;
   text-overflow: ellipsis;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .friend-list__heading-2 {
@@ -75,7 +76,7 @@
 }
 
 .friend-info {
-  height:45px;
+  height: 45px;
   width: 100%;
   display: flex;
   padding: 0;
@@ -117,9 +118,7 @@
   font-size: 1.8rem;
   color: #000;
 }
-.friend-list__add-email{
+.friend-list__add-email {
   display: none;
   margin: 8px;
 }
-
-
