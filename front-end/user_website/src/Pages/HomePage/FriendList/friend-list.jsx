@@ -30,7 +30,7 @@ function FriendList({user}) {
                 console.log(err);
             })       
     }
-
+    console.log(listFriend);
     useEffect(() => {
         if (user!=null){
             getFriend()
@@ -86,7 +86,7 @@ function FriendList({user}) {
                             <div className="friend-info" key={friend.id}>
                                 <div className="friend-info__item">
                                     <img className="friend-list__title-img" src={axios.defaults.baseURL + 'uploads/images/users/' + friend.FriendAvatar} alt="" />
-                                    <div className="friend-list__title-name">{friend.FriendEmail}</div>
+                                    <div className="friend-list__title-name">{friend.FriendFullName}</div>
                                     <button className="friend-list__title-add">Invite</button>
                                 </div>
                             </div>
