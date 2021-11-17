@@ -52,50 +52,41 @@ function GameComment({user,gameId}) {
     //GetComment
     function getComment() {
         axios.get('comment/get-by-game-id/' + GAMEID.current)
-                    .then((res) => {
-                        console.log(GAMEID.current);
-                            const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)
-                            console.log(cmtArr);
-                            const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
+            .then((res) => {
+                const cmtArr = res.data.post.slice(res.data.post.length - 3,res.data.post.length)
+                const saveArrContent = [cmtArr[0].Content,cmtArr[1].Content,cmtArr[2].Content]
+                const saveArrName = [cmtArr[0].UserName,cmtArr[1].UserName,cmtArr[2].UserName]
+                const saveArrDeleteUpdate = [cmtArr[0].id,cmtArr[1].id,cmtArr[2].id]
+                const saveArrUserId = [cmtArr[2].UserID,cmtArr[1].UserID,cmtArr[0].UserID]
+                const saveArrUserAvatar = [cmtArr[0].UserAvatar,cmtArr[1].UserAvatar,cmtArr[2].UserAvatar]
+                
+                setCmt(saveArrContent)
+                
+                setUserName(saveArrName)
+                setCmtDeleteUpdate(saveArrDeleteUpdate)
+                setUserId(saveArrUserId)
+                setUserAvatar(saveArrUserAvatar)
 
-                            const saveArrName = [cmtArr[0].UserName,cmtArr[1].UserName,cmtArr[2].UserName]
+                avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
+                
+                for (var i = 0; i <=2;i++){
+                    cmtArr[i].createdAt=cmtArr[i].createdAt.replace("T","  ")
+                    cmtArr[i].createdAt=cmtArr[i].createdAt.replace(".000Z", "s")
+                }
+                
+                const saveArrTimeSend =  [cmtArr[0].createdAt,cmtArr[1].createdAt,cmtArr[2].createdAt]
 
-                            const saveArrDeleteUpdate = [cmtArr[0].id,cmtArr[1].id,cmtArr[2].id]
-
-                            const saveArrUserId = [cmtArr[2].UserID,cmtArr[1].UserID,cmtArr[0].UserID]
-
-                            const saveArrUserAvatar = [cmtArr[0].UserAvatar,cmtArr[1].UserAvatar,cmtArr[2].UserAvatar]
-                            
-                            setCmt(saveArrContent)
-                            
-                            setUserName(saveArrName)
-                            setCmtDeleteUpdate(saveArrDeleteUpdate)
-                            setUserId(saveArrUserId)
-                            setUserAvatar(saveArrUserAvatar)
-
-                            avatarUrl.current = axios.defaults.baseURL + 'uploads/images/users/' + user.Avatar;
-                            
-                            for (var i = 0; i <=2;i++){
-                                cmtArr[i].createdAt=cmtArr[i].createdAt.replace("T","  ")
-                                cmtArr[i].createdAt=cmtArr[i].createdAt.replace(".000Z", "s")
-                            }
-                            
-                            const saveArrTimeSend =  [cmtArr[0].createdAt,cmtArr[1].createdAt,cmtArr[2].createdAt]
-
-                            setTimeSend(saveArrTimeSend)
-                            console.log(saveArrTimeSend);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        });
-
+                setTimeSend(saveArrTimeSend)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     //delete
     const functionCmtDelete = (id) => {
         axios.delete('comment/' + id, config)
             .then((response) =>{
-                console.log(response)
                 getComment()
             })
             .catch((err) =>{
@@ -105,7 +96,6 @@ function GameComment({user,gameId}) {
     
     //Update1
     const handleUpdate1 = () =>{
-
         document.getElementById('comment__bottom__right1').style.display = 'none'
         document.getElementById('comment__bottom__right-hide1').style.display = 'flex'
         document.getElementById('comment__cmt1').style.display = 'none'

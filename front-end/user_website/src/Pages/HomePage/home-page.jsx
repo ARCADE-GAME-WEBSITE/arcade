@@ -39,7 +39,6 @@ function HomePage({user}) {
       }
     })
     e.target.parentElement.classList.add("game-category--active")
-    console.log(btn);
     if(btn != 'All'){
       const filterData = listGameOld.current.filter(item => item.Category.indexOf(btn) !== -1)
       setListGame(filterData)
