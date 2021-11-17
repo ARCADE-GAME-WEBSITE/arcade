@@ -33,7 +33,7 @@ function GameScreen({gameLink, currentGame}) {
                         <a className="btn-play-link">PLAY</a>
                     </li>
                     <li className="btn-toturial">
-                        <a className="btn-toturial-link">TOTURIAL</a>
+                        <a className="btn-toturial-link">TUTORIAL</a>
                     </li>
                     <li className="btn-music">
                         <a className="btn-music-link">MUSIC</a>

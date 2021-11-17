@@ -23,6 +23,6 @@ Open with XAMPP
 
 3. Link to server: https://arcadegame-gonin-server.herokuapp.com/
 
-4. Link to user's website: https://arcadegame-gonin.netlify.app/
+4. Link to user's website: https://arcadegame.cf/
 
 5. Link to admin's website:
