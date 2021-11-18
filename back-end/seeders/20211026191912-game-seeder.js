@@ -292,6 +292,30 @@ module.exports = {
         Played: 0,
         Rate: 0
       },
+      {
+        DevID: 1,
+        Url: "ShootingGame.html",
+        DemoUrl: "https://www.youtube.com/embed/KSNJQJz_n8E?start=19",
+        Title: "Shooting Game",
+        Avatar: "24.png",
+        Category: "Shooting Reflex",
+        GamePlayImage: "img1.png img2.png img3.png img4.png",
+        Description: "A simple game in which the player has to shoot all the moving balls. The player has to shoot the balls using the Right-click, shot score points increase as the player starts shooting. It is a simple action game with the objective of destroying pokeballs and gaining accuracy points. The player has to aim the moving balls by moving the mouse cursor. All the balls move rapidly so its a bit hard to destroy all at the same time. There’s no time limit in this simple game, and it is an endless action game.",
+        Played: 0,
+        Rate: 0
+      },
+      {
+        DevID: 1,
+        Url: "AimTrainer.html",
+        DemoUrl: "https://www.youtube.com/embed/fTUVe2c7uRg",
+        Title: "Aim Trainer",
+        Avatar: "25.png",
+        Category: "Shooting Reflex",
+        GamePlayImage: "img1.png img2.png img3.png img4.png",
+        Description: "Aim Trainer is a game that is specifically designed to improve the player’s aim in various First-Person Shooter games such as Fortnite, Counter-Strike: GO, and Call of Duty.",
+        Played: 0,
+        Rate: 0
+      },
     ]);
   },
 
