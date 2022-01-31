@@ -1,6 +1,6 @@
 # Admin-Dashboard Model
 
-<img width="960" alt="1" src="https://www.linkpicture.com/q/anh1_1_1.png">
+<img width="960" alt="1" src="https://www.linkpicture.com/q/anh2_2.png">
 <img width="960" alt="1" src="https://www.linkpicture.com/q/anh0.png">
 
 ## Info Admin 
